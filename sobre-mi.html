@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dra. Laura Bernal - Perfil profesional: médica, desarrolladora e investigadora">
+    <title>Sobre mí - Dra. Laura Bernal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" class="nav-logo-link" aria-label="Dra. Laura Bernal · Inicio"><img src="images/logo.png" alt="Dra. Laura Bernal" class="nav-logo-img" width="2400" height="852"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="sobre-mi.html" class="active">Dra. Laura Bernal</a></li>
+                <li><a href="clinica.html">Clínica</a></li>
+                <li><a href="tools/index.html">Herramientas clínicas</a></li>
+                <li><a href="estudios.html">Estudios clínicos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Dra. Laura Bernal</h1>
+                <p class="page-subtitle">Médica · Desarrolladora · Investigadora</p>
+            </div>
+        </section>
+
+        <section class="profile">
+            <div class="container">
+                <div class="profile-image-section">
+                    <img src="images/laura-bernal.jpg" width="300" height="300" alt="Dra. Laura Bernal" class="profile-image">
+                </div>
+                
+                <div class="profile-intro">
+                    <p class="lead">Mi perfil nace de una combinación poco habitual: práctica clínica asistencial, investigación biomédica y desarrollo tecnológico.</p>
+                    
+                    <p>Soy médica con doble titulación universitaria — Licenciatura en Medicina y Grado en Ciencias Biomédicas — y dos especialidades clínicas: Medicina Familiar y Comunitaria y Medicina de Urgencias y Emergencias. Además, desarrollo una línea de trabajo propia en programación e IA aplicada a la clínica.</p>
+                    
+                    <p>Desde 2014 trabajo como médica asistencial, actualmente en atención primaria, tras una etapa previa en urgencias hospitalarias de un centro de referencia regional. Esa experiencia clínica, en entornos reales de presión, incertidumbre y toma de decisiones complejas, es la base de todo lo que construyo.</p>
+                </div>
+
+                <div class="timeline">
+                    <h2 class="section-heading">Trayectoria profesional</h2>
+
+                    <div class="timeline-filters" role="group" aria-label="Filtrar trayectoria">
+                        <button type="button" class="timeline-filter" data-faceta="todo" aria-pressed="true">Todo</button>
+                        <button type="button" class="timeline-filter" data-faceta="clinica" aria-pressed="false">Clínica</button>
+                        <button type="button" class="timeline-filter" data-faceta="tecnologia" aria-pressed="false">Tecnología</button>
+                        <button type="button" class="timeline-filter" data-faceta="docencia" aria-pressed="false">Docencia</button>
+                    </div>
+
+                    <div class="timeline-list">
+                        <div class="timeline-rail" aria-hidden="true"><span class="timeline-rail-fill"></span></div>
+                    
+                    <div class="timeline-item" data-faceta="tecnologia">
+                        <div class="timeline-date">2022 – actualidad</div>
+                        <div class="timeline-content">
+                            <h3>Desarrolladora IA clínica</h3>
+                            <p class="timeline-org">Proyectos propios</p>
+                            <p>Desarrollo de herramientas clínicas propias combinando 12 años de práctica médica real con programación full-stack e inteligencia artificial.</p>
+                            <ul class="timeline-details">
+                                <li><strong>Plataforma de gestión de pacientes crónicos</strong> — aplicación full-stack para seguimiento longitudinal, diseñada desde la lógica real de la consulta de atención primaria.</li>
+                                <li><strong>Sistema de apoyo a la decisión terapéutica (CDSS)</strong> — integración con la API oficial de la AEMPS para sugerir opciones farmacológicas según el problema clínico del paciente.</li>
+                                <li><strong>Motor de diagnóstico diferencial</strong> — herramienta basada en IA para generación y priorización de diagnósticos diferenciales.</li>
+                            </ul>
+                            <p class="tech-stack"><strong>Stack:</strong> React.js · Node.js · Python · MongoDB · PostgreSQL · Supabase · OpenAI API · MCP</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-faceta="docencia" id="formacion">
+                        <div class="timeline-date">2024 – actualidad</div>
+                        <div class="timeline-content">
+                            <h3>Formadora en IA, Programación y Bioinformática</h3>
+                            <p class="timeline-org">Independiente</p>
+                            <p>Formación práctica en inteligencia artificial, programación y bioinformática dirigida a médicos y profesionales sanitarios, en niveles básico y avanzado. Sin teoría vacía — todo lo que se enseña se puede aplicar el lunes siguiente en consulta.</p>
+                            <p><strong>Formación institucional destacada:</strong> Docente en el Programa UPRO de Formación en Competencias Digitales para Médicos, enmarcado en Generación D de Red.es, adscrita al Ministerio para la Transformación Digital y de la Función Pública, y financiada por Next Generation EU, con la participación de la Organización Médica Colegial (CGCOM).</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-faceta="clinica">
+                        <div class="timeline-date">2014 – actualidad</div>
+                        <div class="timeline-content">
+                            <h3>Médica de familia</h3>
+                            <p class="timeline-org">Servicio Murciano de Salud</p>
+                            <p>Médica de familia en activo en el sistema público con más de 12 años de práctica clínica continuada. Esta experiencia es la base de todo lo que construyo: conozco los flujos reales de la consulta, los cuellos de botella del sistema y los problemas que merecen ser resueltos.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-faceta="docencia">
+                        <div class="timeline-date">2017 – actualidad</div>
+                        <div class="timeline-content">
+                            <h3>Docente clínica</h3>
+                            <p class="timeline-org">Unidad Docente AFyC Murcia / Universidad de Murcia</p>
+                            <p>Colaboradora clínica en la formación de residentes MIR y profesora colaboradora de prácticas clínicas para estudiantes de Medicina.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-faceta="clinica">
+                        <div class="timeline-date">2020 – actualidad</div>
+                        <div class="timeline-content">
+                            <h3>Medicina Estética y de Precisión</h3>
+                            <p class="timeline-org">Clínica Dra. Laura Bernal · Murcia</p>
+                            <p>Clínica propia con enfoque en medicina estética y medicina de precisión, integrando el perfil genético del paciente en la planificación del tratamiento.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" data-faceta="clinica">
+                        <div class="timeline-date">2018 – 2024</div>
+                        <div class="timeline-content">
+                            <h3>Urgencias hospitalarias</h3>
+                            <p class="timeline-org">H. U. Virgen de la Arrixaca</p>
+                            <p>Urgencias hospitalarias de alta complejidad. <strong>Especialista en Medicina de Urgencias y Emergencias</strong> — título oficial obtenido en febrero de 2026.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="education">
+                    <h2 class="section-heading">Formación académica</h2>
+                    
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <h3>Grado en Ciencias Biomédicas</h3>
+                            <p class="edu-institution">Universitat de Lleida</p>
+                            <p class="edu-date">2019</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h3>Licenciatura en Medicina</h3>
+                            <p class="edu-institution">Universitat de Lleida</p>
+                            <p class="edu-date">2013</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h3>Especialista en Medicina Familiar y Comunitaria</h3>
+                            <p class="edu-institution">Ministerio de Sanidad · Vía MIR</p>
+                            <p class="edu-date">2018</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h3>Especialista en Medicina de Urgencias y Emergencias</h3>
+                            <p class="edu-institution">Ministerio de Sanidad</p>
+                            <p class="edu-date">2026</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h3>Máster en Medicina de Urgencias y Emergencias</h3>
+                            <p class="edu-institution">Universidad Miguel Hernández</p>
+                            <p class="edu-date">2019</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h3>Máster en Medicina Estética, Nutrición y Antienvejecimiento</h3>
+                            <p class="edu-institution">UDIMA</p>
+                            <p class="edu-date">2019</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h3>Máster Universitario en Nutrición y Salud</h3>
+                            <p class="edu-institution">Universidad Internacional Valenciana (VIU)</p>
+                            <p class="edu-date">2020</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="affiliations">
+                    <h2 class="section-heading">Colaboraciones y grupos de trabajo</h2>
+                    <div class="affiliation-item">
+                        <h3>Grupo de Trabajo de Genética</h3>
+                        <p>SEMERGEN (Sociedad Española de Médicos de Atención Primaria)</p>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h2>¿Hablamos?</h2>
+                    <p>Estoy abierta a colaboraciones en formación, consultoría o desarrollo de soluciones digitales para el ámbito sanitario.</p>
+                    <a href="contacto.html" class="btn btn-primary">Contacta conmigo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Dra. Laura Bernal</h4>
+                    <p>Medicina de precisión<br>Murcia, España</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="sobre-mi.html">Sobre mí</a></li>
+                        <li><a href="clinica.html">Clínica</a></li>
+                        <li><a href="tools/index.html">Herramientas clínicas</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>
+                        <a href="mailto:drabernalm@gmail.com">drabernalm@gmail.com</a>
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/laura-bernal-4a9760118/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Dra. Laura Bernal. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,916 @@
+/* =========================================================
+   Capa común de las herramientas clínicas
+   Se carga DESPUÉS del estilo propio de cada herramienta y
+   solo corrige lo compartido: lectura, contraste, foco,
+   avisos y navegación de vuelta a la web.
+   ========================================================= */
+
+:root {
+    --hc-navy: #1A2E5C;
+    --hc-ink: #16223f;
+    --hc-cobalt: #0047AB;
+    --hc-gold: #D4AF37;
+    --hc-gold-ink: #8a6a12;
+    --hc-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Barra superior: volver a la web ---------- */
+.hc-topbar {
+    position: relative;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px clamp(16px, 4vw, 40px);
+    background: #0a1628;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    font-size: 13px;
+}
+
+.hc-topbar a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 2px;
+    border-radius: 3px;
+    transition: color 0.2s;
+}
+
+.hc-topbar a:hover {
+    color: #fff;
+}
+
+.hc-topbar a svg {
+    transition: transform 0.3s var(--hc-ease);
+}
+
+.hc-topbar a:hover svg {
+    transform: translateX(-3px);
+}
+
+.hc-topbar-firma {
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.02em;
+}
+
+.hc-topbar-firma strong {
+    color: var(--hc-gold);
+    font-weight: 500;
+}
+
+@media (max-width: 560px) {
+    .hc-topbar-firma {
+        display: none;
+    }
+}
+
+/* ---------- Superficies del navegador ---------- */
+::selection {
+    background: rgba(212, 175, 55, 0.35);
+    color: var(--hc-ink);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--hc-cobalt);
+    outline-offset: 2px;
+}
+
+:where(.tab, .tab-btn):focus-visible {
+    outline-color: var(--hc-gold);
+    outline-offset: -3px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #6b7488;
+    opacity: 1;
+}
+
+/* Cifras de escalas y dosis alineadas */
+input[type="number"],
+table td,
+.score-num,
+.score-value {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Cabecera: sin manchas de luz decorativas ---------- */
+.header::before,
+.header::after,
+header::before,
+header::after {
+    display: none !important;
+}
+
+/* ---------- Avisos: marco completo en vez de franja lateral ---------- */
+/* Plantilla anticoagulación / insulinización */
+.alert-box {
+    border-radius: 6px !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.alert-box.warn   { border-color: rgba(194, 101, 0, 0.35) !important; }
+.alert-box.danger { border-color: rgba(185, 28, 28, 0.35) !important; }
+.alert-box.ok     { border-color: rgba(5, 150, 105, 0.35) !important; }
+.alert-box.info   { border-color: rgba(30, 64, 175, 0.30) !important; }
+.alert-box.purple { border-color: rgba(91, 33, 182, 0.30) !important; }
+.alert-box:not(.warn):not(.danger):not(.ok):not(.info):not(.purple) {
+    border-color: rgba(0, 71, 171, 0.25) !important;
+}
+
+/* Plantilla osteoporosis / tiroides */
+.alert,
+.mini-alert,
+.risk-card {
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-radius: 6px !important;
+}
+
+/* Puntos de urgencia en lugar de emojis de colores */
+.hc-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: 0.05em;
+}
+
+.hc-dot--rojo    { background: #c62828; }
+.hc-dot--naranja { background: #e07b00; }
+.hc-dot--azul    { background: #1e5bb8; }
+
+/* Iconos decorativos de sección (antes emojis): fuera */
+.sec-icon {
+    display: none !important;
+}
+
+/* ---------- Pie más legible ---------- */
+body > footer,
+body > .footer {
+    color: rgba(245, 240, 232, 0.78) !important;
+}
+
+/* ---------- Movimiento: respeta "reducir movimiento" ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media print {
+    .hc-topbar {
+        display: none !important;
+    }
+}
+
+/* =========================================================
+   ESTILO de las herramientas: Source Serif 4 + Source Sans 3, azul marino y dorado
+   Capa común: tokens, cabecera, pestañas, tarjetas y campos.
+   ========================================================= */
+:root {
+    --navy: #0a1628;
+    --ink: #0a1628;
+    --ink-mid: #556170;
+    --muted: #556170;
+    --text: #0a1628;
+    --bone: #f6f7f9;
+    --bone-dark: #e9edf2;
+    --bg: #f6f7f9;
+    --border: #e3e7ec;
+    --rust: #0a1628;
+    --gold: #d4af37;
+    --gold-lt: #d4af37;
+    --shadow: rgba(10, 22, 40, 0.06);
+    --blue: #1a2d47;
+    --blue-l: #eef1f6;
+    --blue-m: #cfd5dd;
+    --cobalt: #1a2d47;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Source Sans 3', system-ui, sans-serif;
+    --mono: 'Source Sans 3', system-ui, sans-serif;
+    --hc-gold-ink: #8a6a12;
+}
+
+body {
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    background: #f6f7f9;
+    color: #0a1628;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Cabecera */
+.header,
+body > header {
+    background: #0a1628 !important;
+    text-align: center;
+    padding: 3.2rem 1.5rem 3rem !important;
+}
+
+.header-inner,
+body > header > * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header h1,
+body > header h1 {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-weight: 400 !important;
+    font-size: clamp(2.6rem, 5.5vw, 3.9rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: 0 !important;
+    color: #fff !important;
+}
+
+.header h1 span,
+body > header h1 span,
+body > header h1 em {
+    color: var(--gold) !important;
+    font-style: italic;
+}
+
+.header p,
+body > header p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 640px !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+}
+
+.header p strong,
+body > header p strong {
+    color: #fff !important;
+    font-weight: 600;
+}
+
+/* Sin antetítulo: el título se basta solo */
+.hdr-badge {
+    display: none !important;
+}
+
+.murcia-badge {
+    top: -1.6rem !important;
+    border-radius: 2px !important;
+    font-family: 'Source Sans 3', sans-serif;
+    letter-spacing: 0.06em !important;
+}
+
+/* Pestañas: barra blanca con subrayado dorado */
+.tabs,
+.tab-bar {
+    background: #fff !important;
+    border-bottom: 1px solid #e3e7ec !important;
+    box-shadow: 0 10px 24px -20px rgba(10, 22, 40, 0.35);
+}
+
+.tab,
+.tab-btn {
+    font-family: 'Source Sans 3', sans-serif !important;
+    font-size: 0.86rem !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #556170 !important;
+    border-bottom: 2px solid transparent !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.tab:not(.active):hover,
+.tab-btn:not(.active):hover {
+    background: transparent !important;
+    color: #0a1628 !important;
+}
+
+.tab.active,
+.tab-btn.active {
+    color: #0a1628 !important;
+    font-weight: 600 !important;
+    border-bottom-color: #d4af37 !important;
+    background: transparent !important;
+}
+
+.tab-sep,
+.tabs-sep {
+    background: #e3e7ec !important;
+}
+
+/* Tarjetas */
+.card {
+    border-radius: 4px !important;
+    border-color: #e3e7ec !important;
+    box-shadow: none !important;
+}
+
+.card-title {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-size: 1.45rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    color: #0a1628 !important;
+    border-bottom-color: #eef0f3 !important;
+}
+
+.section-title,
+.sec-title,
+.step-head h2 {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-weight: 500 !important;
+    font-size: 1.75rem !important;
+    letter-spacing: 0 !important;
+}
+
+.section-num,
+.sec-num {
+    color: var(--hc-gold-ink) !important;
+}
+
+/* Campos */
+label,
+.f-label,
+.pfield label {
+    font-family: 'Source Sans 3', sans-serif !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+    color: #556170 !important;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="search"],
+input[type="password"],
+select,
+textarea {
+    border-radius: 2px !important;
+    border: 1px solid #cfd5dd !important;
+    background: #fff !important;
+    color: #0a1628 !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #0a1628 !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.35) !important;
+    outline: none !important;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: #0a1628 !important;
+}
+
+/* Puntuaciones */
+.score-num,
+.arc-score {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-weight: 500 !important;
+    font-size: 48px !important;
+}
+
+/* Pie */
+body > footer,
+body > .footer {
+    background: #0a1628 !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* ---------- Nota de responsabilidad ---------- */
+.hc-aviso {
+    max-width: 1100px;
+    margin: 18px auto 0;
+    padding: 12px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: 2px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #3c4757;
+}
+
+.hc-aviso svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--hc-gold-ink);
+}
+
+.hc-aviso strong {
+    color: #0a1628;
+}
+
+.hc-aviso-wrap {
+    padding: 0 1.5rem;
+}
+
+.hc-legal {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 12px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+@media print {
+    .hc-aviso-wrap {
+        display: none !important;
+    }
+}
+
+/* Cabecera de la plantilla osteoporosis / tiroides (<header><div class="hdr">) */
+header:has(> .hdr) {
+    background: #0a1628 !important;
+    text-align: center;
+    padding: 3.2rem 1.5rem 3rem !important;
+}
+
+.hdr {
+    margin: 0 auto !important;
+    max-width: 760px;
+}
+
+.hdr h1 {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-weight: 400 !important;
+    font-size: clamp(2.6rem, 5.5vw, 3.9rem) !important;
+    line-height: 1.02 !important;
+    color: #fff !important;
+}
+
+.hdr h1 span {
+    color: var(--gold) !important;
+    font-style: italic;
+}
+
+.hdr p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 640px !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+}
+
+/* Etiquetas y botones dentro de los títulos de tarjeta: letra de texto */
+.card-title > span,
+.card-title > button,
+.card-title .chip,
+.card-title label {
+    font-family: 'Source Sans 3', sans-serif !important;
+    font-size: 11.5px !important;
+}
+
+/* Acentos azules de las plantillas → azul marino de la web */
+:root {
+    --rust-lt: #1a2d47;
+    --teal: #1a2d47;
+    --teal-lt: #3a4f6e;
+}
+
+/* =========================================================
+   JERARQUÍA (propuesta 2 · Source Serif + Source Sans)
+   - Serifa solo en el nombre de la herramienta y en los pasos/secciones.
+   - Títulos de tarjeta: pequeños, en letra de texto, sin línea.
+   ========================================================= */
+body {
+    font-family: 'Source Sans 3', system-ui, sans-serif !important;
+    font-size: 15.5px;
+}
+
+/* Cabecera más compacta y alineada a la izquierda */
+.header,
+body > header,
+header:has(> .hdr) {
+    text-align: left !important;
+    padding: 2.4rem 1.5rem 2.2rem !important;
+}
+
+.header-inner,
+.hdr {
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+}
+
+.header h1,
+body > header h1,
+.hdr h1 {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-weight: 600 !important;
+    font-size: clamp(2rem, 3.8vw, 2.6rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.01em !important;
+}
+
+.header h1 span,
+body > header h1 span,
+.hdr h1 span {
+    font-style: normal !important;
+    font-weight: 600;
+}
+
+.header p,
+body > header p,
+.hdr p {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    font-size: 0.97rem !important;
+}
+
+.murcia-badge {
+    top: 0 !important;
+}
+
+/* Encabezados de paso / sección: el único título grande dentro de la página */
+.section-title,
+.sec-title,
+.step-head h2 {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-weight: 600 !important;
+    font-size: 1.6rem !important;
+    letter-spacing: -0.005em !important;
+}
+
+/* Títulos de tarjeta: discretos */
+.card-title {
+    font-family: 'Source Sans 3', system-ui, sans-serif !important;
+    font-size: 14.5px !important;
+    font-weight: 700 !important;
+    color: #0a1628 !important;
+    border-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 10px !important;
+}
+
+.card-title > span,
+.card-title > button,
+.card-title .chip,
+.card-title label {
+    font-family: 'Source Sans 3', sans-serif !important;
+    font-size: 12px !important;
+}
+
+/* Cifras grandes en serifa */
+.score-num,
+.arc-score,
+.fg-pill .num,
+.seg-tile strong {
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-weight: 600 !important;
+}
+
+.score-num,
+.arc-score {
+    font-size: 40px !important;
+}
+
+label,
+.f-label,
+.pfield label {
+    font-size: 13px !important;
+}
+
+/* =========================================================
+   Plantilla osteoporosis / tiroides: misma jerarquía
+   - Rótulos en minúscula normal (sin mayúsculas espaciadas)
+   - Desplegables con cabecera clara en lugar de barra gris
+   ========================================================= */
+.subsect,
+.fr-subsection,
+.dxa-ask-q,
+.tto-selector-title,
+.block-head,
+.sec-op-head,
+.res-block-head,
+.sp-card-head,
+.referral-card h4,
+.alert-label,
+.resumen-head span,
+.res-metric .mlbl,
+.ml,
+.f-group label,
+.dxa-item strong,
+.drug-header,
+.risk-badge,
+.ayuda-badge,
+.header-badge {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+}
+
+.subsect,
+.fr-subsection,
+.dxa-ask-q,
+.tto-selector-title {
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    color: #0a1628 !important;
+}
+
+.block-head,
+.sec-op-head,
+.res-block-head,
+.sp-card-head,
+.referral-card h4,
+.resumen-head span {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+.alert-label,
+.ml,
+.res-metric .mlbl {
+    font-size: 12.5px !important;
+    font-weight: 600 !important;
+}
+
+/* Desplegables: cabecera blanca, texto azul marino */
+.acc-head {
+    background: #fff !important;
+    color: #0a1628 !important;
+    border-bottom: 1px solid #e3e7ec !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+}
+
+.acc-head:hover {
+    background: #f6f7f9 !important;
+}
+
+.accordion {
+    box-shadow: none !important;
+    border-color: #e3e7ec !important;
+    border-radius: 4px !important;
+}
+
+/* Tablas: cabecera en minúscula normal */
+th,
+.atab th {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+    font-size: 13px !important;
+}
+
+/* Botones principales: azul marino, texto blanco, sin mayúsculas */
+.btn-calcular,
+.btn-main,
+.btn-generar {
+    background: #0a1628 !important;
+    color: #fff !important;
+    border: 1px solid #0a1628 !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+}
+
+.btn-calcular:hover,
+.btn-main:hover,
+.btn-generar:hover {
+    background: #1a2d47 !important;
+}
+
+.bg-ico {
+    display: none !important;
+}
+
+.btn-sec,
+.btn-reset,
+.btn-copy,
+.btn-print-hc {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+    font-size: 13px !important;
+    border-radius: 2px !important;
+}
+
+/* Factores del FRAX: fondo crema más suave */
+.frax-chk {
+    background: #faf6ea !important;
+}
+
+/* Plantilla farmacogenómica: barra de pestañas y rótulos */
+.tabs-bar {
+    background: #fff !important;
+    border-bottom: 1px solid #e3e7ec !important;
+    box-shadow: 0 10px 24px -20px rgba(10, 22, 40, 0.35);
+}
+
+.card-label,
+.ctx-item label,
+.cartera-lbl {
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-family: 'Source Sans 3', sans-serif !important;
+}
+
+.card-label {
+    font-size: 14.5px !important;
+    font-weight: 700 !important;
+    color: #0a1628 !important;
+}
+
+/* =========================================================
+   CABECERA LIMPIA Y CENTRADA (como las páginas de la web)
+   Título = nombre de la herramienta · una línea de qué hace · guía de referencia
+   ========================================================= */
+.header,
+body > header,
+header:has(> .hdr) {
+    text-align: center !important;
+    padding: 3rem 1.5rem 2.8rem !important;
+}
+
+.header h1,
+body > header h1,
+.hdr h1 {
+    font-size: clamp(2.3rem, 4.6vw, 3rem) !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    margin: 0 0 0.7rem !important;
+}
+
+.hc-sub {
+    max-width: 620px !important;
+    margin: 0 auto !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    font-size: 1.02rem !important;
+    line-height: 1.6 !important;
+}
+
+.hc-base {
+    max-width: 620px !important;
+    margin: 0.9rem auto 0 !important;
+    color: #d4af37 !important;
+    font-size: 0.86rem !important;
+    letter-spacing: 0.01em;
+}
+
+.hdr-meta {
+    justify-content: center !important;
+    margin-top: 0.8rem !important;
+}
+
+/* Más específico que «.header p», que fijaba margen izquierdo y color */
+.header .hc-sub,
+body > header .hc-sub,
+.hdr .hc-sub,
+.header .hc-base,
+body > header .hc-base,
+.hdr .hc-base {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center;
+}
+
+.header .hc-base,
+body > header .hc-base,
+.hdr .hc-base {
+    color: #d4af37 !important;
+    font-size: 0.88rem !important;
+    margin-top: 0.9rem !important;
+}
+
+@media (max-width: 720px) {
+    .murcia-badge {
+        position: static !important;
+        display: table !important;
+        margin: 0 auto 14px !important;
+    }
+}
+
+/* ══════ FICHA LATERAL (común) ══════
+   Datos del paciente fijos a la izquierda; contenido a la derecha. */
+main.hc-layout,
+.hc-layout {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    max-width: 1320px !important;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+    align-items: start;
+}
+.hc-ficha {
+    position: sticky;
+    top: 66px;
+    align-self: start;
+    background: #fff;
+    border: 1px solid #e3e7ec;
+    padding: 20px 20px 18px;
+    max-height: calc(100vh - 80px);
+    overflow: auto;
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    color: #0a1628;
+}
+.hc-main { min-width: 0; padding-left: 26px; }
+.hc-ficha .fi-h {
+    font-size: 12.5px; color: #556170; font-weight: 600;
+    margin: 0 0 10px; letter-spacing: 0; text-transform: none;
+}
+.hc-ficha .fi-h2 { margin-top: 18px; padding-top: 14px; border-top: 1px solid #e3e7ec; }
+.hc-ficha .fi-nombre {
+    width: 100%; border: 0 !important; border-bottom: 1px solid #e3e7ec !important;
+    border-radius: 0 !important; font-family: 'Source Serif 4', Georgia, serif !important;
+    font-size: 21px; font-weight: 600; padding: 4px 0 9px !important; margin: 0 0 14px;
+    background: transparent !important; box-shadow: none !important; color: #0a1628;
+}
+.hc-ficha .fi-nombre:focus { outline: none; border-bottom-color: #0a1628 !important; }
+.hc-ficha .fi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; align-items: end; }
+.hc-ficha .fi-grid > .fi-wide { grid-column: 1 / -1; }
+.hc-ficha .f-group, .hc-ficha .pfield, .hc-ficha .fi-f {
+    display: flex; flex-direction: column; gap: 4px; margin: 0; min-width: 0 !important; max-width: none !important;
+}
+.hc-ficha .f-label, .hc-ficha .pfield > label, .hc-ficha .fi-f > span {
+    font-size: 12.5px !important; color: #556170 !important; font-weight: 600 !important;
+    text-transform: none !important; letter-spacing: 0 !important; margin: 0 !important;
+}
+.hc-ficha .f-label span { font-style: normal !important; font-weight: 400; }
+.hc-ficha input, .hc-ficha select {
+    width: 100% !important; padding: 8px 9px; font-size: 15px; box-sizing: border-box;
+}
+.hc-ficha .fi-res { margin-top: 16px; border-top: 1px solid #e3e7ec; padding-top: 4px; }
+.hc-ficha .fi-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10px; width: 100%;
+    background: none; border: 0; border-bottom: 1px solid #f1f3f5; border-radius: 0;
+    padding: 9px 2px; font: inherit; font-size: 14.5px; color: #556170; text-align: left; cursor: pointer;
+}
+.hc-ficha .fi-row:hover { background: #f6f7f9; }
+.hc-ficha .fi-row strong { font-size: 15px; color: #0a1628; text-align: right; }
+.hc-ficha .fi-row.is-key strong { color: #8a6a12; }
+.hc-ficha .fi-nav { display: flex; flex-direction: column; }
+.hc-ficha .fi-link {
+    display: flex; gap: 10px; align-items: baseline; width: 100%;
+    background: none; border: 0; border-left: 2px solid transparent; border-radius: 0;
+    padding: 6px 8px; font: inherit; font-size: 14px; color: #556170; text-align: left; cursor: pointer;
+}
+.hc-ficha .fi-link span { font-size: 12px; color: #8a94a3; font-variant-numeric: tabular-nums; min-width: 18px; }
+.hc-ficha .fi-link:hover { color: #0a1628; background: #f6f7f9; }
+.hc-ficha .fi-link.on { color: #0a1628; border-left-color: #d4af37; font-weight: 600; }
+.hc-ficha .fi-generar, .hc-ficha .fi-ver {
+    display: block; width: 100%; margin-top: 14px; padding: 10px 12px;
+    font: 700 14.5px 'Source Sans 3', system-ui, sans-serif; cursor: pointer; border-radius: 0; text-align: center;
+}
+.hc-ficha .fi-generar { background: #0a1628; color: #fff; border: 1px solid #0a1628; }
+.hc-ficha .fi-generar:hover { background: #16264a; }
+.hc-ficha .fi-ver { background: #fff; color: #0a1628; border: 1px solid #0a1628; margin-top: 8px; }
+.hc-ficha .fi-ver[hidden] { display: none; }
+@media (max-width: 960px) {
+    main.hc-layout, .hc-layout { grid-template-columns: 1fr; padding: 1.25rem 1rem 3rem; }
+    .hc-ficha { position: static; max-height: none; }
+    .hc-main { padding-left: 0; margin-top: 16px; }
+    .hc-ficha .fi-res { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
+    .hc-ficha .fi-h2, .hc-ficha .fi-nav { display: none; }
+}
+@media print {
+    .hc-ficha { display: none !important; }
+    main.hc-layout, .hc-layout { display: block; }
+    .hc-main { padding-left: 0; }
+}
+/* Anticoagulación: sin barra fija arriba; las pestañas van dentro de la columna derecha */
+.hc-layout.hc-anticoag { padding: 0 1.5rem; margin-top: 22px; }
+.hc-anticoag .hc-ficha { top: 14px; max-height: calc(100vh - 28px); }
+.hc-anticoag .hc-ficha .fi-h { margin: 0; }
+.hc-anticoag .hc-ficha .fi-nombre { margin: 4px 0 14px; }
+@media (max-width: 960px) {
+    .hc-layout.hc-anticoag { padding: 0 1rem; }
+}
+
+/* Filas de resultado: un punto en lugar de un emoji; el color marca la urgencia */
+body .rrow .rico {
+    flex: 0 0 6px; width: 6px; height: 6px; margin-top: .62em;
+    border-radius: 50%; background: #c9a227; font-size: 0;
+}
+body .rrow .rico.r-urg { background: #b42318; }
+body .rrow .rico.r-pref { background: #d97706; }
+body .rrow .rico.r-ord { background: #2563eb; }
+body .rrow .rico.r-ok { background: #15803d; }

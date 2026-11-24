@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Área privada de estudios clínicos - Dra. Laura Bernal">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Estudios clínicos - Dra. Laura Bernal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <style>
+        /* Puerta de acceso (login) */
+        .gate {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px;
+            background: var(--color-gray-light);
+        }
+        .gate-card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--color-white);
+            border: 1px solid rgba(33, 48, 58, 0.10);
+            border-radius: 12px;
+            padding: 40px 36px;
+            box-shadow: 0 12px 30px rgba(33, 48, 58, 0.08);
+            text-align: center;
+        }
+        .gate-card h1 {
+            font-family: var(--font-serif);
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 10px;
+        }
+        .gate-card p.gate-sub {
+            font-size: 15px;
+            color: var(--color-gray);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        .gate-form label {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 8px;
+        }
+        .gate-form input {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1px solid var(--color-gray);
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            color: var(--color-dark);
+            background: var(--color-white);
+            transition: border-color 0.25s;
+        }
+        .gate-form input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+        .gate-form .btn {
+            width: 100%;
+            margin-top: 18px;
+            cursor: pointer;
+        }
+        .gate-error {
+            display: none;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #b23b3b;
+        }
+        .gate-error.visible { display: block; }
+
+        /* Contenido protegido */
+        .estudios-content { display: none; }
+        .estudios-content.unlocked { display: block; }
+
+        .estudios-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 14px 20px;
+            background: var(--color-accent-soft);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--color-dark);
+        }
+        .estudios-bar button {
+            background: none;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .estudios-bar button:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .estudios-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        .estudio-card {
+            background: var(--color-white);
+            border: 1px solid rgba(33, 48, 58, 0.08);
+            border-radius: 10px;
+            padding: 28px;
+        }
+        .estudio-card .estado {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--color-accent-soft);
+            color: var(--color-accent);
+            margin-bottom: 14px;
+        }
+        .estudio-card h3 {
+            font-family: var(--font-serif);
+            font-size: 21px;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 10px;
+        }
+        .estudio-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--color-dark-light);
+        }
+        .estudio-card .meta {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--color-gray);
+        }
+        @media (max-width: 768px) {
+            .estudios-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="index.html" class="nav-logo-link" aria-label="Dra. Laura Bernal · Inicio"><img src="images/logo.png" alt="Dra. Laura Bernal" class="nav-logo-img" width="2400" height="852"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="sobre-mi.html">Dra. Laura Bernal</a></li>
+                <li><a href="clinica.html">Clínica</a></li>
+                <li><a href="tools/index.html">Herramientas clínicas</a></li>
+                <li><a href="estudios.html" class="active">Estudios clínicos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- PUERTA DE ACCESO (hash SHA-256 en la constante PASSWORD_HASH del script). -->
+        <section class="gate" id="gate">
+            <div class="gate-card">
+                <h1>Área privada</h1>
+                <p class="gate-sub">Esta sección de estudios clínicos es de acceso restringido. Introduce la contraseña para continuar.</p>
+                <form class="gate-form" id="gateForm" autocomplete="off">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required autofocus>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <p class="gate-error" id="gateError">Contraseña incorrecta. Inténtalo de nuevo.</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             CONTENIDO PROTEGIDO
+             Edita libremente las tarjetas de abajo para añadir tus
+             estudios. Copia y pega un bloque <article class="estudio-card">
+             para crear uno nuevo.
+             ============================================================ -->
+        <section class="estudios-content" id="estudiosContent">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Estudios clínicos</h1>
+                    <p class="page-subtitle">Área privada · Dra. Laura Bernal</p>
+                </div>
+            </div>
+
+            <div class="container" style="padding-top:80px; padding-bottom:100px;">
+                <div class="estudios-bar">
+                    <span>Has accedido al área privada de estudios clínicos.</span>
+                    <button type="button" id="logoutBtn">Cerrar sesión</button>
+                </div>
+
+                <article class="estudio-card" style="margin-bottom:28px;">
+                    <span class="estado">En curso</span>
+                    <h3>DIABETES-AP · Optimización del paciente diabético (ADA 2026)</h3>
+                    <p>Estudio observacional prospectivo con intervención de mejora en Atención Primaria. En la visita basal (T0) se diagnostican las comorbilidades (IC, ERC, MASLD, ECV, obesidad) y la fragilidad (escala FRAIL), y se detectan pacientes subóptimamente tratados según los <em>Standards of Care in Diabetes 2026</em>. Tras la intervención, control a 3 meses (T1) con HbA1c. Los datos se registran en una hoja de Google Drive.</p>
+                    <p class="meta">Brazos: tratamiento / control · Basado en ADA 2026 · Investigadoras: Dra. Patricia Martínez y Dra. Laura Bernal</p>
+                </article>
+
+                <div style="display:flex; gap:10px; margin-bottom:16px; flex-wrap:wrap; align-items:center;">
+                    <button type="button" id="tabForm" onclick="setStudyView('form')" style="padding:10px 20px; border-radius:6px; font-size:14px; cursor:pointer; background:var(--color-dark); color:#fff; border:1px solid var(--color-dark);">Formulario del paciente</button>
+                    <button type="button" id="tabDash" onclick="setStudyView('dash')" style="padding:10px 20px; border-radius:6px; font-size:14px; cursor:pointer; background:transparent; color:var(--color-dark); border:1px solid rgba(33,48,58,0.25);">Dashboard</button>
+                    <a href="estudio-diabetes/index.html" target="_blank" style="margin-left:auto; font-size:13px; color:var(--color-accent);">Abrir en ventana completa ↗</a>
+                </div>
+                <iframe id="studyFrame" src="estudio-diabetes/index.html" title="Estudio DIABETES-AP" style="width:100%; height:82vh; border:1px solid rgba(33,48,58,0.12); border-radius:10px; background:#fff;"></iframe>
+                <script>
+                function setStudyView(v){
+                    var f=document.getElementById('studyFrame'),bf=document.getElementById('tabForm'),bd=document.getElementById('tabDash'),dash=(v==='dash');
+                    f.src=dash?'estudio-diabetes/dashboard.html':'estudio-diabetes/index.html';
+                    styleStudyTab(bf,!dash); styleStudyTab(bd,dash);
+                }
+                function styleStudyTab(b,on){
+                    b.style.background=on?'var(--color-dark)':'transparent';
+                    b.style.color=on?'#fff':'var(--color-dark)';
+                    b.style.border=on?'1px solid var(--color-dark)':'1px solid rgba(33,48,58,0.25)';
+                }
+                </script>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Dra. Laura Bernal</h4>
+                    <p>Medicina de precisión<br>Murcia, España</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="sobre-mi.html">Sobre mí</a></li>
+                        <li><a href="clinica.html">Clínica</a></li>
+                        <li><a href="tools/index.html">Herramientas clínicas</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>
+                        <a href="mailto:drabernalm@gmail.com">drabernalm@gmail.com</a>
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/laura-bernal-4a9760118/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Dra. Laura Bernal. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    /* ============================================================
+       CONTROL DE ACCESO (contraseña simple del lado del cliente)
+
+       Nota de seguridad: esto oculta la página con una contraseña,
+       pero NO es seguridad de nivel profesional. Alguien con
+       conocimientos técnicos podría ver el contenido. Sirve para
+       material no sensible. Si en el futuro necesitas seguridad real,
+       se puede pasar a la protección por contraseña de Netlify.
+
+       ---- CÓMO CAMBIAR LA CONTRASEÑA ----
+       El valor de abajo (PASSWORD_HASH) es el "hash" SHA-256 de la
+       contraseña, no la contraseña en sí (no la escribas aquí:
+       cualquiera puede ver este código). Para poner otra, genera el hash de tu nueva contraseña (puedes
+       pedírmelo a mí) y pega el resultado en PASSWORD_HASH.
+       ============================================================ */
+    const PASSWORD_HASH = 'd8381e542e057d1277d5fddc39d186656bbbfa2be1e75b955be6ec8bf64c74de';
+
+    const gate = document.getElementById('gate');
+    const content = document.getElementById('estudiosContent');
+    const form = document.getElementById('gateForm');
+    const errorMsg = document.getElementById('gateError');
+
+    function unlock() {
+        gate.style.display = 'none';
+        content.classList.add('unlocked');
+    }
+
+    function sha256Hex(ascii){
+        ascii = unescape(encodeURIComponent(ascii));
+        function rr(v,a){return (v>>>a)|(v<<(32-a));}
+        var mp=Math.pow,maxWord=mp(2,32),result='';
+        var words=[],asciiBitLength=ascii.length*8;
+        var hash=sha256Hex.h=sha256Hex.h||[],k=sha256Hex.k=sha256Hex.k||[],primeCounter=k.length;
+        var isComposite={};
+        for(var candidate=2;primeCounter<64;candidate++){
+            if(!isComposite[candidate]){
+                for(var i=0;i<313;i+=candidate){isComposite[i]=candidate;}
+                hash[primeCounter]=(mp(candidate,0.5)*maxWord)|0;
+                k[primeCounter++]=(mp(candidate,1/3)*maxWord)|0;
+            }
+        }
+        ascii+='\x80';
+        while(ascii.length%64-56)ascii+='\x00';
+        for(i=0;i<ascii.length;i++){
+            var j=ascii.charCodeAt(i);
+            if(j>>8)return;
+            words[i>>2]|=j<<((3-i)%4)*8;
+        }
+        words[words.length]=((asciiBitLength/maxWord)|0);
+        words[words.length]=(asciiBitLength);
+        for(j=0;j<words.length;){
+            var w=words.slice(j,j+=16);
+            var oldHash=hash;
+            hash=hash.slice(0,8);
+            for(i=0;i<64;i++){
+                var w15=w[i-15],w2=w[i-2];
+                var a=hash[0],e=hash[4];
+                var temp1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]
+                    +(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+                var temp2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+                hash=[(temp1+temp2)|0].concat(hash);
+                hash[4]=(hash[4]+temp1)|0;
+            }
+            for(i=0;i<8;i++){hash[i]=(hash[i]+oldHash[i])|0;}
+        }
+        for(i=0;i<8;i++){
+            for(j=3;j+1;j--){
+                var b=(hash[i]>>(j*8))&255;
+                result+=((b<16)?0:'')+b.toString(16);
+            }
+        }
+        return result;
+    }
+
+    // Si ya se validó en esta sesión del navegador, mostrar directamente.
+    if (sessionStorage.getItem('estudios_ok') === '1') {
+        unlock();
+    }
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        errorMsg.classList.remove('visible');
+        const value = document.getElementById('password').value;
+        try {
+            const hash = await sha256Hex(va

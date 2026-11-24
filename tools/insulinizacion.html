@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Insulinización DM2 — MF Murcia</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --navy:#1A2E5C;--cobalt:#0047AB;--gold:#D4AF37;--gold-lt:#F5D97A;
+    --ink:#16223f;--ink-mid:#4a5673;--bone:#f4f6f9;--bone-dark:#e4e8ef;
+    --rust:#1A2E5C;--shadow:rgba(26,46,92,0.10);
+    --bg:#f4f6f9;--surface:#fff;--border:#C8CDD6;--text:#16223f;--muted:#4a5673;
+    --blue:#0047AB;--blue-l:#e9f0fb;--blue-m:#b9ccea;
+    --green:#2e6b3e;--green-l:#e3efe6;
+    --orange:#9a6a08;--orange-l:#faf2d6;
+    --red:#E24B4A;--red-l:#fbe4e2;
+    --purple:#5a3070;--purple-l:#ece2f3;
+    --mono:'Source Sans 3',sans-serif;--sans:'Source Sans 3',sans-serif;--serif:'Source Serif 4',serif;--r:4px;
+  }
+  body{font-family:var(--sans);font-size:15px;line-height:1.65;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  .header{background:var(--ink);color:var(--bone);padding:3rem 1.5rem 2.5rem;position:relative;overflow:hidden;}
+  .header::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(0,71,171,.30) 0%,transparent 70%);}
+  .header::after{content:'';position:absolute;bottom:-40px;left:10%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.22) 0%,transparent 70%);}
+  .header-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+  .hdr-badge{display:inline-block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:.25rem .75rem;border-radius:2px;margin-bottom:.75rem;}
+  .header h1{font-family:var(--serif);font-size:clamp(2rem,4vw,2.9rem);font-weight:600;line-height:1.1;letter-spacing:-0.01em;color:var(--bone);margin-bottom:.4rem;}
+  .header h1 span{color:var(--gold-lt);}
+  .header p{font-size:.85rem;color:rgba(245,240,232,.55);max-width:600px;font-weight:300;}
+  .hdr-credit{margin-top:1.1rem;font-size:.82rem;line-height:1.5;max-width:560px;color:rgba(245,240,232,.6);}
+  .murcia-badge{position:absolute;top:0;right:0;display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px;background:var(--gold);color:var(--ink);}
+
+  .tabs{display:flex;gap:0;background:var(--ink);border-bottom:2px solid var(--rust);padding:0 max(1rem,calc((100% - 1200px)/2));overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:200;}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{flex:0 0 auto;padding:.8rem 1.4rem;border:none;border-bottom:3px solid transparent;background:none;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(245,240,232,.6);cursor:pointer;transition:.2s;white-space:nowrap;}
+  .tab.active{color:var(--gold-lt);border-bottom-color:var(--gold-lt);}
+  .tab:not(.active):hover{background:rgba(255,255,255,.05);color:var(--bone);}
+  .section{display:none;max-width:1200px;margin:0 auto;padding:2rem 1.5rem 1rem;}.section.active{display:block;}
+
+  .card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 4px var(--shadow);}
+  .card-title{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:12px;padding-bottom:8px;border-bottom:1.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+  .card-title .hint{font-family:var(--sans);font-size:11px;color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;}
+
+  .footer{background:var(--ink-mid);color:rgba(245,240,232,.55);padding:1.4rem 2rem;font-size:.8rem;letter-spacing:.04em;text-align:center;margin-top:1.5rem;line-height:1.6;}
+
+  .prow{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+  .pfield{flex:1;min-width:110px;}
+  .pfield label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px;}
+  .pfield input,.pfield select{width:100%;padding:8px 11px;border-radius:3px;border:1.5px solid var(--border);font-size:13px;font-family:var(--sans);color:var(--text);background:#fafbfc;outline:none;transition:border-color .15s;}
+  .pfield input:focus,.pfield select:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 2px rgba(0,71,171,.15);}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+
+  .res-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
+  .res-box{flex:1;min-width:120px;background:#f8f9fb;border:1px solid var(--border);border-radius:4px;padding:11px 13px;position:relative;}
+  .res-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);border-radius:4px 0 0 4px;}
+  .res-box.b-blue::before{background:var(--blue);}
+  .res-box.b-ink::before{background:var(--ink);}
+  .res-box .rlbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px;}
+  .res-box .rval{font-family:var(--mono);font-size:23px;font-weight:600;color:var(--ink);line-height:1.05;}
+  .res-box .rsub{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.4;}
+
+  .seg{display:flex;gap:7px;flex-wrap:wrap;}
+  .seg button{padding:9px 13px;border-radius:3px;border:2px solid var(--border);background:#fafbfc;cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--text);transition:.15s;text-align:left;line-height:1.3;}
+  .seg button .ssub{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px;}
+  .seg button:hover:not(.on){border-color:#b0bfdb;}
+  .seg button.on{border-color:var(--blue);background:var(--blue-l);color:var(--blue);}
+  .seg button.on .ssub{color:#4070c4;}
+
+  .alert-box{padding:10px 13px;border-radius:0 4px 4px 0;font-size:12px;line-height:1.7;margin-top:10px;border-left:4px solid;}
+  .alert-box.warn{background:var(--orange-l);border-color:var(--orange);color:#7c3a00;}
+  .alert-box.danger{background:var(--red-l);border-color:var(--red);color:#7f1d1d;}
+  .alert-box.ok{background:var(--green-l);border-color:var(--green);color:#065f46;}
+  .alert-box.info{background:var(--blue-l);border-color:var(--blue);color:#1e3a8a;}
+  .alert-box.purple{background:var(--purple-l);border-color:var(--purple);color:#4c1d95;}
+  .alert-box strong{display:block;margin-bottom:3px;}
+
+  .dl{margin-top:4px;}
+  .dl-row{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #eef0f4;align-items:baseline;}
+  .dl-row:last-child{border-bottom:none;}
+  .dl-k{flex:0 0 140px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);}
+  .dl-v{flex:1;font-size:12.5px;line-height:1.55;}
+  .dl-v b{font-weight:700;}
+
+  .chip{display:inline-block;font-size:11px;font-weight:600;padding:2px 9px;border-radius:2px;margin:2px 3px 2px 0;}
+  .chip-g{background:var(--green-l);color:var(--green);}
+  .chip-r{background:var(--red-l);color:var(--red);}
+  .chip-o{background:var(--orange-l);color:var(--orange);}
+
+  table.tbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+  table.tbl th{padding:7px 10px;background:#f0f2f7;text-align:left;font-weight:700;border-bottom:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-mid);}
+  table.tbl td{padding:8px 10px;border-bottom:1px solid #f0f2f7;line-height:1.5;}
+  table.tbl tr:last-child td{border-bottom:none;}
+  table.tbl td.num{font-family:var(--mono);font-weight:600;color:var(--ink);}
+
+  .sub-h{font-family:var(--serif);font-size:13.5px;font-weight:600;color:var(--ink);margin:16px 0 8px;}
+  .block-h{display:flex;align-items:center;gap:12px;margin:6px 0 14px;}
+  .block-h .bh-txt{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);white-space:nowrap;}
+  .block-h .bh-line{flex:1;height:2px;background:var(--gold);border-radius:2px;opacity:.55;}
+  .block-h .bh-badge{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--ink);padding:3px 9px;border-radius:2px;}
+  .decision-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .dec-branch{border:2px solid var(--border);border-radius:4px;padding:12px 14px;background:#fafbfc;transition:.15s;display:flex;align-items:center;gap:12px;}
+  .dec-branch.on{border-color:var(--blue);background:var(--blue-l);}
+  .dec-cond{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--ink);flex:0 0 auto;}
+  .dec-branch.on .dec-cond{color:var(--blue);}
+  .dec-arrow{color:var(--muted);font-size:16px;flex:0 0 auto;}
+  .dec-action{font-size:12.5px;line-height:1.4;}
+  @media(max-width:640px){.decision-2{grid-template-columns:1fr;}}
+  .start-hero{background:linear-gradient(180deg,#fff, #f6f8fc);border:1.5px solid var(--blue-m);border-radius:6px;padding:16px 18px;margin-top:14px;}
+  .start-hero .sh-lead{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px;}
+  .start-hero .sh-main{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--ink);line-height:1.15;}
+  .start-hero .sh-main b{color:var(--blue);}
+  .start-hero .sh-when{font-size:13px;color:var(--ink-mid);margin-top:6px;}
+  .start-hero .sh-basis{display:inline-block;font-size:11px;color:var(--muted);margin-top:10px;padding:3px 10px;background:#eef2f8;border-radius:20px;}
+  .prof-strip{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;}
+  .prof-item{display:flex;flex-direction:column;background:#f8f9fb;border:1px solid var(--border);border-radius:4px;padding:6px 12px;min-width:78px;}
+  .prof-item .pf-l{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);}
+  .prof-item .pf-v{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);margin-top:1px;}
+  .prof-item .pf-v small{font-family:var(--sans);font-weight:400;font-size:11px;color:var(--muted);}
+  .prof-brands{flex:1;min-width:160px;font-size:11.5px;color:var(--muted);line-height:1.4;}
+  .disc{font-size:11px;color:var(--muted);line-height:1.55;margin-top:10px;}
+
+  .range-row{display:flex;align-items:center;gap:12px;}
+  .range-row input[type=range]{flex:1;accent-color:var(--blue);}
+  .range-val{font-family:var(--mono);font-weight:600;font-size:15px;min-width:46px;color:var(--ink);}
+
+  .patient-sheet{background:#fff;border:1px solid var(--border);border-radius:4px;padding:22px 24px;}
+  .ps-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+  .ps-head h2{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);}
+  .ps-head .ps-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+  .ps-me{text-align:right;font-size:11px;color:var(--muted);line-height:1.5;}
+  .ps-me b{color:var(--ink);font-size:13px;}
+  .ps-block{margin-bottom:18px;}
+  .ps-block h3{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .ps-block h3::before{content:'';width:4px;height:16px;background:var(--gold);border-radius:2px;}
+  .ps-dose-big{display:flex;gap:14px;flex-wrap:wrap;}
+  .ps-dose-card{flex:1;min-width:140px;border:1.5px solid var(--border);border-radius:4px;padding:12px 14px;}
+  .ps-dose-card .dc-l{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);}
+  .ps-dose-card .dc-v{font-family:var(--mono);font-size:24px;font-weight:600;color:var(--ink);margin-top:2px;}
+  .ps-dose-card .dc-s{font-size:11px;color:var(--muted);margin-top:3px;}
+  .ps-rules{list-style:none;}
+  .ps-rules li{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:4px;margin-bottom:6px;font-size:13px;}
+  .ps-rules li .rl-cond{font-family:var(--mono);font-weight:700;flex:0 0 130px;}
+  .ps-rules li.r-low{background:var(--red-l);}.ps-rules li.r-low .rl-cond{color:var(--red);}
+  .ps-rules li.r-ok{background:var(--green-l);}.ps-rules li.r-ok .rl-cond{color:var(--green);}
+  .ps-rules li.r-high{background:var(--orange-l);}.ps-rules li.r-high .rl-cond{color:var(--orange);}
+  .ps-warn{background:#f8f9fb;border:1px solid var(--border);border-radius:4px;padding:12px 14px;font-size:12px;line-height:1.7;}
+  .ps-warn b{color:var(--red);}
+
+  .btn-print{padding:9px 18px;border-radius:3px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;transition:.15s;}
+  .btn-print:hover{background:var(--navy);}
+
+  @media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr;}.dl-k{flex-basis:100px;}}
+
+  @media print{
+    body{background:#fff;}
+    .header,.tabs,.footer,.no-print{display:none!important;}
+    .section{display:none!important;padding:0;}
+    #tab-paciente{display:block!important;}
+    .patient-sheet{border:none;padding:0;}
+    .card{box-shadow:none;border:none;padding:0;}
+  }
+
+  /* Ficha lateral */
+  .hc-main .section{max-width:none;padding:0 0 1rem;}
+  .hc-layout{padding-top:1.75rem;}
+  .hc-ficha{top:64px;}
+</style>
+<link rel="stylesheet" href="herramientas.css">
+</head>
+<body>
+<nav class="hc-topbar no-print" aria-label="Volver a la web">
+  <a href="index.html"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Herramientas clínicas</a>
+  <span class="hc-topbar-firma"><strong>Dra. Laura Bernal</strong> · dralaurabernal.es</span>
+</nav>
+
+<div class="header">
+  <div class="header-inner">
+    <span class="hdr-badge">Herramienta Clínica · AP 2026</span>
+    <h1>Insulinización en DM2</h1>
+    <p class="hc-sub">Dosis de inicio, titulación y hoja imprimible para el paciente, para Atención Primaria de Murcia.</p>
+    <p class="hc-base">Basada en el Algoritmo de insulinización de la DM2 · redGDPS 2022.</p>
+  </div>
+</div>
+
+<div class="hc-aviso-wrap no-print"><div class="hc-aviso" role="note">
+  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+  <p><strong>Herramienta de apoyo a la decisión clínica para profesionales sanitarios.</strong> Es orientativa: no sustituye el juicio clínico, la valoración individual del paciente ni la ficha técnica vigente. La responsabilidad de cada decisión diagnóstica o terapéutica corresponde al profesional que la utiliza. Los datos se procesan solo en este navegador: no se envían ni se guardan.</p>
+</div></div>
+<div class="tabs">
+  <button class="tab active" onclick="showTab('insulin',this)">Insulinización</button>
+  <button class="tab" onclick="showTab('fsi',this)">Factor de sensibilidad</button>
+  <button class="tab" onclick="showTab('paciente',this)">Hoja del paciente</button>
+</div>
+
+<div class="hc-layout">
+<aside class="hc-ficha" aria-label="Datos del paciente">
+  <p class="fi-h">Paciente</p>
+  <input type="text" id="nombre" class="fi-nombre" placeholder="Nombre del paciente" aria-label="Nombre del paciente" oninput="sync()">
+  <div class="fi-grid">
+    <label class="fi-f"><span>Peso (kg)</span><input type="number" id="peso" value="80" min="30" max="200" oninput="sync()"></label>
+    <label class="fi-f"><span>HbA1c (%)</span><input type="number" id="hba1c" value="8.5" min="6" max="16" step="0.1" oninput="sync()"></label>
+    <label class="fi-f fi-wide"><span>Perfil clínico</span>
+      <select id="perfil" onchange="sync()">
+        <option value="est">Estándar</option>
+        <option value="obe">Obesidad (IMC &gt; 30)</option>
+        <option value="fra">Anciano / frágil</option>
+        <option value="pal">Paliativo</option>
+      </select></label>
+  </div>
+  <div class="fi-res" aria-live="polite">
+    <button type="button" class="fi-row" data-ir="insulin" id="fr_escalon"><span>Escalón</span><strong>—</strong></button>
+    <button type="button" class="fi-row" data-ir="insulin" id="fr_pauta"><span>Pauta</span><strong>—</strong></button>
+    <button type="button" class="fi-row is-key" data-ir="insulin" id="fr_inicio"><span>Inicio</span><strong>—</strong></button>
+    <button type="button" class="fi-row" data-ir="fsi" id="fr_fs"><span>Factor de sensibilidad</span><strong>—</strong></button>
+  </div>
+  <button type="button" class="fi-generar" data-ir="paciente">Hoja del paciente</button>
+</aside>
+<div class="hc-main">
+<!-- INSULINIZACIÓN (inicio + intensificación) -->
+<div class="section active" id="tab-insulin">
+  <div class="card">
+    <div class="card-title">Escalón de entrada según HbA1c <span class="hint">Se resalta la opción según la HbA1c introducida</span></div>
+    <div class="decision-2">
+      <div class="dec-branch" id="dec-basal"><span class="dec-cond">HbA1c &lt; 9 %</span><span class="dec-arrow">→</span><span class="dec-action">Iniciar <b>insulina basal</b> y titular (opción de elección)</span></div>
+      <div class="dec-branch" id="dec-mix"><span class="dec-cond">HbA1c ≥ 9 %</span><span class="dec-arrow">→</span><span class="dec-action">Valorar <b>mezcla</b> o <b>bolo-basal</b> directo, sobre todo con síntomas cardinales o glucemias muy altas</span></div>
+    </div>
+  </div>
+
+  <div class="block-h"><span class="bh-badge">Paso 1</span><span class="bh-txt">Inicio de insulinización</span><span class="bh-line"></span></div>
+
+  <div class="card">
+    <div class="card-title">Con cuánto empezar</div>
+
+    <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px">Pauta de inicio</label>
+    <div class="seg" id="seg-inicio">
+      <button class="on" data-v="basal">Basal<span class="ssub">de elección · HbA1c &lt; 9 %</span></button>
+      <button data-v="bolobasal">Bolo-basal<span class="ssub">HbA1c muy alta / síntomas</span></button>
+      <button data-v="mixta">Mixta (premezcla)<span class="ssub">HbA1c ≥ 9 % · horarios fijos</span></button>
+    </div>
+
+    <div id="wrap-basaltype" style="margin-top:12px">
+      <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px">Tipo de insulina basal</label>
+      <div class="seg" id="seg-basal">
+        <button class="on" data-v="glargina">Glargina 100/300<span class="ssub">cualquier hora</span></button>
+        <button data-v="degludec">Degludec<span class="ssub">flexible 8–42 h</span></button>
+        <button data-v="detemir">Detemir<span class="ssub">antes de acostarse</span></button>
+        <button data-v="nph">NPH<span class="ssub">antes de acostarse</span></button>
+      </div>
+      <div id="basal-profile" class="prof-strip"></div>
+    </div>
+
+    <div id="wrap-factor" style="display:none;margin-top:12px">
+      <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px">Dosis total inicial</label>
+      <select id="i-factor" onchange="calcInicio()"></select>
+    </div>
+
+    <div id="wrap-premix" style="display:none;margin-top:12px">
+      <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px">¿Qué premezcla?</label>
+      <select id="i-premix" onchange="calcInicio()">
+        <optgroup label="Análogas (justo antes de comer)">
+          <option value="novomix30" selected>NovoMix 30 (30 % aspart)</option>
+          <option value="novomix50">NovoMix 50 (50 % aspart)</option>
+          <option value="humalogmix25">Humalog Mix 25 (25 % lispro)</option>
+          <option value="humalogmix50">Humalog Mix 50 (50 % lispro)</option>
+        </optgroup>
+        <optgroup label="Humanas (30 min antes de comer)">
+          <option value="mixtard30">Mixtard 30 (30 % regular)</option>
+          <option value="humulina3070">Humulina 30/70 (30 % regular)</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div id="start-out"></div>
+
+    <div class="alert-box info" id="o-basal-note"><span></span></div>
+    <div class="alert-box warn" id="o-sobrebasal" style="display:none"><span></span></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Después: titular cada 3 días</div>
+      <div id="o-titra"></div>
+      <div id="o-nph-note"></div>
+      <div class="alert-box ok" style="margin-top:12px"><strong>Reevaluar a los 3–4 meses</strong>Si no se alcanza la HbA1c objetivo, revisar la pauta (Paso 2). El autoajuste por el paciente es tan eficaz y seguro como el del profesional.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tratamiento previo y avisos</div>
+      <div class="dl">
+        <div class="dl-row"><div class="dl-k">Mantener</div><div class="dl-v"><span class="chip chip-g">Metformina</span><span class="chip chip-g">iDPP-4</span><span class="chip chip-g">arGLP-1</span><span class="chip chip-g">iSGLT-2</span></div></div>
+        <div class="dl-row"><div class="dl-k">Reducir / suspender</div><div class="dl-v"><span class="chip chip-r">Sulfonilureas</span><span class="chip chip-r">Glinidas</span><span class="chip chip-o">Pioglitazona</span></div></div>
+      </div>
+      <div class="alert-box info" id="o-farmaco-note"><span></span></div>
+    </div>
+  </div>
+
+  <div class="block-h" style="margin-top:26px"><span class="bh-badge">Paso 2</span><span class="bh-txt">Intensificación</span><span class="bh-line"></span></div>
+
+  <div class="card">
+    <div class="card-title">¿Cuándo intensificar tras basal?</div>
+    <div class="dl"><div class="dl-row"><div class="dl-k">Criterios</div><div class="dl-v">Dosis basal &gt; 0,5 U/kg · posprandial &gt; 180 mg/dl · GB &lt; 130 con HbA1c fuera de objetivo · diferencia glucemia al acostarse − basal &gt; 50 mg/dl.</div></div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">Basal-plus → basal-bolo</div>
+      <div class="dl">
+        <div class="dl-row"><div class="dl-k">Basal-plus</div><div class="dl-v"><b>4 U</b> (o 10 % de la basal) antes de la comida más copiosa. <b>+1–2 U cada 3 días</b> si posprandial &gt; 180. Suspender SU.</div></div>
+        <div class="dl-row"><div class="dl-k">Basal-bolo</div><div class="dl-v">Inicio <b>0,3–0,5 U/kg</b>: 50 % basal + 50 % prandial en las 3 comidas. Usa <b>0,3</b> si hay riesgo de hipoglucemia (anciano); <b>0,4–0,5</b> si hay más resistencia o HbA1c muy alta.</div></div>
+      </div>
+      <div class="res-row" id="bb-res" style="margin-top:12px"></div>
+      <div class="alert-box info"><span>Ajuste: basal según ayunas (+2 U/3 días si &gt;130; −2 si &lt;70); prandial según posprandial a 2 h (+1–2 U si &gt;180).</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Mixtas (premezcla)</div>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Combinaciones fijas basal + prandial. <b>Análogas</b> (NovoMix, Humalog Mix) se pinchan justo antes de comer; <b>humanas</b> (Mixtard, Humulina 30/70) 30 min antes. La proporción de rápida (25/30/50 %) cambia el reparto y qué glucemia vigilas. Horarios de comida constantes; suspender SU. En 2 dosis (desayuno/cena) o 3.</p>
+      <div class="res-row" id="mx-res"></div>
+      <div class="sub-h">Titulación por glucemia preprandial</div>
+      <table class="tbl">
+        <thead><tr><th>Preprandial</th><th>Ajuste</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; 100 mg/dl</td><td class="num" style="color:var(--red)">−2 U</td></tr>
+          <tr><td>100–140 mg/dl</td><td class="num" style="color:var(--green)">misma dosis</td></tr>
+          <tr><td>140–200 mg/dl</td><td class="num" style="color:var(--orange)">+2 U</td></tr>
+          <tr><td>&gt; 200 mg/dl</td><td class="num" style="color:var(--orange)">+4 U</td></tr>
+        </tbody>
+      </table>
+      <div class="alert-box info"><span>Desayuno se ajusta según glucemia antes de la cena; cena según glucemia basal. Tercera dosis (mediodía): 4 U o 10 % de la DTD.</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Situaciones especiales</div>
+    <div class="dl">
+      <div class="dl-row"><div class="dl-k">Corticoides</div><div class="dl-v">GC intermedios (prednisona) matutinos → <b>NPH antes del desayuno</b>. GC prolongados (dexametasona) → glargina. NPH inicial: <span id="cort-inline"></span> según prednisona (&gt;40mg 0,4 · 30mg 0,3 · 20mg 0,2 · 10mg 0,1 U/kg/día). Bajar insulina al reducir el corticoide.</div></div>
+      <div class="dl-row"><div class="dl-k">Anciano / frágil</div><div class="dl-v">Inicio <b>0,1–0,2 U/kg</b>. Análogos basales (menos hipoglucemia nocturna) y rápidos preferibles a la regular.</div></div>
+      <div class="dl-row"><div class="dl-k">Paliativo</div><div class="dl-v">Evitar hipoglucemia &lt; 70 e hiperglucemia sostenida &gt; 270. Pauta simple: <b>basal en dosis única</b>.</div></div>
+      <div class="dl-row"><div class="dl-k">Desintensificar</div><div class="dl-v">Si &lt; 0,5 U/kg/día, buen control y DM &lt; 10 años, o tras cirugía bariátrica: retirar <b>4 U/semana</b>.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FSI -->
+<div class="section" id="tab-fsi">
+  <div class="card">
+    <div class="card-title">Factor de sensibilidad y corrección <span class="hint">Solo con insulina rápida (bolo-basal)</span></div>
+    <p style="font-size:12.5px;color:var(--muted);margin-bottom:14px">El factor de sensibilidad (FS) es el descenso de glucosa, en mg/dl, que produce 1 U de insulina rápida. La corrección solo se administra con insulina rápida, así que esta calculadora aplica a pacientes en <b>pauta bolo-basal</b>. El FS se calcula sobre la dosis total diaria (basal + rápida); el peso no interviene.</p>
+
+    <label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px">Insulina diaria del paciente (basal + rápida)</label>
+    <div class="prow">
+      <div class="pfield"><label>Basal</label><input type="number" id="fbb-basal" value="39" min="0" max="200" oninput="calcFSI()"></div>
+      <div class="pfield"><label>Desayuno</label><input type="number" id="fbb-des" value="3" min="0" max="60" oninput="calcFSI()"></div>
+      <div class="pfield"><label>Comida</label><input type="number" id="fbb-com" value="4" min="0" max="60" oninput="calcFSI()"></div>
+      <div class="pfield"><label>Cena</label><input type="number" id="fbb-cen" value="4" min="0" max="60" oninput="calcFSI()"></div>
+    </div>
+
+    <div class="prow" style="margin-top:16px">
+      <div class="pfield" style="max-width:360px"><label>Regla (insulina rápida usada)</label>
+        <select id="f-regla" onchange="calcFSI()">
+          <option value="1800">Análogo rápido — 1800 (lispro, aspart, glulisina, Fiasp)</option>
+          <option value="1500">Rápida humana — 1500 (regular, Actrapid)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="res-row" style="margin-top:16px">
+      <div class="res-box b-ink"><div class="rlbl">Dosis total diaria</div><div class="rval" id="f-dtd">50 U</div><div class="rsub" id="f-desglose">39 basal + 3/4/4 rápida</div></div>
+      <div class="res-box b-blue"><div class="rlbl">Factor de sensibilidad</div><div class="rval" id="f-fsi">36</div><div class="rsub" id="f-fsi-form">1800 ÷ 50 · mg/dl por U</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="f-corr-card">
+    <div class="card-title">Dosis de corrección</div>
+    <div class="grid2">
+      <div><label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px">Glucemia actual (mg/dl)</label><div class="range-row"><input type="range" id="f-actual" min="120" max="450" step="5" value="250" oninput="calcFSI()"><span class="range-val" id="f-actual-v">250</span></div></div>
+      <div><label style="display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px">Glucemia objetivo (mg/dl)</label><div class="range-row"><input type="range" id="f-objetivo" min="90" max="180" step="5" value="120" oninput="calcFSI()"><span class="range-val" id="f-objetivo-v">120</span></div></div>
+    </div>
+    <div class="res-row" style="margin-top:14px">
+      <div class="res-box"><div class="rlbl">Corrección</div><div class="rval" id="f-dosis">≈ 2 U</div><div class="rsub" id="f-dosis-calc">(250 − 120) ÷ 60</div></div>
+    </div>
+    <div class="alert-box warn" id="f-aviso" style="display:none"><span></span></div>
+    <div class="disc">Fórmula redGDPS: corrección = (glucemia actual − objetivo) ÷ FS. Si coincide con una comida, se suma/resta a la insulina prandial. No corregir más de una vez cada 3–4 horas.</div>
+  </div>
+</div>
+
+<!-- HOJA PACIENTE -->
+<div class="section" id="tab-paciente">
+  <div class="card no-print" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+    <div style="font-size:12.5px;color:var(--muted)">Hoja generada con los datos actuales. Ajusta la <b>dosis</b> si prefieres otra cifra, y pulsa imprimir.</div>
+    <button class="btn-print" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+  <div class="card no-print">
+    <div class="prow">
+      <div class="pfield" style="max-width:170px"><label>Dosis de inicio (U)</label><input type="number" id="ps-dose" value="10" min="1" max="80" oninput="renderSheet()"></div>
+      <div class="pfield" style="max-width:200px"><label>Insulina</label><input type="text" id="ps-ins" value="Glargina" oninput="renderSheet()"></div>
+      <div class="pfield" style="max-width:200px"><label>Momento</label><input type="text" id="ps-when" value="Por la mañana" oninput="renderSheet()"></div>
+    </div>
+  </div>
+  <div class="patient-sheet" id="sheet"></div>
+</div>
+
+</div><!-- /hc-main -->
+</div><!-- /hc-layout -->
+
+<div class="footer">
+  Herramienta de apoyo a la decisión clínica · <strong>Dra. Laura Bernal Martínez</strong><br>
+  Basada en el Algoritmo de insulinización de la DM2, redGDPS 2022. No sustituye el juicio clínico ni la ficha técnica de cada insulina.
+<div class="hc-legal"><br><strong>Descargo de responsabilidad.</strong> Esta herramienta ha sido desarrollada por la Dra. Laura Bernal Martínez como apoyo a la toma de decisiones clínicas. Tiene carácter orientativo y está dirigida a profesionales sanitarios. No sustituye en ningún caso el juicio clínico, la exploración del paciente ni la consulta médica presencial. El contenido se basa en las fuentes citadas y puede no recoger cambios posteriores: verifique siempre la ficha técnica vigente (CIMA · AEMPS) y los protocolos de su servicio de salud. La responsabilidad de cualquier decisión diagnóstica o terapéutica corresponde al profesional que la utiliza. Los datos introducidos se procesan únicamente en su navegador y no se envían ni se almacenan.</div></div>
+
+<script>
+const S={nombre:'',peso:80,hba1c:8.5,perfil:'est',basal:'glargina',pauta:'basal',inicio:'basal'};
+const BASAL_PROF={
+  glargina:{ini:'1–2 h',pico:'Sin pico',dur:'20–24 h',dur2:'U300 hasta 36 h',brands:'Lantus®, Abasaglar®, Semglee® (100) · Toujeo® (300)'},
+  degludec:{ini:'1–2 h',pico:'Sin pico',dur:'24–42 h',brands:'Tresiba® 100/200 FlexTouch®'},
+  detemir:{ini:'1–2 h',pico:'Sin pico',dur:'12–24 h',dur2:'dosis-dependiente',brands:'Levemir® FlexPen®'},
+  nph:{ini:'1–2 h',pico:'4–8 h',dur:'12 h',brands:'Humulina NPH®, Insulatard® · aspecto turbio'}
+};
+const PREMIX={
+  novomix30:{n:'NovoMix 30',tipo:'analoga',rap:30,ini:'10–15 min',cuando:'justo antes de desayuno y cena'},
+  novomix50:{n:'NovoMix 50',tipo:'analoga',rap:50,ini:'10–15 min',cuando:'justo antes de las comidas'},
+  humalogmix25:{n:'Humalog Mix 25',tipo:'analoga',rap:25,ini:'10–15 min',cuando:'justo antes de desayuno y cena'},
+  humalogmix50:{n:'Humalog Mix 50',tipo:'analoga',rap:50,ini:'10–15 min',cuando:'justo antes de las comidas'},
+  mixtard30:{n:'Mixtard 30',tipo:'humana',rap:30,ini:'30 min',cuando:'30 min antes de desayuno y cena'},
+  humulina3070:{n:'Humulina 30/70',tipo:'humana',rap:30,ini:'30 min',cuando:'30 min antes de desayuno y cena'}
+};
+const r1=n=>Math.round(n), half=n=>Math.round(n*2)/2, es=n=>(n%1===0?n:n.toFixed(1).replace('.',','));
+const val=id=>+document.getElementById(id).value||0;
+
+function showTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active'); btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='paciente') renderSheet();
+  if(id==='insulin') renderIntens();
+}
+function segInit(id,key,cb){
+  const w=document.getElementById(id);
+  w.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    w.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); S[key]=b.dataset.v; cb&&cb();
+  }));
+}
+function sync(){
+  S.nombre=document.getElementById('nombre').value; S.peso=val('peso'); S.hba1c=val('hba1c'); S.perfil=document.getElementById('perfil').value;
+  calcInicio(); renderIntens();
+}
+
+function calcInicio(){
+  const {peso,perfil,basal,hba1c,inicio}=S;
+  const insLower={glargina:'glargina',degludec:'degludec',detemir:'detemir',nph:'NPH'}[basal];
+  const whenBasal=(basal==='glargina'||basal==='degludec')?'por la mañana':'antes de acostarse';
+  const pf=BASAL_PROF[basal], pfEl=document.getElementById('basal-profile');
+  pfEl.innerHTML=(inicio==='basal'||inicio==='bolobasal')?('<div class="prof-item"><span class="pf-l">Inicio</span><span class="pf-v">'+pf.ini+'</span></div>'+'<div class="prof-item"><span class="pf-l">Pico</span><span class="pf-v">'+pf.pico+'</span></div>'+'<div class="prof-item"><span class="pf-l">Duración</span><span class="pf-v">'+pf.dur+(pf.dur2?' <small>('+pf.dur2+')</small>':'')+'</span></div>'+'<div class="prof-brands">'+pf.brands+'</div>'):'';
+
+  // rama HbA1c
+  document.getElementById('dec-basal').classList.toggle('on', hba1c>0 && hba1c<9);
+  document.getElementById('dec-mix').classList.toggle('on', hba1c>=9);
+
+  // mostrar/ocultar selectores según pauta
+  document.getElementById('wrap-basaltype').style.display=(inicio==='basal'||inicio==='bolobasal')?'block':'none';
+  document.getElementById('wrap-premix').style.display=(inicio==='mixta')?'block':'none';
+  const wf=document.getElementById('wrap-factor'), fac=document.getElementById('i-factor');
+  if(inicio==='bolobasal'){
+    wf.style.display='block';
+    if(fac.dataset.mode!=='bb'){fac.innerHTML='<option value="0.3">0,3 U/kg · conservador (anciano, riesgo hipoglucemia)</option><option value="0.4" selected>0,4 U/kg · estándar</option><option value="0.5">0,5 U/kg · más resistencia / HbA1c muy alta</option>';fac.dataset.mode='bb';}
+  } else if(inicio==='mixta'){
+    wf.style.display='block';
+    if(fac.dataset.mode!=='mx'){fac.innerHTML='<option value="0.2">0,2 U/kg/día</option><option value="0.3" selected>0,3 U/kg/día</option>';fac.dataset.mode='mx';}
+  } else { wf.style.display='none'; }
+  const factor=parseFloat(fac.value)||0.4;
+
+  const out=document.getElementById('start-out');
+  const tit=document.getElementById('o-titra');
+  const bn=document.getElementById('o-basal-note').querySelector('span');
+  const nph=document.getElementById('o-nph-note');nph.innerHTML='';
+  const sob=document.getElementById('o-sobrebasal');sob.style.display='none';
+
+  if(inicio==='basal'){
+    let doseNum,basis;
+    if(perfil==='est'){doseNum=10;basis='Pauta estándar: 10 U/día';}
+    else if(perfil==='obe'){doseNum=r1(peso*0.2);basis='0,2 U/kg (obeso) · '+peso+' kg';}
+    else if(perfil==='fra'){doseNum=r1(peso*0.1);basis='0,1 U/kg (anciano/frágil) · puede subir a 0,2';}
+    else{doseNum=r1(peso*0.1);basis='0,1 U/kg (pauta simple)';}
+    out.innerHTML='<div class="start-hero"><div class="sh-lead">Para este paciente, empieza con</div>'+
+      '<div class="sh-main"><b>'+doseNum+' unidad'+(doseNum===1?'':'es')+'</b> de '+insLower+'</div>'+
+      '<div class="sh-when">'+whenBasal+' · a la misma hora cada día</div>'+
+      '<div class="sh-basis">'+basis+'</div></div>';
+    tit.innerHTML='<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Según la glucemia <b>basal</b> (en ayunas):</p>'+
+      '<table class="tbl"><thead><tr><th>Glucemia basal</th><th>Acción</th></tr></thead><tbody>'+
+      '<tr><td>&lt; 80 mg/dl</td><td class="num" style="color:var(--red)">Bajar 2 U</td></tr>'+
+      '<tr><td>80 – 130 mg/dl</td><td class="num" style="color:var(--green)">Objetivo · mantener</td></tr>'+
+      '<tr><td>&gt; 130 mg/dl</td><td class="num" style="color:var(--orange)">Subir 2 U (cada 3 días)</td></tr></tbody></table>';
+    if(peso>0 && doseNum/peso>0.5){sob.style.display='block';sob.querySelector('span').innerHTML='<strong>Sobrebasalización (&gt;0,5 U/kg)</strong>Reevaluar antes de subir; considerar intensificar en vez de aumentar la basal.';}
+    // hoja paciente
+    document.getElementById('ps-ins').value=insLower.charAt(0).toUpperCase()+insLower.slice(1);
+    document.getElementById('ps-when').value=(basal==='glargina'||basal==='degludec')?'Por la mañana':'Antes de acostarse';
+    document.getElementById('ps-dose').value=doseNum;
+  }
+  else if(inicio==='bolobasal'){
+    const tot=peso*factor, bas=r1(tot/2), prand=tot/2;
+    const des=half(prand*0.30), com=half(prand*0.40), cen=half(prand*0.30);
+    out.innerHTML='<div class="start-hero"><div class="sh-lead">Empieza con <b>'+r1(tot)+' U/día</b> repartidas así</div>'+
+      '<div class="res-row" style="margin-top:10px">'+
+      '<div class="res-box b-ink"><div class="rlbl">Basal ('+insLower+')</div><div class="rval">'+bas+' U</div><div class="rsub">'+whenBasal+'</div></div>'+
+      '<div class="res-box b-blue"><div class="rlbl">Desayuno</div><div class="rval">'+es(des)+' U</div><div class="rsub">rápida · 30 %</div></div>'+
+      '<div class="res-box b-blue"><div class="rlbl">Comida</div><div class="rval">'+es(com)+' U</div><div class="rsub">rápida · 40 % (principal)</div></div>'+
+      '<div class="res-box b-blue"><div class="rlbl">Cena</div><div class="rval">'+es(cen)+' U</div><div class="rsub">rápida · 30 %</div></div></div>'+
+      '<div class="sh-basis">'+es(factor).replace('.',',')+' U/kg · 50 % basal + 50 % prandial repartido según las comidas (más en la comida)</div></div>';
+    tit.innerHTML='<div class="dl">'+
+      '<div class="dl-row"><div class="dl-k">Basal</div><div class="dl-v">según ayunas: −2 U si &lt;70 · mantener 80–130 · <b>+2 U/3 días</b> si &gt;130</div></div>'+
+      '<div class="dl-row"><div class="dl-k">Prandial</div><div class="dl-v">según posprandial a 2 h: <b>+1–2 U</b> esa comida si &gt;180 mg/dl</div></div></div>'+
+      '<p style="font-size:11px;color:var(--muted);margin-top:8px">El reparto 30/40/30 es orientativo: ajústalo a la cantidad de hidratos de cada comida (si la principal es la cena, invierte la proporción).</p>';
+    document.getElementById('ps-ins').value='Bolo-basal ('+insLower+' + rápida)';
+    document.getElementById('ps-when').value='Basal '+whenBasal+' + rápida en cada comida';
+    document.getElementById('ps-dose').value=bas;
+  }
+  else { // mixta
+    const px=PREMIX[document.getElementById('i-premix').value];
+    const tot=peso*factor, des=r1(tot*0.55), cena=r1(tot*0.45);
+    const altaRap=px.rap>=50;
+    out.innerHTML='<div class="start-hero"><div class="sh-lead">Empieza con <b>'+r1(tot)+' U/día</b> de '+px.n+'</div>'+
+      '<div class="res-row" style="margin-top:10px">'+
+      '<div class="res-box b-ink"><div class="rlbl">Desayuno</div><div class="rval">'+des+' U</div><div class="rsub">'+px.cuando.split(' y ')[0].replace('justo antes de ','antes de ').replace('30 min antes de ','30 min antes ')+'</div></div>'+
+      '<div class="res-box b-blue"><div class="rlbl">Cena</div><div class="rval">'+cena+' U</div><div class="rsub">antes de cenar</div></div></div>'+
+      '<div class="sh-basis">'+es(factor).replace('.',',')+' U/kg · 55 % desayuno / 45 % cena · '+px.rap+' % rápida ('+(px.tipo==='analoga'?'análoga':'humana')+')</div></div>';
+    tit.innerHTML='<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Ajusta cada dosis según la glucemia <b>preprandial</b> (el desayuno según la glucemia antes de la cena; la cena según la glucemia basal):</p>'+
+      '<table class="tbl"><thead><tr><th>Preprandial</th><th>Ajuste</th></tr></thead><tbody>'+
+      '<tr><td>&lt; 100 mg/dl</td><td class="num" style="color:var(--red)">−2 U</td></tr>'+
+      '<tr><td>100–140 mg/dl</td><td class="num" style="color:var(--green)">misma dosis</td></tr>'+
+      '<tr><td>140–200 mg/dl</td><td class="num" style="color:var(--orange)">+2 U</td></tr>'+
+      '<tr><td>&gt; 200 mg/dl</td><td class="num" style="color:var(--orange)">+4 U</td></tr></tbody></table>'+
+      (altaRap
+        ? '<p style="font-size:11px;color:var(--muted);margin-top:6px">Al ser <b>'+px.rap+' % rápida</b>, vigila también la glucemia <b>posprandial</b> (2 h): tiene mucho componente prandial.</p>'
+        : '<p style="font-size:11px;color:var(--muted);margin-top:6px">Al ser <b>'+px.rap+' % rápida</b>, cubre sobre todo la basal. Tercera dosis (mediodía) si hace falta: 4 U o 10 % de la DTD.</p>');
+    document.getElementById('ps-ins').value=px.n;
+    document.getElementById('ps-when').value=px.tipo==='humana'?'30 min antes de desayuno y cena':'Antes de desayuno y cena';
+    document.getElementById('ps-dose').value=des;
+  }
+
+  // nota de la insulina
+  if(inicio==='mixta'){
+    const px=PREMIX[document.getElementById('i-premix').value];
+    if(px.tipo==='humana'){bn.innerHTML='<strong>'+px.n+' (humana, '+px.rap+' % regular)</strong>Pinchar <b>30 min antes</b> de comer. Doble pico y mayor riesgo de hipoglucemia; puede necesitar suplemento de HC a media mañana. Girar el bolígrafo 20 veces (aspecto turbio homogéneo). Horarios de comida constantes.';}
+    else{bn.innerHTML='<strong>'+px.n+' (análoga, '+px.rap+' % ultrarrápida)</strong>Pinchar <b>justo antes</b> de comer. '+(px.rap>=50?'Alto componente prandial: mejor si la hiperglucemia es posprandial.':'Predomina el componente basal.')+' Girar el bolígrafo 20 veces antes de usar. Horarios de comida constantes.';}
+  }
+  else if(basal==='glargina'){bn.textContent='Glargina: perfil plano 18–24 h. Preferible por la mañana si hay hipoglucemias nocturnas.';}
+  else if(basal==='degludec'){bn.textContent='Degludec: hasta 42 h, gran flexibilidad. Visado en España para 2 dosis basales y alto riesgo de hipoglucemia.';}
+  else if(basal==='detemir'){bn.textContent='Detemir: duración dosis-dependiente; a menudo 2 dosis/día y 20–30 % más que glargina.';}
+  else{bn.textContent='NPH: opción coste-efectiva. A partir de 30 U valorar 2 dosis o cambiar a análogo basal. Agitar antes de usar.';nph.innerHTML='<div class="alert-box info" style="margin-top:10px"><span>Con NPH, ajustar la dosis según la glucemia <b>precena</b>.</span></div>';}
+
+  // fármacos previos
+  const fn=document.getElementById('o-farmaco-note').querySelector('span');
+  const susMix=(inicio!=='basal')?' Con bolo-basal y mezclas, <b>suspender la sulfonilurea</b>.':'';
+  if(perfil==='obe'){fn.innerHTML='<strong>IMC elevado</strong>Valorar arGLP-1 como primer inyectable (IMC&gt;30) o preferible si IMC&gt;35. arGLP-1/iSGLT-2 aportan pérdida de peso y beneficio cardiorrenal.'+susMix;}
+  else{fn.innerHTML='<strong>Recuerda</strong>En IC o ERC, iSGLT-2 de elección. Suspender iDPP-4 si se añade un arGLP-1.'+susMix;}
+}
+
+function fDTD(){
+  const bas=val('fbb-basal'),d=val('fbb-des'),c=val('fbb-com'),ce=val('fbb-cen');
+  return {t:bas+d+c+ce, d:bas+' basal + '+d+'/'+c+'/'+ce+' rápida'};
+}
+function calcFSI(){
+  const regla=+document.getElementById('f-regla').value;
+  const act=val('f-actual'),obj=val('f-objetivo');
+  document.getElementById('f-actual-v').textContent=act;document.getElementById('f-objetivo-v').textContent=obj;
+  const {t,d}=fDTD();
+  document.getElementById('f-dtd').textContent=t+' U';document.getElementById('f-desglose').textContent=d;
+  const av=document.getElementById('f-aviso');
+  if(t<=0){document.getElementById('f-fsi').textContent='—';document.getElementById('f-fsi-form').textContent='introduce las dosis';document.getElementById('f-corr-card').style.opacity='.45';av.style.display='none';return;}
+  document.getElementById('f-corr-card').style.opacity='1';
+  const fsi=regla/t,fr=r1(fsi);
+  document.getElementById('f-fsi').textContent=fr;document.getElementById('f-fsi-form').textContent=regla+' ÷ '+t+' · mg/dl por U';
+  const ex=act-obj,dosis=ex/fsi,dr=half(dosis);
+  document.getElementById('f-dosis').textContent=ex<=0?'0 U':'≈ '+es(dr)+' U';
+  document.getElementById('f-dosis-calc').textContent='('+act+' − '+obj+') ÷ '+fr;
+  if(ex<=0){av.style.display='block';av.querySelector('span').innerHTML='<strong>Sin corrección</strong>Glucemia en o por debajo del objetivo.';}
+  else if(dosis>10){av.style.display='block';av.querySelector('span').innerHTML='<strong>Dosis elevada</strong>Verificar datos y causas de hiperglucemia antes de administrar.';}
+  else av.style.display='none';
+}
+
+function renderIntens(){
+  const p=S.peso||0;
+  const bbTot=p*0.4,bbBas=bbTot/2,bbPran=(bbTot/2)/3;
+  document.getElementById('bb-res').innerHTML=
+    '<div class="res-box b-ink"><div class="rlbl">Total (0,4 U/kg)</div><div class="rval">'+r1(bbTot)+' U</div><div class="rsub">bolo-basal</div></div>'+
+    '<div class="res-box"><div class="rlbl">Basal</div><div class="rval">'+r1(bbBas)+' U</div><div class="rsub">50 %</div></div>'+
+    '<div class="res-box b-blue"><div class="rlbl">Prandial/comida</div><div class="rval">≈ '+es(half(bbPran))+' U</div><div class="rsub">50 % ÷ 3</div></div>';
+  const mxTot=p*0.3;
+  document.getElementById('mx-res').innerHTML=
+    '<div class="res-box b-ink"><div class="rlbl">Total (0,3 U/kg)</div><div class="rval">'+r1(mxTot)+' U</div><div class="rsub">premezcla</div></div>'+
+    '<div class="res-box"><div class="rlbl">Desayuno</div><div class="rval">≈ '+r1(mxTot*0.55)+' U</div><div class="rsub">55 %</div></div>'+
+    '<div class="res-box b-blue"><div class="rlbl">Cena</div><div class="rval">≈ '+r1(mxTot*0.45)+' U</div><div class="rsub">45 %</div></div>';
+  document.getElementById('cort-inline').innerHTML='<b>'+r1(p*0.3)+' U</b> (ej. 0,3 U/kg)';
+}
+
+function renderSheet(){
+  const nombre=S.nombre||'________________';
+  const dose=document.getElementById('ps-dose').value||'__';
+  const ins=document.getElementById('ps-ins').value||'insulina basal';
+  const when=document.getElementById('ps-when').value||'';
+  const hoy=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+  let ajuste;
+  if(S.inicio==='basal'){
+    ajuste='<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Mire su glucosa <b>en ayunas</b> (al levantarse, antes de desayunar) 3 días seguidos. Según el valor:</p>'+
+      '<ul class="ps-rules">'+
+      '<li class="r-low"><span class="rl-cond">Si &lt; 80 mg/dl</span><span>Baje <b>2 unidades</b> la dosis. Si tiene temblor, sudor o mareo, tome azúcar.</span></li>'+
+      '<li class="r-ok"><span class="rl-cond">Si 80 – 130 mg/dl</span><span>¡Bien! <b>Mantenga</b> la misma dosis. Es su objetivo.</span></li>'+
+      '<li class="r-high"><span class="rl-cond">Si &gt; 130 mg/dl</span><span>Suba <b>2 unidades</b> cada 3 días hasta bajar de 130.</span></li></ul>';
+  } else if(S.inicio==='mixta'){
+    ajuste='<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Mire su glucosa <b>antes de cada comida</b>. Según el valor, su médico ajustará la dosis correspondiente:</p>'+
+      '<ul class="ps-rules">'+
+      '<li class="r-low"><span class="rl-cond">Si &lt; 100 mg/dl</span><span>Baje <b>2 unidades</b>. Si tiene síntomas de bajada, tome azúcar.</span></li>'+
+      '<li class="r-ok"><span class="rl-cond">Si 100 – 140 mg/dl</span><span><b>Mantenga</b> la misma dosis.</span></li>'+
+      '<li class="r-high"><span class="rl-cond">Si &gt; 200 mg/dl</span><span>Suba <b>hasta 4 unidades</b> según indique su médico.</span></li></ul>';
+  } else {
+    ajuste='<p style="font-size:12px;color:var(--muted);margin-bottom:8px">Su pauta lleva insulina lenta (fija) e insulina rápida en las comidas. Los ajustes los hará su médico según sus glucosas de ayunas y después de comer. Traiga sus registros a la revisión.</p>'+
+      '<ul class="ps-rules"><li class="r-low"><span class="rl-cond">Si tiene bajadas</span><span>Avise a su equipo; probablemente haya que reducir alguna dosis.</span></li></ul>';
+  }
+  document.getElementById('sheet').innerHTML=`
+    <div class="ps-head">
+      <div><h2>Mi pauta de insulina</h2><div class="ps-sub">Paciente: <b>${nombre}</b> · Fecha: ${hoy}</div></div>
+      <div class="ps-me"><b>Dra. Laura Bernal Martínez</b><br>Medicina de Familia · Murcia</div>
+    </div>
+    <div class="ps-block">
+      <h3>Su pauta de inicio</h3>
+      <div class="ps-dose-big">
+        <div class="ps-dose-card"><div class="dc-l">Insulina</div><div class="dc-v" style="font-size:17px">${ins}</div></div>
+        <div class="ps-dose-card"><div class="dc-l">Dosis</div><div class="dc-v">${dose} U</div></div>
+        <div class="ps-dose-card"><div class="dc-l">Cuándo</div><div class="dc-v" style="font-size:15px">${when}</div></div>
+      </div>
+    </div>
+    <div class="ps-block">
+      <h3>Cómo ajustar la dosis (cada 3 días)</h3>
+      ${ajuste}
+    </div>
+    <div class="ps-block">
+      <h3>Avisos importantes</h3>
+      <div class="ps-warn">
+        · Si tiene una <b>bajada de azúcar</b> (temblor, sudor, mareo): tome un zumo, azúcar o 3 galletas y repita la glucosa a los 15 min.<br>
+        · No deje de pincharse la insulina aunque coma poco o esté enfermo: consulte a su equipo.<br>
+        · Guarde la insulina en uso a temperatura ambiente (máx. 30 ºC) y las de reserva en la nevera (2–8 ºC).<br>
+        · Anote sus glucemias y tráigalas a la revisión.
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10.5px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px">
+      Ante cualquier duda, contacte con su centro de salud. Documento informativo, no sustituye la valoración médica.
+    </div>`;
+}
+
+segInit('seg-inicio','inicio',()=>{calcInicio();});
+segInit('seg-basal','basal',()=>{calcInicio();});
+sync(); calcFSI(); renderIntens(); renderSheet();
+
+// ─── Ficha lateral: resumen ───
+function resumenFicha(){
+  const fila=(id,v)=>{const e=document.getElementById(id); if(e) e.querySelector('strong').textContent=v;};
+  const h=S.hba1c;
+  fila('fr_escalon', !(h>0)?'—':(h<9?'Insulina basal':'Mezcla o bolo-basal'));
+  fila('fr_pauta', ({basal:'Basal',bolobasal:'Bolo-basal',mixta:'Mixta'})[S.inicio]||'—');
+  const b=document.querySelector('#start-out .start-hero b');
+  fila('fr_inicio', b?b.textContent.replace('unidades','U').replace('unidad','U'):'—');
+  const fs=document.getElementById('f-fsi');
+  fila('fr_fs', fs&&fs.textContent.trim()?fs.textContent.trim()+' mg/dl':'—');
+}
+(function(){
+  const _ci=calcInicio; calcInicio=function(){ _ci.apply(this,arguments); resumenFicha(); };
+  const _fs=calcFSI; calcFSI=function(){ _fs.apply(this,arguments); resumenFicha(); };
+  document.querySelectorAll('.hc-ficha [data-ir]').forEach(b=>b.addEventListener('click',()=>{
+    const id=b.dataset.ir, t=[...document.querySelectorAll('.tabs .tab')].find(x=>(x.getAttribute('onclick')||'').indexOf("'"+id+"'")>-1);
+    if(t) showTab(id,t);
+  }));
+  resumenFicha();
+})();
+</script>
+</body>
+</html>

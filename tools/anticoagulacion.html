@@ -1,0 +1,2667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anticoagulación — MF Murcia</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    /* Paleta de marca (sistema de diseño Osteoporosis) */
+    --navy:#1A2E5C; --cobalt:#0047AB; --gold:#D4AF37; --gold-lt:#F5D97A;
+    --ink:#16223f; --ink-mid:#4a5673; --bone:#f4f6f9; --bone-dark:#e4e8ef;
+    --rust:#1A2E5C; --shadow:rgba(26,46,92,0.10);
+
+    /* Roles existentes remapeados a la paleta de marca */
+    --bg:#f4f6f9; --surface:#fff; --border:#C8CDD6; --text:#16223f; --muted:#4a5673;
+    --blue:#0047AB; --blue-l:#e9f0fb; --blue-m:#b9ccea;
+    --green:#2e6b3e; --green-l:#e3efe6;
+    --orange:#9a6a08; --orange-l:#faf2d6;
+    --red:#E24B4A; --red-l:#fbe4e2;
+    --purple:#5a3070; --purple-l:#ece2f3;
+    --mono:'Source Sans 3',sans-serif; --sans:'Source Sans 3',sans-serif; --r:4px;
+  }
+  body{font-family:var(--sans);font-size:15px;line-height:1.65;background:var(--bg);color:var(--text);min-height:100vh;padding:0;}
+
+  /* HEADER (estilo Osteoporosis: oscuro + serif + acento dorado) */
+  .header{background:var(--ink);color:var(--bone);padding:3rem 1.5rem 2.5rem;position:relative;overflow:hidden;display:block;margin-bottom:0;}
+  .header::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(0,71,171,.30) 0%,transparent 70%);pointer-events:none;}
+  .header::after{content:'';position:absolute;bottom:-40px;left:10%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.22) 0%,transparent 70%);pointer-events:none;}
+  .header-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+  .hdr-badge{display:inline-block;font-family:'Source Sans 3',sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:.25rem .75rem;border-radius:2px;margin-bottom:.75rem;}
+  .header h1{font-family:'Source Serif 4',serif;font-size:clamp(2rem,4vw,2.9rem);font-weight:600;line-height:1.1;letter-spacing:-0.01em;color:var(--bone);margin-bottom:.4rem;}
+  .header h1 span{color:var(--gold-lt);}
+  .header p{font-size:.85rem;color:rgba(245,240,232,.55);max-width:560px;font-weight:300;}
+  .murcia-badge{position:absolute;top:0;right:0;display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px;background:var(--gold);color:var(--ink);}
+
+  /* TABS (estilo Osteoporosis tab-bar: barra oscura sticky, subrayado dorado) */
+  .tabs{display:flex;gap:0;background:var(--ink);border:none;border-bottom:2px solid var(--rust);border-radius:0;padding:0 max(1rem,calc((100% - 1200px)/2));margin-bottom:0;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:200;}
+  .tab{flex:0 0 auto;min-width:0;padding:.8rem 1.4rem;border-radius:0;border:none;border-bottom:3px solid transparent;background:none;font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(245,240,232,.6);cursor:pointer;transition:color .2s,background .2s,border-bottom .2s;text-align:center;white-space:nowrap;}
+  .tab.active{background:none;color:var(--gold-lt);border-bottom-color:var(--gold-lt);}
+  .tab:not(.active):hover{background:rgba(255,255,255,.05);color:var(--bone);}
+  .section{display:none;max-width:1200px;margin:0 auto;padding:2rem 1.5rem 1rem;} .section.active{display:block;}
+
+  .card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 4px var(--shadow);}
+  .card-title{font-family:var(--sans);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-mid);margin-bottom:12px;padding-bottom:8px;border-bottom:1.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+
+  /* FOOTER (estilo Osteoporosis) */
+  .footer{background:var(--ink-mid);color:rgba(245,240,232,.55);padding:1.4rem 2rem;font-size:.8rem;letter-spacing:.04em;text-align:center;margin-top:1.5rem;line-height:1.6;}
+
+  .prow{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+  .pfield{flex:1;min-width:120px;}
+  .pfield label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px;}
+  .pfield input,.pfield select{width:100%;padding:8px 11px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;font-family:var(--sans);color:var(--text);background:#fafbfc;transition:border-color .15s;outline:none;}
+  .pfield input:focus,.pfield select:focus{border-color:var(--blue);background:#fff;}
+  .fg-pill{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--blue-l);border:1.5px solid var(--blue-m);border-radius:10px;padding:8px 14px;min-width:90px;}
+  .fg-pill .num{font-family:var(--mono);font-size:26px;font-weight:600;color:var(--blue);line-height:1;}
+  .fg-pill .lbl{font-size:11px;color:#4070c4;margin-top:1px;font-weight:700;text-transform:uppercase;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .frow{display:flex;align-items:flex-start;gap:8px;padding:7px 9px;border-radius:8px;margin-bottom:1px;cursor:pointer;transition:background .1s;}
+  .frow:hover{background:#f8f9fb;} .frow.active{background:var(--blue-l);}
+  .frow input[type=checkbox]{width:15px;height:15px;flex-shrink:0;margin-top:2px;accent-color:var(--blue);cursor:pointer;}
+  .flabel{flex:1;font-size:12px;line-height:1.4;}
+  .flabel small{display:block;font-size:11px;color:var(--muted);margin-top:1px;}
+  .fpts{font-size:11px;font-weight:700;font-family:var(--mono);padding:2px 7px;border-radius:20px;background:#f0f0f0;color:#666;flex-shrink:0;margin-top:1px;}
+  .frow.active .fpts{background:var(--blue);color:#fff;}
+  .age-row{display:flex;align-items:flex-start;gap:8px;padding:7px 9px;border-radius:8px;border:1.5px dashed #ddd;margin-bottom:1px;background:#fafafa;}
+  .age-row.on{background:var(--blue-l);border-color:var(--blue-m);}
+  .group-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#bbb;margin:10px 0 5px 9px;}
+
+  .score-bar{margin-top:12px;padding:10px 12px;border-radius:10px;background:#f8f9fb;display:flex;align-items:center;gap:10px;}
+  .score-num{font-family:var(--mono);font-size:38px;font-weight:600;min-width:46px;transition:color .3s;}
+  .score-info{flex:1;}
+  .score-name{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:2px;}
+  .score-label{font-size:12px;font-weight:700;transition:color .3s;}
+  .bar-wrap{margin-top:5px;background:#e5e7eb;border-radius:4px;height:5px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:4px;transition:width .35s,background .35s;}
+
+  /* ACOD selector */
+  .indic-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px;}
+  .indic-btn{padding:9px 8px;border-radius:8px;border:2px solid var(--border);background:#fafbfc;cursor:pointer;text-align:center;transition:all .15s;font-family:var(--sans);}
+  .indic-btn .name{font-size:12px;font-weight:700;color:var(--text);}
+  .indic-btn .sub{font-size:11px;color:var(--muted);margin-top:1px;}
+  .indic-btn.selected{border-color:var(--blue);background:var(--blue-l);}
+  .indic-btn.selected .name{color:var(--blue);}
+  .indic-btn:hover:not(.selected){border-color:#b0bfdb;background:#f2f5fb;}
+
+  .acod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px;}
+  .acod-btn{padding:9px 7px;border-radius:9px;border:2px solid var(--border);background:#fafbfc;cursor:pointer;text-align:center;transition:all .15s;font-family:var(--sans);}
+  .acod-btn .name{font-size:12px;font-weight:700;color:var(--text);}
+  .acod-btn .brand{font-size:11px;color:var(--muted);margin-top:1px;}
+  .acod-btn.selected{border-color:var(--blue);background:var(--blue-l);}
+  .acod-btn.selected .name{color:var(--blue);}
+  .acod-btn:hover:not(.selected){border-color:#b0bfdb;}
+  .acod-btn.disabled{opacity:.4;cursor:not-allowed;border-style:dashed;}
+
+  .dosis-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:8px;}
+  .dosis-btn{padding:6px 13px;border-radius:8px;border:1.5px solid var(--border);background:#fafbfc;cursor:pointer;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--text);transition:all .15s;}
+  .dosis-btn.selected{border-color:var(--blue);background:var(--blue);color:#fff;}
+  .dosis-btn:hover:not(.selected){border-color:#b0bfdb;}
+
+  .alert-box{padding:10px 13px;border-radius:9px;font-size:12px;line-height:1.7;margin-top:8px;}
+  .alert-box.warn{background:var(--orange-l);border-left:3px solid var(--orange);color:#7c3a00;}
+  .alert-box.danger{background:var(--red-l);border-left:3px solid var(--red);color:#7f1d1d;}
+  .alert-box.ok{background:var(--green-l);border-left:3px solid var(--green);color:#065f46;}
+  .alert-box.info{background:var(--blue-l);border-left:3px solid var(--blue);color:#1e3a8a;}
+  .alert-box.purple{background:var(--purple-l);border-left:3px solid var(--purple);color:#4c1d95;}
+  .alert-box strong{display:block;margin-bottom:3px;font-size:12.5px;}
+
+  .decision-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;margin-bottom:10px;}
+  .parrafo-box{background:#f8f9fb;border-radius:10px;border:1px solid var(--border);padding:13px 15px;font-size:12.5px;line-height:1.85;color:var(--text);white-space:pre-wrap;min-height:70px;}
+  .copy-btn{margin-top:8px;width:100%;padding:9px;border-radius:9px;border:1.5px solid var(--border);background:var(--surface);font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;color:var(--text);transition:all .15s;}
+  .copy-btn:hover{background:#f5f7fb;} .copy-btn.copied{background:var(--green-l);border-color:var(--green);color:var(--green);}
+
+  /* Perioperatorio */
+  .timeline{display:flex;gap:0;overflow-x:auto;margin:12px 0;}
+  .tday{flex:1;min-width:44px;text-align:center;}
+  .tday .dlbl{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px;}
+  .tday .dpill{height:28px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;margin:0 1px;border-radius:0;}
+  .tday:first-child .dpill{border-radius:7px 0 0 7px;} .tday:last-child .dpill{border-radius:0 7px 7px 0;}
+  .day-on{background:var(--green-l);color:var(--green);} .day-off{background:var(--red-l);color:var(--red);}
+  .day-surg{background:var(--blue);color:#fff;} .day-restart{background:var(--blue-l);color:var(--blue);}
+
+  .surg-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px;}
+  .surg-table th{padding:6px 9px;background:#f0f2f7;text-align:left;font-weight:700;border-bottom:1px solid var(--border);}
+  .surg-table td{padding:6px 9px;border-bottom:1px solid #f0f2f7;vertical-align:top;line-height:1.5;}
+  .surg-table tr:last-child td{border-bottom:none;}
+
+  .chip{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;}
+  .chip-g{background:var(--green-l);color:var(--green);} .chip-o{background:var(--orange-l);color:var(--orange);}
+  .chip-r{background:var(--red-l);color:var(--red);} .chip-b{background:var(--blue-l);color:var(--blue);}
+  .chip-p{background:var(--purple-l);color:var(--purple);}
+
+  /* Selector ACOD helper */
+  .helper-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .helper-card{padding:12px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);}
+  .helper-card h3{font-size:12px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .helper-card ul{list-style:none;padding:0;}
+  .helper-card ul li{font-size:11.5px;padding:3px 0;border-bottom:1px solid #f0f2f7;line-height:1.5;}
+  .helper-card ul li:last-child{border-bottom:none;}
+  .pref{color:var(--green);font-weight:700;margin-right:3px;}
+  .avoid{color:var(--red);font-weight:700;margin-right:3px;}
+
+  /* ── Calculadora ACOD ── */
+  .crit-section{margin-bottom:14px;}
+  .crit-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:6px 10px;background:#f4f5f7;border-radius:7px;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .crit-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  .crit-btn{padding:9px 12px;border-radius:9px;border:2px solid var(--border);background:#fafbfc;cursor:pointer;text-align:left;transition:all .15s;font-family:var(--sans);display:flex;align-items:center;gap:8px;}
+  .crit-btn:hover{border-color:#b0bfdb;background:#f2f5fb;}
+  .crit-btn.on-good{border-color:var(--green);background:var(--green-l);}
+  .crit-btn.on-bad{border-color:var(--red);background:var(--red-l);}
+  .crit-btn.on-warn{border-color:var(--orange);background:var(--orange-l);}
+  .crit-icon{font-size:16px;flex-shrink:0;}
+  .crit-text{flex:1;}
+  .crit-text .ct{font-size:12px;font-weight:600;color:var(--text);}
+  .crit-text .cs{font-size:11px;color:var(--muted);margin-top:1px;}
+  .crit-check{width:18px;height:18px;border-radius:5px;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;transition:all .15s;}
+  .crit-btn.on-good .crit-check{background:var(--green);border-color:var(--green);color:#fff;}
+  .crit-btn.on-bad .crit-check{background:var(--red);border-color:var(--red);color:#fff;}
+  .crit-btn.on-warn .crit-check{background:var(--orange);border-color:var(--orange);color:#fff;}
+
+  /* Fármaco interacción selector */
+  .farm-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+  .farm-tag{padding:5px 11px;border-radius:20px;border:1.5px solid var(--border);background:#fafbfc;cursor:pointer;font-size:11.5px;font-weight:600;color:var(--text);transition:all .15s;display:flex;align-items:center;gap:5px;}
+  .farm-tag:hover{border-color:#b0bfdb;}
+  .farm-tag.sel-bad{border-color:var(--red);background:var(--red-l);color:var(--red);}
+  .farm-tag.sel-warn{border-color:var(--orange);background:var(--orange-l);color:var(--orange);}
+  .farm-tag .ft-x{display:none;font-size:12px;}
+  .farm-tag.sel-bad .ft-x,.farm-tag.sel-warn .ft-x{display:inline;}
+
+  .farm-cat-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:10px 0 6px;padding-left:2px;}
+
+  /* Resultado calculadora */
+  .acod-result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0;}
+  .acod-result-card{border-radius:11px;border:2px solid var(--border);padding:14px 10px;text-align:center;transition:all .25s;position:relative;overflow:hidden;}
+  .acod-result-card.rank-1{border-color:var(--green);background:var(--green-l);}
+  .acod-result-card.rank-2{border-color:#9ec8b8;background:#f0faf6;}
+  .acod-result-card.rank-ci{border-color:var(--red);background:var(--red-l);opacity:.7;}
+  .acod-result-card .arc-name{font-size:13px;font-weight:700;margin-bottom:2px;}
+  .acod-result-card .arc-brand{font-size:11px;color:var(--muted);margin-bottom:8px;}
+  .acod-result-card .arc-score{font-family:var(--mono);font-size:28px;font-weight:700;line-height:1;margin-bottom:4px;}
+  .acod-result-card .arc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:8px;}
+  .rank-1 .arc-label{background:var(--green);color:#fff;}
+  .rank-2 .arc-label{background:#9ec8b8;color:#fff;}
+  .rank-ci .arc-label{background:var(--red);color:#fff;}
+  .acod-result-card .arc-pros,.acod-result-card .arc-cons{text-align:left;font-size:11.5px;line-height:1.6;margin-top:6px;}
+  .acod-result-card .arc-pros li{color:var(--green);list-style:none;}
+  .acod-result-card .arc-cons li{color:var(--red);list-style:none;}
+  .arc-ci-banner{position:absolute;top:8px;right:-18px;background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 22px;transform:rotate(35deg);letter-spacing:.05em;}
+  .arc-bar-wrap{margin:6px 0 4px;background:#e5e7eb;border-radius:4px;height:7px;overflow:hidden;}
+  .arc-bar{height:100%;border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1);}
+  .arc-farmrow{font-size:11px;text-align:left;padding:2px 0;line-height:1.5;border-bottom:1px solid rgba(0,0,0,.04);}
+
+  .reset-btn{padding:7px 18px;border-radius:8px;border:1.5px solid var(--border);background:#fafbfc;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;color:var(--muted);transition:all .15s;}
+  .reset-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-l);}
+
+  /* ── Alineación con el sistema de diseño Osteoporosis: radios crisp + acentos ── */
+  .pfield input,.pfield select{border-radius:3px;}
+  .pfield input:focus,.pfield select:focus{box-shadow:0 0 0 2px rgba(0,71,171,.15);}
+  .indic-btn,.acod-btn,.dosis-btn,.crit-btn,.farm-tag,.copy-btn,.reset-btn{border-radius:3px;}
+  .fg-pill,.score-bar,.parrafo-box,.helper-card,.acod-result-card{border-radius:4px;}
+  .alert-box{border-radius:0 4px 4px 0;border-left-width:4px;}
+  .chip,.fpts,.decision-badge{border-radius:2px;}
+  .frow,.age-row,.crit-section-title{border-radius:3px;}
+  .tday .dpill,.tday:first-child .dpill{border-radius:0;}
+  .tday:first-child .dpill{border-radius:4px 0 0 4px;} .tday:last-child .dpill{border-radius:0 4px 4px 0;}
+  .helper-card h3{font-family:'Source Serif 4',serif;font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px;}
+  .helper-card h3 svg{flex-shrink:0;}
+
+  /* iconos de sección elegantes (calculadora) + ocultar emojis por botón */
+  .crit-icon{display:none;}
+  .crit-section-title{color:var(--ink-mid);background:#eef1f6;}
+  .crit-section-title .sec-ic{display:inline-flex;align-items:center;color:#b8902f;}
+  .farm-cat-title{color:var(--ink-mid);}
+
+  /* Calendario perioperatorio (elegante, sin emojis) */
+  .cal{display:flex;align-items:flex-start;gap:0;margin:4px 0 2px;overflow-x:auto;padding:2px 2px 6px;}
+  .cal-step{flex:1;min-width:66px;text-align:center;position:relative;}
+  .cal-step::before{content:'';position:absolute;top:8px;left:0;right:0;height:2px;background:var(--border);}
+  .cal-step:first-child::before{left:50%;}
+  .cal-step:last-child::before{right:50%;}
+  .cal-dot{position:relative;z-index:1;width:13px;height:13px;border-radius:50%;margin:2px auto 8px;border:2px solid;background:#fff;}
+  .cal-date{font-size:11px;font-weight:600;color:var(--ink);text-transform:capitalize;}
+  .cal-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+
+  /* "+" con resto de nombres comerciales (tooltip) */
+  .brand-more{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:var(--bone-dark);color:var(--ink-mid);font-size:11px;font-weight:700;line-height:1;cursor:help;position:relative;vertical-align:middle;margin-left:3px;border:1px solid var(--border);transition:background .15s,color .15s;}
+  .brand-more:hover{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+  .brand-more::after{content:attr(data-tip);position:absolute;bottom:150%;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:11.5px;font-weight:500;text-transform:none;letter-spacing:.01em;padding:7px 10px;border-radius:4px;white-space:normal;width:max-content;max-width:190px;line-height:1.5;box-shadow:0 6px 18px rgba(0,0,0,.28);opacity:0;visibility:hidden;transition:opacity .15s;z-index:60;pointer-events:none;}
+  .brand-more::before{content:'';position:absolute;bottom:150%;left:50%;transform:translate(-50%,90%);border:5px solid transparent;border-top-color:var(--ink);opacity:0;visibility:hidden;transition:opacity .15s;z-index:60;}
+  .brand-more:hover::after,.brand-more:hover::before{opacity:1;visibility:visible;}
+
+  @media(max-width:620px){.crit-grid{grid-template-columns:1fr;}.acod-result-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:620px){.grid2{grid-template-columns:1fr;}.acod-grid{grid-template-columns:repeat(2,1fr);}.helper-grid{grid-template-columns:1fr;}.indic-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ══════ Estructura en 3 pasos ══════ */
+  .wrap-patient{max-width:1200px;margin:0 auto;padding:1.6rem 1.5rem 0;}
+  .patient-card{margin-bottom:0;border-color:#b9c3d6;box-shadow:0 6px 22px -14px rgba(26,46,92,.35);}
+  .nav-sticky{position:sticky;top:0;z-index:200;background:var(--ink);box-shadow:0 10px 24px -18px rgba(0,0,0,.55);margin-top:1.4rem;}
+  .nav-sticky .tabs{position:static;border-bottom:1px solid rgba(255,255,255,.08);align-items:stretch;}
+  .tab.step{display:inline-flex;align-items:center;gap:9px;}
+  .tab .step-n{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px solid currentColor;font-size:.72rem;font-weight:700;letter-spacing:0;line-height:1;}
+  .tab.step.active .step-n{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--ink);}
+  .tabs-sep{flex:0 0 1px;background:rgba(255,255,255,.14);margin:.7rem .6rem;}
+  .tab.tab-ref{font-size:.72rem;color:rgba(245,240,232,.5);}
+  .resumen{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:.55rem max(1rem,calc((100% - 1200px)/2 + 1.5rem));}
+  .res-lbl{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.45);margin-right:4px;}
+  .res-chip{display:inline-flex;align-items:baseline;gap:6px;padding:.28rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(245,240,232,.7);font-family:var(--sans);font-size:.72rem;cursor:pointer;transition:background .2s,border-color .2s;}
+  .res-chip:hover{background:rgba(255,255,255,.1);border-color:rgba(245,217,122,.5);}
+  .res-chip strong{font-size:.82rem;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;}
+  .res-chip strong[data-nivel="ok"]{color:#86e0b4;}
+  .res-chip strong[data-nivel="mid"]{color:#f6c66f;}
+  .res-chip strong[data-nivel="high"]{color:#ff9d95;}
+  .res-acod.is-set{border-color:rgba(245,217,122,.55);}
+  .res-acod.is-set strong{color:var(--gold-lt);}
+  .res-verdict{margin-left:auto;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:.28rem .75rem;border-radius:2px;}
+  .res-verdict.v-si{background:#dbe7fb;color:#0b3a8a;}
+  .res-verdict.v-ind{background:#faf2d6;color:#7a5200;}
+  .res-verdict.v-no{background:#e3efe6;color:#245a33;}
+  .step-head{display:flex;align-items:flex-start;gap:14px;margin:.4rem 0 1.1rem;}
+  .step-head .step-n{flex:0 0 auto;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--gold-lt);font-family:'Source Serif 4',serif;font-weight:600;font-size:1.05rem;}
+  .step-head h2{font-family:'Source Serif 4',serif;font-weight:600;font-size:1.45rem;line-height:1.2;color:var(--ink);}
+  .step-head p{font-size:.86rem;color:var(--ink-mid);margin-top:2px;}
+  .verdict-card{border-color:#b9c3d6;}
+  .verdict-card .decision-badge{font-size:14px;padding:8px 18px;}
+  .verdict-txt{font-size:13px;color:var(--ink-mid);}
+  .verdict-txt strong{color:var(--ink);font-variant-numeric:tabular-nums;}
+  .step-next{display:flex;justify-content:flex-end;margin-top:14px;}
+  .next-btn{display:inline-flex;align-items:center;gap:10px;padding:11px 20px;border-radius:3px;border:1.5px solid var(--ink);background:var(--ink);color:var(--gold-lt);font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .15s;}
+  .next-btn:hover{background:var(--navy);}
+  .next-btn:active{transform:scale(.98);}
+  .next-btn span{transition:transform .3s cubic-bezier(.16,1,.3,1);}
+  .next-btn:hover span{transform:translateX(4px);}
+  .next-btn--ghost{background:#fff;color:var(--ink);}
+  .next-btn--ghost:hover{background:var(--bone);}
+  .hoja-note{font-size:13px;color:var(--ink-mid);margin-bottom:12px;max-width:62ch;}
+  details.more{margin:4px 0 14px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);}
+  details.more>summary{cursor:pointer;list-style:none;padding:13px 18px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mid);display:flex;align-items:center;gap:10px;}
+  details.more>summary::-webkit-details-marker{display:none;}
+  details.more>summary::before{content:'';width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(-45deg);transition:transform .25s;}
+  details.more[open]>summary::before{transform:rotate(45deg);}
+  details.more>summary:hover{color:var(--ink);}
+  .more-body{padding:0 14px 4px;}
+  .card-flat{box-shadow:none;}
+  .auto-note{display:block;margin-bottom:6px;color:var(--ink-mid);}
+  .auto-tag,.crit-btn.is-auto .ct::after{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border-radius:2px;background:var(--ink);color:var(--gold-lt);vertical-align:1px;}
+  .crit-btn.is-auto .ct::after{content:'auto';margin-left:7px;}
+  .arc-pick{margin-top:10px;width:100%;padding:8px 10px;border-radius:3px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);font-family:var(--sans);font-size:11.5px;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:background .2s,color .2s;}
+  .arc-pick:hover{background:var(--ink);color:var(--gold-lt);}
+  .arc-pick.is-picked{background:var(--ink);color:var(--gold-lt);}
+  .fin-box{margin-top:10px;}
+  .pfield-readonly .readonly-val{padding:8px 11px;border:1.5px dashed var(--border);border-radius:3px;font-size:13px;color:var(--ink);background:var(--bone);}
+  @keyframes flash-card{0%{box-shadow:0 0 0 3px rgba(212,175,55,.65)}100%{box-shadow:0 1px 4px var(--shadow)}}
+  .card.flash{animation:flash-card 1.4s cubic-bezier(.16,1,.3,1);}
+  @media(max-width:720px){
+    .resumen{gap:5px;padding:.45rem 1rem;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;}
+    .resumen::-webkit-scrollbar{display:none;}
+    .res-chip,.res-verdict{flex-shrink:0;}
+    .res-lbl{display:none;}
+    .res-verdict{margin-left:0;}
+    .tab{padding:.75rem 1rem;}
+    .wrap-patient{padding:1.1rem 1rem 0;}
+    .section{padding:1.4rem 1rem 1rem;}
+    .step-next .next-btn{width:100%;justify-content:center;}
+  }
+
+  /* ══════ Bloques añadidos (IPT, cambio, seguimiento, hoja) ══════ */
+  .card-note{font-size:12.5px;color:var(--ink-mid);margin-bottom:10px;max-width:75ch;}
+  .src-line{font-size:11px;color:var(--ink-mid);margin-top:12px;padding-top:9px;border-top:1px solid var(--border);}
+  .fg-formula{margin-left:8px;font-size:11px;color:var(--ink-mid);font-variant-numeric:tabular-nums;}
+  .pasos-cambio{margin:2px 0 0 20px;font-size:13px;line-height:1.9;color:var(--ink);}
+  .inline-check{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink);cursor:pointer;}
+  .inline-check input{accent-color:var(--blue);width:15px;height:15px;}
+  .seg-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+  .seg-tile{background:var(--ink);border-radius:4px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;}
+  .seg-tile span{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.62);}
+  .seg-tile strong{font-family:'Source Serif 4',serif;font-size:1.3rem;font-weight:600;color:var(--gold-lt);line-height:1.15;}
+  .seg-tile em{font-style:normal;font-size:12px;color:rgba(255,255,255,.78);}
+  .seg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .seg-list{list-style:none;padding:0;margin:0 0 0 9px;}
+  .seg-list li{font-size:12.5px;line-height:1.55;padding:4px 0 4px 16px;position:relative;border-bottom:1px solid #f0f2f7;}
+  .seg-list li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  .hoja-actions{display:inline-flex;gap:6px;}
+  .mini-btn{padding:5px 13px;border-radius:3px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;}
+  .mini-btn--dark{background:var(--ink);color:var(--gold-lt);}
+  .hoja{font-size:13.5px;line-height:1.7;color:var(--ink);max-width:70ch;}
+  .hoja p{margin-bottom:8px;}
+  .hoja h4{font-family:'Source Serif 4',serif;font-weight:600;font-size:14.5px;color:var(--ink);margin:14px 0 4px;}
+  .hoja ul{margin:0 0 8px 20px;}
+  .hoja li{margin-bottom:3px;}
+  @media(max-width:720px){.seg-tiles,.seg-grid{grid-template-columns:1fr;}}
+
+  .mapa-card{padding-bottom:10px;}
+  .card-hint{font-size:11px;font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-mid);}
+  .mapa-host{min-height:120px;margin:0 -6px;}
+
+  .seg-ctrl{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-bottom:12px;font-size:12.5px;color:var(--ink);}
+  .seg-ctrl label{display:inline-flex;align-items:center;gap:5px;cursor:pointer;font-weight:600;}
+  .seg-ctrl input{accent-color:var(--blue);}
+  .seg-ctrl-note{margin-left:auto;color:var(--ink-mid);}
+  .cal-table{margin-bottom:16px;}
+  .cal-table td{font-size:12.5px;}
+  .cal-fecha{white-space:nowrap;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .cal-fecha small{display:block;font-weight:500;color:var(--ink-mid);}
+  .cal-chip{display:inline-block;margin:0 4px 4px 0;padding:2px 8px;border-radius:2px;font-size:11px;font-weight:700;white-space:nowrap;}
+  .cal-chip--primera,.cal-chip--visita{background:var(--blue-l);color:var(--blue);}
+  .cal-chip--analitica{background:var(--green-l);color:var(--green);}
+  .cal-chip--visado{background:#faf2d6;color:#7a5200;}
+  .cal-chip--ochenta{background:var(--red-l);color:#b3201f;}
+  @media(max-width:720px){.seg-ctrl-note{margin-left:0;width:100%;}.cal-table td:first-child{white-space:normal;}}
+
+  /* ══════ Estilo A (como la web): barra de pasos y resumen claros ══════ */
+  .nav-sticky{background:#fff;box-shadow:0 10px 24px -20px rgba(10,22,40,.35);border-bottom:1px solid #e3e7ec;}
+  .nav-sticky .tabs{box-shadow:none!important;border-bottom:1px solid #eef0f3!important;}
+  .tab .step-n{border-color:#cfd5dd;color:#556170;}
+  .tab.step.active .step-n{background:#0a1628;border-color:#0a1628;color:#d4af37;}
+  .res-lbl{color:#8a93a6;}
+  .res-chip{background:#fff;border-color:#e3e7ec;color:#556170;}
+  .res-chip:hover{background:#f6f7f9;border-color:#d4af37;}
+  .res-chip strong{color:#0a1628;}
+  .res-chip strong[data-nivel="ok"]{color:#1f6b45;}
+  .res-chip strong[data-nivel="mid"]{color:#8a5a00;}
+  .res-chip strong[data-nivel="high"]{color:#b3261e;}
+  .res-acod.is-set{border-color:rgba(212,175,55,.6);}
+  .res-acod.is-set strong{color:#8a6a12;}
+  .wrap-patient{padding-top:1.4rem;}
+  .patient-card{box-shadow:0 18px 40px -26px rgba(10,22,40,.45)!important;}
+  .fg-pill{background:#0a1628!important;border-color:#0a1628!important;border-radius:2px!important;}
+  .fg-pill .num{font-family:'Source Serif 4',Georgia,serif!important;font-weight:500;font-size:34px!important;color:#d4af37!important;}
+  .fg-pill .lbl{color:rgba(255,255,255,.75)!important;}
+  .step-head .step-n{background:#0a1628;color:#d4af37;font-family:'Source Serif 4',Georgia,serif;font-size:1.25rem;}
+  .next-btn{border-radius:2px;background:#0a1628;border-color:#0a1628;color:#fff;font-size:12.5px;}
+  .next-btn--ghost{background:#fff;color:#0a1628;}
+  .seg-tile{border-radius:2px;}
+  .seg-tile strong{font-size:1.55rem;color:#d4af37;}
+  .verdict-card .decision-badge{border-radius:2px;}
+
+  /* ══════ Referencia: tabla situación × ACOD ══════ */
+  .ref-intro{font-size:13px;color:var(--ink-mid);max-width:78ch;margin:0 0 14px;}
+  .ref-tabla-wrap{overflow-x:auto;margin:0 -4px 6px;}
+  .ref-tabla{width:100%;border-collapse:collapse;font-size:13px;min-width:720px;}
+  .ref-tabla thead th{font-size:12px;font-weight:600;color:var(--ink-mid);text-align:left;padding:8px 12px;border-bottom:1.5px solid #0a1628;}
+  .ref-tabla tbody th{text-align:left;vertical-align:top;padding:12px 12px 12px 4px;width:27%;font-family:'Source Serif 4',Georgia,serif;font-size:17px;font-weight:600;color:#0a1628;line-height:1.2;}
+  .ref-tabla tbody th small{display:block;margin-top:5px;font-family:'Source Sans 3',sans-serif;font-size:11.5px;font-weight:400;line-height:1.45;color:var(--ink-mid);}
+  .ref-tabla td{vertical-align:top;padding:12px;border-bottom:1px solid #eef0f3;color:#3c4757;line-height:1.45;}
+  .ref-tabla tbody tr th{border-bottom:1px solid #eef0f3;}
+  .ref-tabla .m{display:block;font-weight:600;font-size:12.5px;margin-bottom:2px;}
+  .ref-tabla .m-pref{color:#1f6b45;}
+  .ref-tabla .m-ok{color:#0a1628;}
+  .ref-tabla .m-evit{color:#b3261e;}
+  .ref-tabla .m-na{color:#8a93a6;font-weight:500;}
+  .ref-h{font-family:'Source Serif 4',Georgia,serif;font-weight:500;font-size:22px;color:#0a1628;margin:22px 0 8px;}
+  .ref-list{margin:0 0 6px 18px;font-size:13.5px;line-height:1.75;color:#3c4757;}
+
+  /* ══════ Jerarquía propuesta 2 ══════ */
+  /* CHA2DS2-VA y HAS-BLED en una sola tarjeta con separador */
+  #tab-paso1 .grid2{background:#fff;border:1px solid #e3e7ec;border-radius:4px;gap:0;margin-bottom:14px;}
+  #tab-paso1 .grid2>.card{border:0!important;margin:0;border-radius:0!important;padding:18px 22px;}
+  #tab-paso1 .grid2>.card:first-child{border-right:1px solid #eef0f3!important;}
+  .group-lbl{color:#8a93a6;text-transform:none;letter-spacing:0;font-size:12px;font-weight:600;margin-left:0;}
+  .score-bar{background:transparent;padding:10px 0 0;border-top:1px solid #eef0f3;border-radius:0!important;margin-top:12px;}
+  .score-name{display:none;}
+  .score-label{font-size:14px;}
+  .frow{padding:7px 2px;border-bottom:1px solid #f1f3f5;border-radius:0!important;}
+  .frow.active{background:transparent;}
+  .frow.active .fpts{background:transparent;color:#0a1628;}
+  .fpts{background:transparent;color:#8a93a6;font-size:13px;}
+  .flabel{font-size:14.5px;}
+  .flabel small{font-size:12.5px;color:#8a93a6;}
+  .age-row{border:0;border-bottom:1px solid #f1f3f5;border-radius:0!important;background:transparent;padding:7px 2px;}
+  .age-row.on{background:transparent;}
+  .verdict-card{border-color:#0a1628!important;}
+  .ref-tabla tbody th{font-family:'Source Sans 3',sans-serif;font-size:14.5px;font-weight:700;}
+  .ref-h{font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:700;margin:22px 0 6px;}
+  #tab-paso1 .grid2>.card:first-child{border-right:1px solid #eef0f3!important;}
+  @media(max-width:620px){#tab-paso1 .grid2>.card:first-child{border-right:0!important;border-bottom:1px solid #eef0f3!important;}}
+
+  /* ══════ FICHA LATERAL (datos del paciente fijos a la izquierda) ══════ */
+  .hc-layout{display:grid;grid-template-columns:300px minmax(0,1fr);max-width:1320px;margin:22px auto 0;padding:0 1.5rem;align-items:start;}
+  .hc-ficha{position:sticky;top:14px;align-self:start;background:#fff;border:1px solid #e3e7ec;padding:20px 20px 18px;max-height:calc(100vh - 28px);overflow:auto;}
+  .hc-main{min-width:0;padding-left:26px;}
+  .hc-main .nav-sticky{margin-top:0;background:#fff;border:1px solid #e3e7ec;border-bottom:0;}
+  .hc-main .nav-sticky .tabs{padding:0 12px!important;}
+  .hc-main .section{max-width:none;padding:1.6rem 0 1rem;}
+  .fi-h{font-size:12.5px;color:#556170;font-weight:600;}
+  .hc-ficha .fi-nombre{width:100%;border:0!important;border-bottom:1px solid #e3e7ec!important;border-radius:0!important;font-family:'Source Serif 4',Georgia,serif!important;font-size:21px;font-weight:600;padding:4px 0 9px!important;margin:4px 0 14px;background:transparent!important;box-shadow:none!important;}
+  .hc-ficha .fi-nombre:focus{border-bottom-color:#0a1628!important;}
+  .fi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;}
+  .fi-f{display:flex;flex-direction:column;gap:4px;}
+  .fi-f > span{font-size:12.5px;color:#556170;font-weight:600;}
+  .fi-f input,.fi-f select{width:100%;padding:8px 9px;font-size:15px;}
+  .fi-sep{margin-top:12px;}
+  .hc-ficha .fi-clcr{display:block;margin:14px 0 2px;background:#0a1628!important;border:0!important;border-radius:0!important;color:#fff;padding:12px 14px;min-width:0;}
+  .fi-clcr-k{display:block;font-size:12px;color:rgba(255,255,255,.72);}
+  .fi-clcr b{display:block;margin-top:2px;line-height:1.15;}
+  .hc-ficha .fi-clcr .num{display:inline;font-family:'Source Serif 4',Georgia,serif!important;font-size:30px!important;font-weight:600;color:#d4af37!important;}
+  .hc-ficha .fi-clcr .lbl{display:inline;font-size:14px!important;color:rgba(255,255,255,.72)!important;font-weight:600;text-transform:none;}
+  .fi-clcr #fg_cat_badge{display:block;margin-top:6px;}
+  .fi-clcr #fg_cat_badge .chip{font-size:11.5px!important;}
+  .fi-clcr .fg-formula{display:block;margin:4px 0 0;color:rgba(255,255,255,.6);font-size:11.5px;}
+  .fi-res{margin-top:16px;border-top:1px solid #e3e7ec;padding-top:4px;}
+  .fi-res .res-chip{display:flex;justify-content:space-between;align-items:baseline;gap:10px;width:100%;background:none;border:0;border-bottom:1px solid #f1f3f5;border-radius:0;padding:9px 2px;font-size:14.5px;color:#556170;cursor:pointer;text-align:left;}
+  .fi-res .res-chip:hover{background:#f6f7f9;}
+  .fi-res .res-chip strong{font-size:15px;color:#0a1628;text-align:right;}
+  .fi-res .res-acod.is-set strong{color:#8a6a12;}
+  .hc-ficha .res-verdict{display:block;margin:14px 0 0;text-align:center;padding:9px 10px;border:1px solid #0a1628;border-radius:0;font-size:14.5px;font-weight:700;}
+  .hc-ficha .res-verdict:empty{display:none;}
+  .hc-aviso{max-width:1272px;}
+  @media(max-width:960px){
+    .hc-layout{grid-template-columns:1fr;padding:0 1rem;}
+    .hc-ficha{position:static;max-height:none;}
+    .hc-main{padding-left:0;margin-top:16px;}
+    .fi-res{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;}
+  }
+  @media print{.mapa-card,.nav-sticky,.step-next,.arc-pick,details.more>summary{display:none!important}}
+</style>
+<link rel="stylesheet" href="herramientas.css">
+</head>
+<body>
+<nav class="hc-topbar no-print" aria-label="Volver a la web">
+  <a href="index.html"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Herramientas clínicas</a>
+  <span class="hc-topbar-firma"><strong>Dra. Laura Bernal</strong> · dralaurabernal.es</span>
+</nav>
+
+<div class="header">
+  <div class="header-inner">
+    <span class="hdr-badge">Herramienta Clínica · AP 2026</span>
+    <h1>Anticoagulación</h1>
+    <p class="hc-sub">Riesgo embólico (CHA₂DS₂-VA) y hemorrágico (HAS-BLED), indicación, selección del ACOD, manejo perioperatorio y financiación en el Servicio Murciano de Salud.</p>
+    <p class="hc-base">Basada en la guía ESC 2024 (fibrilación auricular) y el consenso perioperatorio SEC 2025.</p>
+  </div>
+</div>
+
+<div class="hc-aviso-wrap no-print"><div class="hc-aviso" role="note">
+  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+  <p><strong>Herramienta de apoyo a la decisión clínica para profesionales sanitarios.</strong> Es orientativa: no sustituye el juicio clínico, la valoración individual del paciente ni la ficha técnica vigente. La responsabilidad de cada decisión diagnóstica o terapéutica corresponde al profesional que la utiliza. Los datos se procesan solo en este navegador: no se envían ni se guardan.</p>
+</div></div>
+<div class="hc-layout hc-anticoag">
+<aside class="hc-ficha" id="patient-card" aria-label="Datos del paciente">
+  <p class="fi-h">Paciente</p>
+  <input type="text" id="nombre" class="fi-nombre" placeholder="Nombre del paciente" aria-label="Nombre del paciente" oninput="syncAndCalc()">
+  <div class="fi-grid">
+    <label class="fi-f"><span>Nacimiento</span><input type="date" id="fnac" oninput="calcEdad()"></label>
+    <label class="fi-f"><span>Sexo</span>
+      <select id="sexo" onchange="syncAndCalc()">
+        <option value="">—</option>
+        <option value="m">Mujer</option>
+        <option value="h">Hombre</option>
+      </select></label>
+    <label class="fi-f"><span>Peso (kg)</span><input type="number" id="peso" placeholder="70" oninput="syncAndCalc()"></label>
+    <label class="fi-f"><span>Cr (mg/dL)</span><input type="number" id="cr" placeholder="1.0" step="0.01" oninput="syncAndCalc()"></label>
+  </div>
+  <div class="fi-clcr fg-pill" id="fg_display">
+    <span class="fi-clcr-k"><span id="fg_info_text">Cockcroft-Gault</span></span>
+    <b><span class="num" id="fg_num">—</span> <small class="lbl" id="fg_lbl">ml/min</small></b>
+    <span id="fg_cat_badge"></span>
+    <span id="fg_formula" class="fg-formula"></span>
+  </div>
+  <label class="fi-f fi-sep"><span>ClCr manual (si lo tienes de otra fuente)</span><input type="number" id="fg_manual" placeholder="auto" oninput="syncAndCalc()"></label>
+  <label class="fi-f fi-sep"><span>Tratamiento anticoagulante actual</span>
+    <select id="trat_actual" onchange="syncAndCalc()">
+      <option value="">Sin anticoagulante (inicio)</option>
+      <option value="acenocumarol">Acenocumarol (Sintrom®)</option>
+      <option value="warfarina">Warfarina (Aldocumar®)</option>
+      <option value="acod">Ya toma un ACOD (pasar a AVK)</option>
+    </select></label>
+  <div class="fi-res" id="resumen" aria-live="polite">
+    <button class="res-chip" data-go="patient" id="res_edad"><span>Edad</span><strong>—</strong></button>
+    <button class="res-chip" data-go="patient" id="res_fg"><span>ClCr</span><strong>—</strong></button>
+    <button class="res-chip" data-go="paso1" id="res_cha"><span>CHA₂DS₂-VA</span><strong>0</strong></button>
+    <button class="res-chip" data-go="paso1" id="res_has"><span>HAS-BLED</span><strong>0</strong></button>
+    <button class="res-chip res-acod" data-go="paso2" id="res_acod"><span>ACOD</span><strong>Sin elegir</strong></button>
+  </div>
+  <p class="res-verdict" id="res_verdict"></p>
+</aside>
+
+<div class="hc-main">
+<div class="nav-sticky" id="nav-sticky">
+<div class="tabs" role="tablist" aria-label="Pasos de la herramienta">
+  <button class="tab step active" data-tab="paso1" onclick="showTab('paso1',this)"><span class="step-n">1</span>¿Anticoagular?</button>
+  <button class="tab step" data-tab="paso2" onclick="showTab('paso2',this)"><span class="step-n">2</span>ACOD y dosis</button>
+  <button class="tab step" data-tab="paso3" onclick="showTab('paso3',this)"><span class="step-n">3</span>Informe</button>
+  <span class="tabs-sep" aria-hidden="true"></span>
+  <button class="tab tab-ref" data-tab="cirugia" onclick="showTab('cirugia',this)">Perioperatorio</button>
+  <button class="tab tab-ref" data-tab="murcia" onclick="showTab('murcia',this)">Financiación</button>
+  <button class="tab tab-ref" data-tab="referencia" onclick="showTab('referencia',this)">Referencia</button>
+</div>
+</div>
+
+<!-- ══════ PASO 1: ¿ANTICOAGULAR? ══════ -->
+<div class="section active" id="tab-paso1">
+  <div class="step-head"><span class="step-n">1</span><div><h2>¿Está indicado anticoagular?</h2><p>Indicación, riesgo embólico (CHA₂DS₂-VA) y hemorrágico (HAS-BLED).</p></div></div>
+
+  <!-- INDICACIÓN -->
+  <div class="card">
+    <div class="card-title">Indicación del tratamiento</div>
+    <div class="indic-grid">
+      <button class="indic-btn selected" id="ind_fanv" onclick="selectIndic('fanv')"><div class="name">FA no valvular</div><div class="sub">Indicación principal</div></button>
+      <button class="indic-btn" id="ind_cardioversion" onclick="selectIndic('cardioversion')"><div class="name">Cardioversión / Ablación</div><div class="sub">90 días si CHA₂DS₂-VA 0–1</div></button>
+      <button class="indic-btn" id="ind_tvp" onclick="selectIndic('tvp')"><div class="name">TVP / TEP aguda</div><div class="sub">Financiados: dabigatrán y rivaroxabán</div></button>
+    </div>
+    <div id="indic_alert"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">CHA₂DS₂-VA</div>
+      <div class="group-lbl">Factores clínicos</div>
+      <label class="frow" id="row_c_ic"><input type="checkbox" id="c_ic" onchange="calc()"><span class="flabel">Insuficiencia cardiaca</span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_c_hta"><input type="checkbox" id="c_hta" onchange="calc()"><span class="flabel">Hipertensión arterial</span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_c_dm"><input type="checkbox" id="c_dm" onchange="calc()"><span class="flabel">Diabetes mellitus</span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_c_ictus"><input type="checkbox" id="c_ictus" onchange="calc()"><span class="flabel">Ictus/AIT/TEA previo</span><span class="fpts">+2</span></label>
+      <label class="frow" id="row_c_vasc"><input type="checkbox" id="c_vasc" onchange="calc()"><span class="flabel">Enfermedad vascular<small>IAM, arteriopatía, placa aórtica</small></span><span class="fpts">+1</span></label>
+      <div class="group-lbl">Edad (automático)</div>
+      <div class="age-row" id="age_cha_row">
+        <span style="font-size:13px;margin-top:1px">⏱</span>
+        <span class="flabel" id="age_cha_label" style="font-size:12px;color:var(--muted)">Introduzca fecha de nacimiento</span>
+        <span class="fpts" id="age_cha_pts" style="background:#f0f0f0;color:#bbb">+0</span>
+      </div>
+      <div class="score-bar">
+        <div class="score-num" id="val_cha">0</div>
+        <div class="score-info">
+          <div class="score-name">CHA₂DS₂-VA</div>
+          <div class="score-label" id="lbl_cha">Marque factores</div>
+          <div class="bar-wrap"><div class="bar-fill" id="bar_cha" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">HAS-BLED</div>
+      <div class="group-lbl">Factores</div>
+      <label class="frow" id="row_h_hta"><input type="checkbox" id="h_hta" onchange="calc()"><span class="flabel">H — HTA no controlada<small>TAS > 160 mmHg</small></span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_h_renal"><input type="checkbox" id="h_renal" onchange="calc()"><span class="flabel">A — Función renal alterada<small>Diálisis, Cr > 2,26 o trasplante</small></span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_h_hepat"><input type="checkbox" id="h_hepat" onchange="calc()"><span class="flabel">A — Función hepática alterada<small>Cirrosis, bilirrubina ×2 o transaminasas ×3</small></span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_h_ictus"><input type="checkbox" id="h_ictus" onchange="calc()"><span class="flabel">S — Ictus previo</span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_h_sangrado"><input type="checkbox" id="h_sangrado" onchange="calc()"><span class="flabel">B — Sangrado previo o predisposición</span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_h_inr"><input type="checkbox" id="h_inr" onchange="calc()"><span class="flabel">L — INR lábil<small>Solo si AVK: TTR < 60%</small></span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_h_farmacos"><input type="checkbox" id="h_farmacos" onchange="calc()"><span class="flabel">D — Antitrombóticos o AINEs</span><span class="fpts">+1</span></label>
+      <label class="frow" id="row_h_alcohol"><input type="checkbox" id="h_alcohol" onchange="calc()"><span class="flabel">D — Alcohol excesivo<small>≥ 8 bebidas/semana</small></span><span class="fpts">+1</span></label>
+      <div class="group-lbl">Edad (automático)</div>
+      <div class="age-row" id="age_has_row">
+        <span style="font-size:13px;margin-top:1px">⏱</span>
+        <span class="flabel" id="age_has_label" style="font-size:12px;color:var(--muted)">Introduzca fecha de nacimiento</span>
+        <span class="fpts" id="age_has_pts" style="background:#f0f0f0;color:#bbb">+0</span>
+      </div>
+      <div class="score-bar">
+        <div class="score-num" id="val_has">0</div>
+        <div class="score-info">
+          <div class="score-name">HAS-BLED</div>
+          <div class="score-label" id="lbl_has">Marque factores</div>
+          <div class="bar-wrap"><div class="bar-fill" id="bar_has" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUEVO (IPT AEMPS 2024, recogido en CardioTeca) · revisar -->
+  <div class="card" id="ipt-card">
+    <div class="card-title">¿ACOD o AVK?</div>
+    <p class="card-note">En pacientes nuevos el IPT 2024 admite ACOD o AVK. Marca lo que aplique: queda recogido en el informe para el visado.</p>
+    <div class="grid2">
+      <div>
+        <div class="group-lbl">Favorecen ACOD</div>
+        <label class="frow"><input type="checkbox" id="ipt_intol" onchange="calc()"><span class="flabel">Intolerancia, alergia o contraindicación a AVK</span></label>
+        <label class="frow"><input type="checkbox" id="ipt_cv" onchange="calc()"><span class="flabel">Cardioversión o ablación programada</span></label>
+        <label class="frow"><input type="checkbox" id="ipt_icp" onchange="calc()"><span class="flabel">ICP con necesidad de antiagregación</span></label>
+        <label class="frow"><input type="checkbox" id="ipt_hic" onchange="calc()"><span class="flabel">Hemorragia intracraneal previa o alto riesgo de HIC</span></label>
+        <label class="frow"><input type="checkbox" id="ipt_ictus" onchange="calc()"><span class="flabel">Ictus isquémico previo</span></label>
+        <label class="frow"><input type="checkbox" id="ipt_ttr" onchange="calc()"><span class="flabel">Mal control con AVK<small>TTR &lt; 70 % (Rosendaal) o &lt; 60 % (método directo)</small></span></label>
+        <label class="frow"><input type="checkbox" id="ipt_noinr" onchange="calc()"><span class="flabel">Imposibilidad de acceder a controles de INR</span></label>
+      </div>
+      <div>
+        <div class="group-lbl">Requieren AVK (ACOD no indicados)</div>
+        <label class="frow"><input type="checkbox" id="ipt_protesis" onchange="calc()"><span class="flabel">Prótesis valvular mecánica</span></label>
+        <label class="frow"><input type="checkbox" id="ipt_em" onchange="calc()"><span class="flabel">Estenosis mitral moderada-grave</span></label>
+        <label class="frow"><input type="checkbox" id="ipt_saf" onchange="calc()"><span class="flabel">Síndrome antifosfolípido</span></label>
+        <div class="group-lbl">Si ya toma AVK</div>
+        <label class="frow"><input type="checkbox" id="ipt_buen" onchange="calc()"><span class="flabel">Buen control con AVK<small>TTR ≥ 70 %</small></span></label>
+      </div>
+    </div>
+    <div id="ipt_out"></div>
+    <div class="src-line">Fuente: Informe de Posicionamiento Terapéutico (AEMPS) 2024; consenso regional de Murcia (20/12/2024).</div>
+  </div>
+
+  <div class="card verdict-card">
+    <div class="card-title">Resultado</div>
+    <div id="veredicto"></div>
+    <div id="veredicto_has"></div>
+    <div class="step-next"><button class="next-btn" onclick="goStep('paso2')">Siguiente: elegir ACOD y dosis <span aria-hidden="true">→</span></button></div>
+  </div>
+</div>
+
+<!-- ══════ PASO 2: ACOD Y DOSIS ══════ -->
+<div class="section" id="tab-paso2">
+  <div class="step-head"><span class="step-n">2</span><div><h2>¿Qué ACOD y qué dosis?</h2><p>Perfil del paciente, ranking orientativo, posología según FG y financiación.</p></div></div>
+
+  <div class="card">
+    <div class="card-title">
+      Perfil del paciente: ¿qué ACOD encaja mejor?
+      <button class="reset-btn" onclick="resetCalc()">↺ Limpiar todo</button>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px"><span class="auto-note">La función renal y el riesgo hemorrágico se marcan solos con los datos del paciente y el HAS-BLED (etiqueta <span class="auto-tag">auto</span>); puedes cambiarlos.</span> Marca las características del paciente. La calculadora puntúa cada ACOD a favor (✓) o en contra (✗) y te muestra cuál encaja mejor. No hay ensayos head-to-head: usa esto como orientación, no como prescripción.</div>
+
+    <!-- FUNCIÓN RENAL -->
+    <div class="crit-section">
+      <div class="crit-section-title"><span class="sec-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5l-4.5 9A2 2 0 0 0 7.3 20h9.4a2 2 0 0 0 1.8-3l-4.5-9V3"/><path d="M7 14h10"/></svg></span> Función renal</div>
+      <div class="crit-grid">
+        <button class="crit-btn" id="cr_normal" onclick="toggleCrit('renal','normal',this)">
+          <span class="crit-text"><div class="ct">FG normal o leve reducción</div><div class="cs">FG ≥ 50 ml/min</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="cr_mod" onclick="toggleCrit('renal','mod',this)">
+          <span class="crit-text"><div class="ct">IRC moderada</div><div class="cs">FG 30–49 ml/min</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="cr_grav" onclick="toggleCrit('renal','grav',this)">
+          <span class="crit-text"><div class="ct">IRC grave</div><div class="cs">FG 15–29 ml/min</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="cr_ci" onclick="toggleCrit('renal','ci',this)">
+          <span class="crit-text"><div class="ct">IRC muy grave / diálisis</div><div class="cs">FG &lt; 15 ml/min</div></span>
+          <span class="crit-check"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- RIESGO HEMORRÁGICO -->
+    <div class="crit-section">
+      <div class="crit-section-title"><span class="sec-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span> Riesgo hemorrágico</div>
+      <div class="crit-grid">
+        <button class="crit-btn" id="rh_alto" onclick="toggleCrit('sangrado','alto',this)">
+          <span class="crit-text"><div class="ct">Alto riesgo hemorrágico</div><div class="cs">HAS-BLED ≥ 3, antecedentes de sangrado</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="rh_gi" onclick="toggleCrit('sangrado','gi',this)">
+          <span class="crit-text"><div class="ct">Sangrado GI previo / úlcera</div><div class="cs">Riesgo específico de sangrado digestivo</div></span>
+          <span class="crit-check"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ADHERENCIA -->
+    <div class="crit-section">
+      <div class="crit-section-title"><span class="sec-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg></span> Adherencia y posología</div>
+      <div class="crit-grid">
+        <button class="crit-btn" id="adh_1d" onclick="toggleCrit('adher','1d',this)">
+          <span class="crit-text"><div class="ct">Prefiere toma única diaria</div><div class="cs">Mejor adherencia con 1 vez/día</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="adh_gi" onclick="toggleCrit('adher','gi',this)">
+          <span class="crit-text"><div class="ct">Dispepsia / intolerancia gástrica</div><div class="cs">Historial de molestias digestivas</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="adh_comida" onclick="toggleCrit('adher','comida',this)">
+          <span class="crit-text"><div class="ct">No siempre come bien (no come en cena)</div><div class="cs">Importante para rivaroxabán (requiere comida)</div></span>
+          <span class="crit-check"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SITUACIONES CLÍNICAS -->
+    <div class="crit-section">
+      <div class="crit-section-title"><span class="sec-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-9.3-9C1.2 8.6 2.6 5 6 5c2 0 3.2 1.3 4 2.6C10.8 6.3 12 5 14 5c3.4 0 4.8 3.6 3.3 6C15 15.5 12 20 12 20z"/></svg></span> Situación clínica especial</div>
+      <div class="crit-grid">
+        <button class="crit-btn" id="cl_antidoto" onclick="toggleCrit('clinic','antidoto',this)">
+          <span class="crit-text"><div class="ct">Necesita antídoto disponible</div><div class="cs">Alto riesgo, cirugías frecuentes, zona rural</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="cl_ecva" onclick="toggleCrit('clinic','ecva',this)">
+          <span class="crit-text"><div class="ct">Cardiopatía isquémica / EAP crónica</div><div class="cs">Candidato a dosis vascular (sin FA ni TEV)</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="cl_saf" onclick="toggleCrit('clinic','saf',this)">
+          <span class="crit-text"><div class="ct">Síndrome antifosfolípido</div><div class="cs">Especialmente triple positivo</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="cl_protesis" onclick="toggleCrit('clinic','protesis',this)">
+          <span class="crit-text"><div class="ct">Prótesis valvular mecánica</div><div class="cs">O estenosis mitral moderada-severa reumática</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="cl_tvp" onclick="toggleCrit('clinic','tvp',this)">
+          <span class="crit-text"><div class="ct">Indicación por TVP/TEP (no FA)</div><div class="cs">Financiación diferente en Murcia</div></span>
+          <span class="crit-check"></span>
+        </button>
+        <button class="crit-btn" id="cl_cancer" onclick="toggleCrit('clinic','cancer',this)">
+          <span class="crit-text"><div class="ct">TEV asociado a cáncer</div><div class="cs">Dabigatrán no indicado; valorar HBPM</div></span>
+          <span class="crit-check"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- INTERACCIONES FARMACOLÓGICAS -->
+    <div class="crit-section">
+      <div class="crit-section-title"><span class="sec-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M12 8v8"/></svg></span> Fármacos concomitantes — toca los que toma el paciente</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">
+        <span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px"><span style="background:var(--red-l);color:var(--red);border:1.5px solid var(--red);border-radius:20px;padding:1px 8px;font-size:11px;font-weight:700">✗ CI</span> Contraindicado / evitar</span>
+        <span style="display:inline-flex;align-items:center;gap:4px;margin-right:10px"><span style="background:var(--orange-l);color:var(--orange);border:1.5px solid var(--orange);border-radius:20px;padding:1px 8px;font-size:11px;font-weight:700">! Prec</span> Precaución / ajustar dosis</span>
+        <span style="display:inline-flex;align-items:center;gap:4px"><span style="background:var(--green-l);color:var(--green);border:1.5px solid var(--green);border-radius:20px;padding:1px 8px;font-size:11px;font-weight:700">✓ OK</span> Sin interacción relevante</span>
+      </div>
+
+      <div class="farm-cat-title">Interacciones graves — inhibidores/inductores potentes</div>
+      <div class="farm-grid">
+        <button class="farm-tag" data-drug="ketoconazol" data-type="ci_all" onclick="toggleFarm(this)"><span class="ft-x">✗</span> Ketoconazol / Itraconazol</button>
+        <button class="farm-tag" data-drug="ciclosporina" data-type="ci_all" onclick="toggleFarm(this)"><span class="ft-x">✗</span> Ciclosporina</button>
+        <button class="farm-tag" data-drug="dronedarona" data-type="ci_dabi_edox" onclick="toggleFarm(this)"><span class="ft-x">✗</span> Dronedarona</button>
+        <button class="farm-tag" data-drug="rifampicina" data-type="ci_all" onclick="toggleFarm(this)"><span class="ft-x">✗</span> Rifampicina</button>
+        <button class="farm-tag" data-drug="fenitoina" data-type="ci_all" onclick="toggleFarm(this)"><span class="ft-x">✗</span> Fenitoína / Carbamazepina</button>
+        <button class="farm-tag" data-drug="hiv" data-type="ci_all" onclick="toggleFarm(this)"><span class="ft-x">✗</span> Antiretrovirales IP (ritonavir)</button>
+        <button class="farm-tag" data-drug="hierba_san_juan" data-type="ci_all" onclick="toggleFarm(this)"><span class="ft-x">✗</span> Hierba de San Juan</button>
+      </div>
+
+      <div class="farm-cat-title">Precaución — ajuste de dosis o monitorización</div>
+      <div class="farm-grid">
+        <button class="farm-tag" data-drug="verapamilo" data-type="warn_dabi" onclick="toggleFarm(this)"><span class="ft-x">!</span> Verapamilo</button>
+        <button class="farm-tag" data-drug="diltiazem" data-type="warn_all" onclick="toggleFarm(this)"><span class="ft-x">!</span> Diltiazem</button>
+        <button class="farm-tag" data-drug="amiodarona" data-type="warn_all" onclick="toggleFarm(this)"><span class="ft-x">!</span> Amiodarona</button>
+        <button class="farm-tag" data-drug="digoxina" data-type="warn_dabi" onclick="toggleFarm(this)"><span class="ft-x">!</span> Digoxina</button>
+        <button class="farm-tag" data-drug="eritromicina" data-type="warn_edox" onclick="toggleFarm(this)"><span class="ft-x">!</span> Eritromicina / Claritromicina</button>
+        <button class="farm-tag" data-drug="fluconazol" data-type="warn_arix" onclick="toggleFarm(this)"><span class="ft-x">!</span> Fluconazol / Voriconazol</button>
+        <button class="farm-tag" data-drug="quinidina" data-type="warn_edox_dabi" onclick="toggleFarm(this)"><span class="ft-x">!</span> Quinidina</button>
+        <button class="farm-tag" data-drug="tacrolimus" data-type="warn_all" onclick="toggleFarm(this)"><span class="ft-x">!</span> Tacrolimus</button>
+      </div>
+
+      <div class="farm-cat-title">Riesgo hemorrágico aumentado</div>
+      <div class="farm-grid">
+        <button class="farm-tag" data-drug="aas" data-type="warn_sangrado" onclick="toggleFarm(this)"><span class="ft-x">!</span> AAS / Antiagregante</button>
+        <button class="farm-tag" data-drug="clopidogrel" data-type="warn_sangrado" onclick="toggleFarm(this)"><span class="ft-x">!</span> Clopidogrel / Ticagrelor</button>
+        <button class="farm-tag" data-drug="aines" data-type="warn_sangrado" onclick="toggleFarm(this)"><span class="ft-x">!</span> AINEs (ibuprofeno, naproxeno…)</button>
+        <button class="farm-tag" data-drug="ssri" data-type="warn_sangrado" onclick="toggleFarm(this)"><span class="ft-x">!</span> ISRS / Venlafaxina</button>
+        <button class="farm-tag" data-drug="hbpm" data-type="ci_all" onclick="toggleFarm(this)"><span class="ft-x">✗</span> HBPM / Heparina (doble anticoag.)</button>
+      </div>
+
+      <div class="farm-cat-title">Sin interacción clínicamente relevante (fármacos frecuentes)</div>
+      <div class="farm-grid">
+        <button class="farm-tag" data-drug="estatinas" data-type="ok" onclick="toggleFarm(this)"> Estatinas (atorvastatina, etc.)</button>
+        <button class="farm-tag" data-drug="iecas_ara2" data-type="ok" onclick="toggleFarm(this)"> IECAs / ARA-II</button>
+        <button class="farm-tag" data-drug="betabloqueantes" data-type="ok" onclick="toggleFarm(this)"> Betabloqueantes</button>
+        <button class="farm-tag" data-drug="metformina" data-type="ok" onclick="toggleFarm(this)"> Metformina / ADO sin CYP3A4</button>
+        <button class="farm-tag" data-drug="diureticos" data-type="ok" onclick="toggleFarm(this)"> Diuréticos (furosemida, tiazidas)</button>
+        <button class="farm-tag" data-drug="ibp" data-type="ok" onclick="toggleFarm(this)"> IBP (omeprazol, pantoprazol)</button>
+        <button class="farm-tag" data-drug="levotiroxina" data-type="ok" onclick="toggleFarm(this)"> Levotiroxina</button>
+        <button class="farm-tag" data-drug="alopurinol" data-type="ok" onclick="toggleFarm(this)"> Alopurinol</button>
+      </div>
+
+      <div id="farm_alert" style="margin-top:8px"></div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="calc_result"></div>
+  </div>
+
+  <!-- NUEVO (consenso SMS 12/2024, apartado 8) · revisar -->
+  <div class="card" id="eficiencia-card">
+    <div class="card-title">Eficiencia</div>
+    <div id="eficiencia_out"></div>
+    <div class="src-line">Fuente: Documento de consenso sobre anticoagulantes orales, Servicio Murciano de Salud, v1.0 (12/2024), apartado 8. Precios y genéricos: Nomenclátor del Ministerio de Sanidad o farmacia de tu área.</div>
+  </div>
+
+  <!-- ACOD SELECTOR -->
+  <div class="card">
+    <div class="card-title">ACOD elegido y posología</div>
+    <div class="acod-grid">
+      <button class="acod-btn" id="btn_apixaban" onclick="selectAcod('apixaban')"><div class="name">Apixabán</div><div class="brand">Eliquis®</div></button>
+      <button class="acod-btn" id="btn_rivaroxaban" onclick="selectAcod('rivaroxaban')"><div class="name">Rivaroxabán</div><div class="brand">Xarelto®<span class="brand-more" data-tip="Otros nombres comerciales: Plabelus, Rixavarte, Blomensy, Epicar, Rivaxa, Rixacam">+</span></div></button>
+      <button class="acod-btn" id="btn_dabigatran" onclick="selectAcod('dabigatran')"><div class="name">Dabigatrán</div><div class="brand">Pradaxa®<span class="brand-more" data-tip="Otros nombres comerciales: Bigetra, Privenax">+</span></div></button>
+      <button class="acod-btn" id="btn_edoxaban" onclick="selectAcod('edoxaban')"><div class="name">Edoxabán</div><div class="brand">Lixiana®</div></button>
+    </div>
+    <div id="acod_dosis_section" style="display:none">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">Posología prescrita</div>
+      <div class="dosis-row" id="dosis_row"></div>
+      <div id="reduccion_criterios" style="display:none"></div>
+      <div id="acod_alert_box"></div>
+    </div>
+    <div id="fin_acod"></div>
+    <div id="no_acod_msg" style="font-size:12px;color:var(--muted);font-style:italic">Elige un ACOD (o pulsa «Elegir» en el ranking de arriba) para ver la posología y las alertas según el FG del paciente.</div>
+  </div>
+
+
+  <!-- NUEVO (fichas técnicas, recogidas en CardioTeca) · revisar -->
+  <div class="card" id="cambio-card">
+    <div class="card-title">Cambio de anticoagulante</div>
+    <div id="cambio_out"></div>
+    <div class="src-line">Fuente: fichas técnicas (AEMPS · CIMA), recopiladas en CardioTeca · Espacio arritmias.</div>
+  </div>
+
+  <details class="more">
+    <summary>Tablas de dosis: los 4 ACOD según FG y criterios de reducción</summary>
+    <div class="more-body">
+  <div class="card card-flat">
+    <div class="card-title">Dosis de ACOD según FG <span style="font-size:11px;font-weight:400;color:var(--muted);text-transform:none">FA no valvular</span></div>
+    <div class="prow" style="display:none" aria-hidden="true">
+      <div class="pfield" style="max-width:130px">
+        <label>FG (ml/min)</label>
+        <input type="number" id="renal_fg" placeholder="Ej: 42" oninput="calcRenal()">
+      </div>
+      <div class="pfield" style="max-width:90px">
+        <label>Edad</label>
+        <input type="number" id="renal_edad" placeholder="80" oninput="calcRenal()">
+      </div>
+      <div class="pfield" style="max-width:90px">
+        <label>Peso (kg)</label>
+        <input type="number" id="renal_peso" placeholder="60" oninput="calcRenal()">
+      </div>
+      <div class="pfield" style="max-width:110px">
+        <label>Cr sérica (mg/dL)</label>
+        <input type="number" id="renal_cr" placeholder="1.5" step="0.01" oninput="calcRenal()">
+      </div>
+    </div>
+    <div id="renal_output"><div style="font-size:12px;color:var(--muted);font-style:italic">Introduce el FG del paciente arriba para ver las dosis de los 4 ACOD.</div></div>
+  </div>
+
+  <div class="card card-flat">
+    <div class="card-title">Criterios de reducción de dosis</div>
+    <table class="surg-table">
+      <thead><tr><th>ACOD</th><th>Cuándo reducir</th><th>Dosis reducida</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Apixabán</strong><br><small style="color:var(--red)">≥ 2 de 3 criterios</small></td>
+          <td>Edad ≥ 80 años<br>Peso ≤ 60 kg<br>Cr sérica ≥ 1,5 mg/dL</td>
+          <td><strong>2,5 mg/12h</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Rivaroxabán</strong></td>
+          <td>FG 15–49 ml/min</td>
+          <td><strong>15 mg/24h</strong> (con comida)</td>
+        </tr>
+        <tr>
+          <td><strong>Dabigatrán</strong></td>
+          <td><strong>Reducir:</strong> edad ≥ 80 años · tratamiento con verapamilo<br><strong>Valorar</strong> (riesgo individual): edad 75–79 · ClCr 30–50 · gastritis, esofagitis o reflujo · alto riesgo hemorrágico</td>
+          <td><strong>110 mg/12h</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Edoxabán</strong><br><small style="color:var(--red)">≥ 1 de los criterios</small></td>
+          <td>FG 15–50 ml/min<br>Peso ≤ 60 kg<br>Inhibidores gp-P (ciclosporina, dronedarona, eritromicina, ketoconazol)</td>
+          <td><strong>30 mg/24h</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert-box danger" style="margin-top:10px">
+      <strong>No usar ACOD (formulario de visado SMS)</strong>
+      <b>Comunes:</b> prótesis valvular mecánica o estenosis mitral moderada-grave · hipersensibilidad · ClCr &lt; 15 ml/min · hemorragia activa · lesión con riesgo de hemorragia mayor · alteración de la hemostasia · hepatopatía con coagulopatía · síndrome antifosfolípido · HTA grave no controlada · cirugía reciente o prevista del SNC · embarazo y lactancia · otro anticoagulante (salvo cambio de tratamiento).<br>
+      <b>Dabigatrán:</b> ClCr &lt; 30 · hepatopatía que afecte a la supervivencia · ketoconazol sistémico, ciclosporina, itraconazol, dronedarona, glecaprevir/pibrentasvir.<br>
+      <b>Rivaroxabán:</b> cirrosis Child-Pugh B o C.<br>
+      <b>Apixabán y edoxabán:</b> GOT/GPT &gt; 2 × LSN o bilirrubina total ≥ 1,5 × LSN.
+    </div>
+  </div>
+    </div>
+  </details>
+
+  <div class="step-next"><button class="next-btn" onclick="goStep('paso3')">Siguiente: informe <span aria-hidden="true">→</span></button></div>
+</div>
+
+<!-- ══════ PASO 3: INFORME ══════ -->
+<div class="section" id="tab-paso3">
+  <div class="step-head"><span class="step-n">3</span><div><h2>Informe</h2><p>Recorrido del caso, texto para la historia clínica, seguimiento y hoja para el paciente.</p></div></div>
+
+  <div class="card mapa-card">
+    <div class="card-title">Recorrido del caso <span class="card-hint">Toca un paso para ir a él</span></div>
+    <div id="mapa_caso" class="mapa-host"><p class="card-note">Cargando el mapa…</p></div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="card">
+    <div class="card-title">Texto para historia clínica</div>
+    <div id="decision_badge"></div>
+    <div class="parrafo-box" id="parrafo">Introduce los datos del paciente y marca los factores para generar el texto.</div>
+    <div id="has_warn"></div>
+    <button class="copy-btn" id="copy_btn" onclick="copiar()">⎘ Copiar texto</button>
+  </div>
+
+  <!-- NUEVO (consenso SMS 12/2024 y hoja de paciente de CardioTeca) · revisar -->
+  <div class="card" id="seguimiento-card">
+    <div class="card-title">Plan de seguimiento
+    </div>
+    <div id="seguimiento_out"></div>
+    <div class="src-line">Fuente: Documento de consenso sobre anticoagulantes orales, Servicio Murciano de Salud, v1.0 (12/2024), apartados 7 y 8.</div>
+  </div>
+
+  <div class="card" id="hoja-card">
+    <div class="card-title">Hoja para el paciente · inicio del tratamiento
+      <span class="hoja-actions">
+        <button class="mini-btn" onclick="copiarNota('hoja_inicio')">Copiar</button>
+        <button class="mini-btn mini-btn--dark" onclick="imprimirNota('hoja_inicio')">Imprimir</button>
+      </span>
+    </div>
+    <div id="hoja_inicio_wrap"></div>
+    <p class="hoja-note" style="margin-top:12px">Para una intervención o prueba, la hoja con el calendario de suspensión se genera en <a href="#" onclick="goStep('cirugia');return false;">Perioperatorio</a>.</p>
+  </div>
+</div>
+
+<!-- ══════ TAB 3: PERIOPERATORIO ══════ -->
+<div class="section" id="tab-cirugia">
+  <div class="card">
+    <div class="card-title">Parámetros del paciente <span style="font-size:11px;font-weight:400;color:var(--muted);text-transform:none">El nombre de la pestaña principal se usa en la nota</span></div>
+    <div class="prow">
+      <div class="pfield">
+        <label>ACOD / Anticoagulante actual</label>
+        <select id="surg_acod" onchange="calcSurgery()">
+          <option value="">— Seleccionar —</option>
+          <option value="apixaban">Apixabán (Eliquis®)</option>
+          <option value="rivaroxaban">Rivaroxabán (Xarelto®)</option>
+          <option value="edoxaban">Edoxabán (Lixiana®)</option>
+          <option value="dabigatran">Dabigatrán (Pradaxa®)</option>
+          <option value="acenocumarol">Acenocumarol (Sintrom®)</option>
+          <option value="warfarina">Warfarina (Aldocumar®)</option>
+        </select>
+      </div>
+      <div class="pfield">
+        <label>Riesgo hemorrágico del procedimiento</label>
+        <select id="surg_risk" onchange="calcSurgery()">
+          <option value="">— Seleccionar —</option>
+          <option value="min">⊘ Mínimo (~0%)</option>
+          <option value="bajo">Bajo-moderado (0–2%)</option>
+          <option value="alto">Alto (≥ 2%)</option>
+        </select>
+      </div>
+      <div class="pfield pfield-readonly" style="max-width:150px">
+        <label>FG del paciente</label>
+        <div class="readonly-val" id="surg_fg_txt">Sin FG (se asume normal)</div>
+        <input type="hidden" id="surg_fg">
+      </div>
+      <div class="pfield" style="max-width:180px">
+        <label>Fecha de la operación</label>
+        <input type="date" id="surg_fecha" oninput="calcSurgery()">
+      </div>
+    </div>
+    <div class="pfield" style="margin-top:10px">
+      <label>Seleccionar procedimiento (asigna riesgo automáticamente)</label>
+      <select id="surg_proc" onchange="setProcRisk()">
+        <option value="">— Seleccionar procedimiento —</option>
+        <optgroup label="⊘ Riesgo mínimo">
+          <option value="min">Endoscopia sin biopsia · Cataratas · Dental simple · DAI/marcapasos · Dermatología menor</option>
+        </optgroup>
+        <optgroup label="Bajo-moderado">
+          <option value="bajo">Endoscopia con biopsia · Dental complejo · Colecistectomía · Cirugía mama · Hernia · Biopsia ganglionar</option>
+        </optgroup>
+        <optgroup label="Alto">
+          <option value="alto">Cirugía mayor · Oncológica · Neurocirugía · Urología compleja · Prótesis ortopédica · Anestesia neuroaxial · CPRE con esfinterotomía</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+  <div id="surgery_output"></div>
+
+  <div class="card">
+    <div class="card-title">Referencia de procedimientos frecuentes</div>
+    <table class="surg-table">
+      <thead><tr><th>Procedimiento</th><th>Riesgo</th><th>Orientación</th></tr></thead>
+      <tbody>
+        <tr><td>Dental simple / periodoncia</td><td><span class="chip chip-g">Mínimo</span></td><td>No suspender. Medidas hemostáticas locales.</td></tr>
+        <tr><td>Cataratas (facoemulsificación)</td><td><span class="chip chip-g">Mínimo</span></td><td>No suspender de rutina</td></tr>
+        <tr><td>Endoscopia diagnóstica</td><td><span class="chip chip-g">Mínimo</span></td><td>No suspender de rutina</td></tr>
+        <tr><td>Implante marcapasos / DAI</td><td><span class="chip chip-g">Mínimo</span></td><td>No suspender de rutina</td></tr>
+        <tr><td>Dental complejo / cirugía oral</td><td><span class="chip chip-o">Bajo-mod.</span></td><td>Valorar suspensión corta 24–48h</td></tr>
+        <tr><td>Endoscopia con biopsia</td><td><span class="chip chip-o">Bajo-mod.</span></td><td>Suspender según fármaco/FG</td></tr>
+        <tr><td>Colecistectomía laparoscópica</td><td><span class="chip chip-o">Bajo-mod.</span></td><td>Suspender según fármaco/FG</td></tr>
+        <tr><td>Colonoscopia con polipectomía</td><td><span class="chip chip-r">Alto</span></td><td>Suspender según protocolo</td></tr>
+        <tr><td>Cirugía ortopédica mayor</td><td><span class="chip chip-r">Alto</span></td><td>Suspender. Reinicio cuidadoso.</td></tr>
+        <tr><td>Neurocirugía / cirugía cardiaca</td><td><span class="chip chip-r">Alto</span></td><td>Coord. con especialista</td></tr>
+        <tr><td>Anestesia neuroaxial</td><td><span class="chip chip-r">Alto</span></td><td>Suspender siempre. Protocolo SEDAR.</td></tr>
+        <tr><td>Fractura de cadera</td><td><span class="chip chip-r">Alto</span></td><td>⚠ Cirugía en 24–48h. Valorar reversión.</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:var(--muted);margin-top:12px;line-height:1.55;border-top:1px solid var(--border);padding-top:9px">
+      <strong>Fuente:</strong> Vivas D, Ferrandis R, Anguita-Sánchez M, et al. Abordaje del tratamiento antitrombótico durante el perioperatorio y el periprocedimiento: documento de consenso 2025 (SEC, SEDAR, SEACV, AEC, SECCE, SEPD, SEHH, SETH, semFYC, SEMERGEN, SEMG…). <em>Rev Esp Cardiol.</em> 2026;79(1):68-79. · Tiempos de suspensión según semivida del fármaco y aclaramiento de creatinina (fórmula de Cockcroft-Gault).
+    </div>
+  </div>
+</div>
+
+<!-- ══════ FINANCIACIÓN ══════ -->
+<div class="section" id="tab-murcia">
+  <div class="card">
+    <div class="card-title">Financiación de los ACOD en el SMS</div>
+    <table class="surg-table">
+      <thead><tr><th>Indicación</th><th>Apixabán</th><th>Rivaroxabán</th><th>Dabigatrán</th><th>Edoxabán</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>FA no valvular</strong><br><small>CHA₂DS₂-VA ≥ 2</small></td>
+          <td><span class="chip chip-g">✓ Financiado</span></td>
+          <td><span class="chip chip-g">✓ Financiado</span></td>
+          <td><span class="chip chip-g">✓ Financiado</span></td>
+          <td><span class="chip chip-g">✓ Financiado</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cardioversión / Ablación</strong><br><small>con CHA₂DS₂-VA ≥ 2: como FA</small></td>
+          <td><span class="chip chip-o">90 d si VA 0–1</span></td>
+          <td><span class="chip chip-o">90 d si VA 0–1</span></td>
+          <td><span class="chip chip-o">90 d si VA 0–1</span></td>
+          <td><span class="chip chip-o">90 d si VA 0–1</span></td>
+        </tr>
+        <tr>
+          <td><strong>TVP / TEP aguda</strong></td>
+          <td><span class="chip chip-r">✗ No financiado</span></td>
+          <td><span class="chip chip-g">✓ Financiado</span></td>
+          <td><span class="chip chip-g">✓ Financiado</span></td>
+          <td><span class="chip chip-r">✗ No financiado</span></td>
+        </tr>
+        <tr>
+          <td><strong>TEV asociado a cáncer</strong><br><small>de elección HBPM si riesgo hemorrágico moderado-alto</small></td>
+          <td><span class="chip chip-o">Opción · no financiado</span></td>
+          <td><span class="chip chip-g">Opción · financiado</span></td>
+          <td><span class="chip chip-r">✗ No recomendado</span></td>
+          <td><span class="chip chip-o">Opción · no financiado</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert-box purple" style="margin-top:12px">
+      <strong>Criterios de prescripción financiada FA no valvular (visado SMS)</strong>
+      • Indicación: CHA₂DS₂-VA ≥ 2 (ESC 2024). Con CHA₂DS₂-VA = 1, decisión individualizada y compartida (preferible ACOD).<br>
+      • Cardioversión o ablación con CHA₂DS₂-VA 0–1: visado por un máximo de 90 días, indicando la fecha prevista.<br>
+      • Antes de iniciar: verificar que no hay ninguna situación en la que no se deben usar ACOD (abajo).<br>
+      • TVP/TEP: financiados dabigatrán y rivaroxabán. Dabigatrán no recomendado en TEV asociado a cáncer.
+    </div>
+    <!-- NUEVO (consenso regional Murcia 20/12/2024, recogido en CardioTeca) · revisar -->
+    <div class="alert-box warn" style="margin-top:10px">
+      <strong>Visado de inspección (Región de Murcia)</strong>
+      El consenso regional (20/12/2024) aplica los criterios del IPT 2024, también en pacientes nuevos. Los ACOD requieren visado de inspección con informe del prescriptor; en prescripción crónica se concede por 12 meses.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Frecuencia de controles (SMS)</div>
+    <table class="surg-table">
+      <thead><tr><th>FG (ml/min)</th><th>Frecuencia de control</th></tr></thead>
+      <tbody>
+        <tr><td>FG ≥ 50</td><td><strong>Anual</strong></td></tr>
+        <tr><td>FG 30–49</td><td><strong>Cada 6 meses</strong></td></tr>
+        <tr><td>FG < 30</td><td><strong>Cada 3 meses</strong></td></tr>
+        <tr><td>Función hepática</td><td><strong>Al inicio y al menos anual</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════ REFERENCIA ══════ -->
+<div class="section" id="tab-referencia">
+  <div class="card">
+    <div class="card-title">¿Qué ACOD elegir según el perfil?</div>
+    <p class="ref-intro">Orientación por situación clínica. No hay ensayos que comparen los ACOD entre sí; los datos proceden de los ensayos pivotales (RE-LY, ROCKET-AF, ARISTOTLE, ENGAGE AF-TIMI 48) y de la ficha técnica.</p>
+    <div class="ref-tabla-wrap">
+      <table class="ref-tabla">
+        <thead><tr><th>Situación</th><th>Apixabán</th><th>Rivaroxabán</th><th>Dabigatrán</th><th>Edoxabán</th></tr></thead>
+        <tbody>
+<tr><th scope="row">Enfermedad renal crónica<small>Ajustar la dosis por ClCr (Cockcroft-Gault).</small></th><td><span class="m m-pref">Preferible</span>Eliminación renal 25 %</td><td><span class="m m-ok">Válido</span>ClCr ≥ 15; 15 mg si ClCr &lt; 50</td><td><span class="m m-evit">Evitar</span>CI con ClCr &lt; 30 (80 % renal)</td><td><span class="m m-ok">Válido</span>ClCr ≥ 15; 30 mg si ClCr ≤ 50</td></tr>
+<tr><th scope="row">Alto riesgo hemorrágico<small>HAS-BLED ≥ 3 no contraindica anticoagular: corregir factores modificables. No infradosificar.</small></th><td><span class="m m-pref">Preferible</span>Mejor perfil de sangrado en metaanálisis</td><td><span class="m m-na">—</span></td><td><span class="m m-na">—</span></td><td><span class="m m-na">—</span></td></tr>
+<tr><th scope="row">Una sola toma al día<small>Rivaroxabán siempre con comida.</small></th><td><span class="m m-na">2 tomas</span></td><td><span class="m m-pref">Preferible</span>20 mg con la cena</td><td><span class="m m-na">2 tomas</span></td><td><span class="m m-pref">Preferible</span>60 mg/24 h</td></tr>
+<tr><th scope="row">Necesidad de antídoto<small>Andexanet alfa no se comercializa en España.</small></th><td><span class="m m-na">CCP</span></td><td><span class="m m-na">CCP</span></td><td><span class="m m-pref">Preferible</span>Idarucizumab</td><td><span class="m m-na">CCP</span></td></tr>
+<tr><th scope="row">Cardiopatía isquémica / EAP crónica sin FA ni TEV<small>Solo si no precisa anticoagulación plena.</small></th><td><span class="m m-na">—</span></td><td><span class="m m-pref">Preferible</span>2,5 mg/12 h + AAS (COMPASS)</td><td><span class="m m-na">—</span></td><td><span class="m m-na">—</span></td></tr>
+<tr><th scope="row">Muchas interacciones<small>Verapamilo: dabigatrán 110 mg/12 h. Inhibidores gp-P potentes: edoxabán 30 mg.</small></th><td><span class="m m-na">CYP3A4 + gp-P</span></td><td><span class="m m-na">CYP3A4 + gp-P</span></td><td><span class="m m-ok">Válido</span>Solo gp-P</td><td><span class="m m-ok">Válido</span>gp-P</td></tr>
+<tr><th scope="row">Dispepsia / intolerancia gástrica<small>Si no tolera dabigatrán, cambiar a un anti-Xa.</small></th><td><span class="m m-ok">Válido</span></td><td><span class="m m-ok">Válido</span>Con comida</td><td><span class="m m-evit">Evitar</span>Dispepsia ~10 %</td><td><span class="m m-ok">Válido</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="ref-h">Cuándo usar AVK en lugar de un ACOD</h3>
+    <ul class="ref-list">
+      <li>Prótesis valvular mecánica (RE-ALIGN).</li>
+      <li>Estenosis mitral moderada-grave, sobre todo reumática (INVICTUS).</li>
+      <li>Síndrome antifosfolípido, especialmente triple positivo (TRAPS).</li>
+      <li>ClCr &lt; 15 ml/min: ningún ACOD recomendado.</li>
+    </ul>
+
+    <h3 class="ref-h">Dosis según función renal</h3>
+    <div style="overflow-x:auto;margin-top:6px">
+          <table style="width:100%;border-collapse:collapse;font-size:11.5px;">
+            <thead>
+              <tr style="background:#f0f2f7">
+                <th style="padding:6px 10px;text-align:left;border-bottom:1px solid #ddd">FG (ml/min)</th>
+                <th style="padding:6px 10px;text-align:center;border-bottom:1px solid #ddd;color:#5a3070">Apixabán</th>
+                <th style="padding:6px 10px;text-align:center;border-bottom:1px solid #ddd;color:#0047AB">Rivaroxabán</th>
+                <th style="padding:6px 10px;text-align:center;border-bottom:1px solid #ddd;color:#9a6a08">Dabigatrán</th>
+                <th style="padding:6px 10px;text-align:center;border-bottom:1px solid #ddd;color:#2e6b3e">Edoxabán</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;font-weight:600">≥ 50 ml/min</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--green);font-weight:600">5 mg/12h</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--green);font-weight:600">20 mg/24h</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--green);font-weight:600">150 mg/12h</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--green);font-weight:600">60 mg/24h</td>
+              </tr>
+              <tr style="background:#fffbf0">
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;font-weight:600">30–49 ml/min</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--green);font-size:11px">5 mg/12h<br><span style="color:var(--muted)">(sin reducción obligatoria por FG)</span></td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--orange);font-weight:600">15 mg/24h ⚠</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--orange);font-size:11px;font-weight:600">150 mg/12h<br><span style="color:var(--muted);font-weight:400">valorar 110 si alto riesgo hemorrágico</span></td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--orange);font-weight:600">30 mg/24h ⚠</td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;font-weight:600">15–29 ml/min</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--orange);font-weight:600">2,5 mg/12h ⚠</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--orange);font-weight:600">15 mg/24h ⚠</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--red);font-weight:700">⛔ CI</td>
+                <td style="padding:6px 10px;border-bottom:1px solid #f0f2f7;text-align:center;color:var(--orange);font-weight:600">30 mg/24h ⚠</td>
+              </tr>
+              <tr style="background:#fee2e2">
+                <td style="padding:6px 10px;font-weight:600">< 15 ml/min / diálisis</td>
+                <td style="padding:6px 10px;text-align:center;color:var(--red);font-weight:700">⛔ CI</td>
+                <td style="padding:6px 10px;text-align:center;color:var(--red);font-weight:700">⛔ CI</td>
+                <td style="padding:6px 10px;text-align:center;color:var(--red);font-weight:700">⛔ CI</td>
+                <td style="padding:6px 10px;text-align:center;color:var(--red);font-weight:700">⛔ CI</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--muted);line-height:1.6">
+          <strong style="color:var(--text)">Notas:</strong>
+          Apixabán: 2,5 mg/12h si ≥ 2 de: edad ≥ 80, peso ≤ 60 kg, Cr ≥ 1,5 mg/dL, o si ClCr 15–29 ·
+          Edoxabán: reducir a 30 mg también si peso ≤60 kg o inhibidores gp-P ·
+          Dabigatrán: CI con ClCr &lt; 30 ml/min; con 30–50, valorar 110 mg/12h ·
+          Todos: CI con FG &lt; 15 ml/min
+        </div>
+
+    <div class="alert-box info" style="margin-top:12px">
+      <strong>Infradosificación inapropiada: error frecuente</strong>
+      Registros ORBIT-AF II y GARFIELD-AF: hasta 15-30% de pacientes reciben dosis reducida sin cumplir criterios → mayor riesgo de ictus sin reducción del sangrado. <strong>Verificar siempre los criterios exactos de reducción de dosis de cada ACOD.</strong>
+      Ejemplo: paciente 82 años, 65 kg, Cr 1,0 mg/dL → cumple 1/3 criterios de apixabán → dosis correcta 5 mg/12h, NO 2,5 mg/12h.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Comparativa farmacológica</div>
+    <div style="overflow-x:auto">
+      <table class="surg-table">
+        <thead><tr>
+          <th>Característica</th><th>Apixabán</th><th>Rivaroxabán</th><th>Dabigatrán</th><th>Edoxabán</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Diana</td><td>Factor Xa</td><td>Factor Xa</td><td>Trombina (IIa)</td><td>Factor Xa</td></tr>
+          <tr><td>Posología FA</td><td>5 mg/12h</td><td>20 mg/24h con comida</td><td>150 mg/12h</td><td>60 mg/24h</td></tr>
+          <tr><td>Eliminación renal</td><td><strong style="color:var(--green)">25%</strong> (menor)</td><td>35%</td><td><strong style="color:var(--red)">80%</strong></td><td>50%</td></tr>
+          <tr><td>CI si FG (Europa)</td><td>< 15 ml/min</td><td>< 15 ml/min</td><td><strong style="color:var(--red)">< 30 ml/min</strong></td><td>< 15 ml/min</td></tr>
+          <tr><td>Interacciones</td><td>CYP3A4 + gp-P</td><td>CYP3A4 + gp-P</td><td>Solo gp-P</td><td>gp-P</td></tr>
+          <tr><td>Antídoto específico</td><td>Andexanet alfa (no comercializado en España)</td><td>Andexanet alfa (no comercializado en España)</td><td><strong style="color:var(--green)">Idarucizumab</strong></td><td>No (CCP)</td></tr>
+          <tr><td>EA característico</td><td>—</td><td>—</td><td>Dispepsia 10%</td><td>—</td></tr>
+          <tr><td>Dosis vascular</td><td>No</td><td><strong style="color:var(--green)">2,5 mg/12h + AAS</strong></td><td>No</td><td>No</td></tr>
+          <tr><td>Financiado TVP/TEP (Murcia)</td><td><span class="chip chip-r">No</span></td><td><span class="chip chip-g">Sí</span></td><td><span class="chip chip-g">Sí</span></td><td><span class="chip chip-r">No</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+</div><!-- /hc-main -->
+</div><!-- /hc-layout -->
+
+<div class="footer">Uso exclusivo como apoyo a la decisión clínica · No sustituye el juicio médico.<br>
+Perioperatorio basado en: Vivas D, Ferrandis R, Anguita-Sánchez M, et al. <em>Abordaje del tratamiento antitrombótico durante el perioperatorio y el periprocedimiento: documento de consenso 2025 (SEC, SEDAR, SEACV, AEC, SECCE, SEPD, SEHH, SETH, semFYC, SEMERGEN, SEMG…).</em> Rev Esp Cardiol. 2026;79(1):68-79.<br>
+Otras fuentes: IPT-230/2024 AEMPS · ESC 2024 (fibrilación auricular) · Documento de consenso sobre anticoagulantes orales del SMS v1.0 (12/2024) · BIFIMED (financiación TVP/TEP) · fichas técnicas (CIMA).<div class="hc-legal"><br><strong>Descargo de responsabilidad.</strong> Esta herramienta ha sido desarrollada por la Dra. Laura Bernal Martínez como apoyo a la toma de decisiones clínicas. Tiene carácter orientativo y está dirigida a profesionales sanitarios. No sustituye en ningún caso el juicio clínico, la exploración del paciente ni la consulta médica presencial. El contenido se basa en las fuentes citadas y puede no recoger cambios posteriores: verifique siempre la ficha técnica vigente (CIMA · AEMPS) y los protocolos de su servicio de salud. La responsabilidad de cualquier decisión diagnóstica o terapéutica corresponde al profesional que la utiliza. Los datos introducidos se procesan únicamente en su navegador y no se envían ni se almacenan.</div></div>
+
+<script>
+// ─── ESTADO GLOBAL ───
+let edadAnos=null, acodSel=null, dosisSel=null, indicSel='fanv';
+
+function g(id){return document.getElementById(id);}
+function chk(id){return g(id)?g(id).checked:false;}
+
+function showTab(name,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});
+  g('tab-'+name).classList.add('active');
+  if(name==='paso3') cargarMapa();
+  const b=btn||document.querySelector('.tab[data-tab="'+name+'"]');
+  if(b){b.classList.add('active');b.setAttribute('aria-selected','true');}
+}
+
+// Ir a un paso y subir al inicio de la herramienta (debajo de los datos del paciente)
+function goStep(name){
+  showTab(name);
+  // En móvil la ficha va arriba: subir hasta las pestañas. En escritorio: inicio de la columna de pasos.
+  const ref=document.querySelector('.hc-main')||g('nav-sticky');
+  const y=ref.getBoundingClientRect().top+window.scrollY-14;
+  if(window.scrollY>y) window.scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+}
+
+// ─── EDAD ───
+function calcEdad(){
+  const fnac=g('fnac').value;
+  if(!fnac){edadAnos=null;updateEdadUI();syncAndCalc();return;}
+  const hoy=new Date(),nac=new Date(fnac);
+  let edad=hoy.getFullYear()-nac.getFullYear();
+  const m=hoy.getMonth()-nac.getMonth();
+  if(m<0||(m===0&&hoy.getDate()<nac.getDate()))edad--;
+  edadAnos=edad; updateEdadUI(); if(g('renal_edad')) g('renal_edad').value=edad; syncAndCalc();
+}
+
+function updateEdadUI(){
+  if(edadAnos===null){g('fg_lbl').textContent='FG ml/min';return;}
+}
+
+// ─── FG ───
+function getFG(){
+  const manual=parseFloat(g('fg_manual').value);
+  if(!isNaN(manual)&&manual>0) return Math.round(manual);
+  return calcCG();
+}
+
+// ClCr por Cockcroft-Gault: (140 − edad) × peso / (72 × Cr) × 0,85 si mujer
+// (fórmula de las fichas técnicas para ajustar la dosis de los ACOD)
+function calcCG(){
+  if(edadAnos===null) return null;
+  const peso=parseFloat(g('peso').value), cr=parseFloat(g('cr').value), sexo=g('sexo').value;
+  if(!(peso>0&&cr>0&&sexo)) return null;
+  let v=(140-edadAnos)*peso/(72*cr);
+  if(sexo==='m') v*=0.85;
+  return Math.round(v);
+}
+function fgOrigen(){
+  const manual=parseFloat(g('fg_manual').value);
+  if(!isNaN(manual)&&manual>0) return 'manual';
+  return calcCG()!==null?'cg':null;
+}
+
+function fgCategoria(fg){
+  if(fg===null) return {label:'—',chip:'',col:''};
+  if(fg>=95) return {label:'Normal ≥95',chip:'chip-g',col:'var(--green)'};
+  if(fg>=60) return {label:'Leve 60-94',chip:'chip-g',col:'var(--green)'};
+  if(fg>=30) return {label:'Moderada 30-59',chip:'chip-o',col:'var(--orange)'};
+  if(fg>=15) return {label:'Grave 15-29',chip:'chip-r',col:'var(--red)'};
+  return {label:'Muy grave <15',chip:'chip-r',col:'var(--red)'};
+}
+
+function syncAndCalc(){
+  const fg=getFG();
+  // Update FG display
+  if(fg!==null){
+    g('fg_num').textContent=fg;
+    const cat=fgCategoria(fg);
+    g('fg_lbl').textContent='ml/min';
+    g('fg_info_text').textContent=fgOrigen()==='cg'?'ClCr calculado (Cockcroft-Gault)':'ClCr introducido a mano';
+    g('fg_formula').textContent=fgOrigen()==='cg'?'(140 − edad) × peso / (72 × Cr)'+(g('sexo').value==='m'?' × 0,85':''):'';
+    g('fg_cat_badge').innerHTML=`<span class="chip ${cat.chip}" style="font-size:10px">${cat.label}</span>`;
+    // Sync surg tab
+    if(g('surg_fg')) g('surg_fg').value=fg;
+    if(g('surg_fg_txt')) g('surg_fg_txt').textContent=fg+' ml/min';
+  } else {
+    g('fg_num').textContent='—';
+    g('fg_info_text').textContent='Introduce edad, sexo, peso y Cr para calcular el ClCr (Cockcroft-Gault), o escríbelo a mano';
+    g('fg_formula').textContent='';
+    g('fg_cat_badge').innerHTML='';
+    if(g('surg_fg')) g('surg_fg').value='';
+    if(g('surg_fg_txt')) g('surg_fg_txt').textContent='Sin FG (se asume normal)';
+  }
+  // Sync renal tab
+  if(g('renal_fg')&&fg!==null) g('renal_fg').value=fg;
+  const pesoVal=g('peso')?.value; const crVal=g('cr')?.value;
+  if(g('renal_peso')&&pesoVal) g('renal_peso').value=pesoVal;
+  if(g('renal_cr')&&crVal) g('renal_cr').value=crVal;
+
+  if(g('trat_actual')&&!acodSel&&['acenocumarol','warfarina'].includes(g('trat_actual').value)) g('surg_acod').value=g('trat_actual').value;
+  calc(); calcRenal(); calcSurgery(); renderCambio(); renderSeguimiento(); renderEficiencia();
+}
+
+// ─── ACOD DATA ───
+const ACOD={
+  apixaban:{
+    nombre:'apixabán',marca:'Eliquis®',
+    dosis:[
+      {label:'5 mg/12h',txt:'apixabán (Eliquis®) 5 mg cada 12 horas',nota:'Dosis estándar',minFG:30},
+      {label:'2,5 mg/12h',txt:'apixabán (Eliquis®) 2,5 mg cada 12 horas',nota:'Dosis reducida: ≥ 2 de 3 criterios',minFG:15}
+    ],
+    minFG:15,
+    checkReduccion:(fg,edad,peso,cr)=>{
+      const c=[edad>=80,peso>0&&peso<=60,cr>=1.5].filter(Boolean);
+      const irGrave=fg!==null&&fg>=15&&fg<30;
+      return {reducir:c.length>=2||irGrave,criterios:c.length,
+        texto:irGrave?`ClCr ${fg} ml/min (15–29) → 2,5 mg/12h`:`Cumple ${c.length}/3 criterios de reducción (edad ≥80, peso ≤60 kg, Cr ≥1,5 mg/dL)`};
+    }
+  },
+  rivaroxaban:{
+    nombre:'rivaroxabán',marca:'Xarelto®',
+    dosis:[
+      {label:'20 mg/24h',txt:'rivaroxabán (Xarelto®) 20 mg al día con la cena',nota:'Dosis estándar. Siempre con comida.',minFG:50},
+      {label:'15 mg/24h',txt:'rivaroxabán (Xarelto®) 15 mg al día con la cena',nota:'Dosis reducida si FG 15-49 ml/min. Siempre con comida.',minFG:15}
+    ],
+    minFG:15,
+    checkReduccion:(fg)=>{
+      const porFG=fg!==null&&fg<50;
+      return {reducir:porFG,criterios:porFG?1:0,
+        texto:porFG?`FG ${fg} ml/min < 50 → reducir a 15 mg/24h`:'Sin criterios de reducción'};
+    }
+  },
+  dabigatran:{
+    nombre:'dabigatrán',marca:'Pradaxa®',
+    dosis:[
+      {label:'150 mg/12h',txt:'dabigatrán (Pradaxa®) 150 mg cada 12 horas',nota:'Dosis estándar',minFG:30},
+      {label:'110 mg/12h',txt:'dabigatrán (Pradaxa®) 110 mg cada 12 horas',nota:'Reducir si edad ≥ 80 o verapamilo; valorar si 75–79 años, ClCr 30–50, gastritis/esofagitis/reflujo o alto riesgo hemorrágico',minFG:30}
+    ],
+    minFG:30,
+    checkReduccion:(fg,edad)=>{
+      const porEdad=edad>=80;
+      const porVerap=typeof calcState!=='undefined'&&!!calcState.farms.verapamilo;
+      const valorar=[];
+      if(edad>=75&&edad<80) valorar.push('edad 75–79');
+      if(fg!==null&&fg<=50) valorar.push(`ClCr ${fg} (30–50)`);
+      return {reducir:porEdad||porVerap,criterios:1,
+        texto:porEdad?'Edad ≥ 80 años → reducir a 110 mg/12h':
+              porVerap?'Tratamiento con verapamilo → reducir a 110 mg/12h':
+              valorar.length?`Valorar 110 mg/12h según riesgo hemorrágico (${valorar.join(', ')})`:'Sin criterios de reducción'};
+    }
+  },
+  edoxaban:{
+    nombre:'edoxabán',marca:'Lixiana®',
+    dosis:[
+      {label:'60 mg/24h',txt:'edoxabán (Lixiana®) 60 mg al día',nota:'Dosis estándar',minFG:50},
+      {label:'30 mg/24h',txt:'edoxabán (Lixiana®) 30 mg al día',nota:'Reducir si: FG 15-50, peso ≤60 kg o inhibidores gp-P',minFG:15}
+    ],
+    minFG:15,
+    checkReduccion:(fg,edad,peso)=>{
+      const porFG=fg!==null&&fg<50;
+      const porPeso=peso>0&&peso<=60;
+      return {reducir:porFG||porPeso,criterios:1,
+        texto:porFG&&porPeso?`FG ${fg} ml/min y peso ${peso} kg → reducir a 30 mg/24h`:
+              porFG?`FG ${fg} ml/min < 50 → reducir a 30 mg/24h`:
+              porPeso?`Peso ${peso} kg ≤ 60 kg → reducir a 30 mg/24h`:'Sin criterios de reducción'};
+    }
+  }
+};
+
+function selectIndic(ind){
+  indicSel=ind;
+  ['fanv','cardioversion','tvp'].forEach(i=>{
+    g('ind_'+i).classList.toggle('selected',i===ind);
+  });
+  const alerts={
+    fanv:'',
+    cardioversion:`<div class="alert-box info" style="margin-top:8px"><strong>ℹ Cardioversión / Ablación — Murcia</strong>Cualquiera de los 4 ACOD. Con CHA₂DS₂-VA 0–1, visado por un máximo de 90 días (indicar fecha prevista). Cardioversión: ≥ 3 semanas de anticoagulación previa (o descartar trombo con ETE) y ≥ 4 semanas después. Ablación: anticoagular ≥ 8 semanas después. Luego, valorar continuar según CHA₂DS₂-VA.</div>`,
+    tvp:`<div class="alert-box warn" style="margin-top:8px"><strong>⚠ TVP / TEP — Financiación en Murcia</strong>Financiados en TVP/TEP: <strong>dabigatrán</strong> y <strong>rivaroxabán</strong>. Apixabán y edoxabán no están financiados en esta indicación. Dabigatrán NO indicado en TEV asociado a cáncer (usar HBPM o un anti-Xa).</div>`
+  };
+  g('indic_alert').innerHTML=alerts[ind]||'';
+  renderDosis(); calc();
+}
+
+function selectAcod(nombre){
+  acodSel=nombre; dosisSel=null;
+  if(g('surg_acod')){ g('surg_acod').value=nombre; }
+  document.querySelectorAll('.acod-btn').forEach(b=>b.classList.remove('selected'));
+  g('btn_'+nombre).classList.add('selected');
+  renderDosis(); calc(); calcSurgery(); renderCambio(); renderSeguimiento();
+}
+
+// Elegir un ACOD desde el ranking del perfil
+function elegirAcod(nombre){
+  selectAcod(nombre);
+  runCalc();
+  const card=g('btn_'+nombre).closest('.card');
+  card.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+}
+
+// Financiación SMS del ACOD elegido, según la indicación (misma información que la tabla de Financiación)
+function financiacionAcod(){
+  const out=g('fin_acod'); if(!out) return;
+  if(!acodSel){out.innerHTML='';return;}
+  const n=ACOD[acodSel].nombre.charAt(0).toUpperCase()+ACOD[acodSel].nombre.slice(1);
+  let cls='ok', titulo='Financiado', txt='';
+  if(indicSel==='fanv'){ txt='FA no valvular: financiado (CHA₂DS₂-VA ≥ 2).'; }
+  else if(indicSel==='cardioversion'){ cls='warn'; titulo='Autorización 90 días'; txt='Cardioversión / ablación: solicitar autorización por 90 días.'; }
+  else if(indicSel==='tvp'){
+    if(acodSel==='dabigatran'){ txt='TVP / TEP aguda: financiado (junto con rivaroxabán). No indicado en TEV asociado a cáncer.'; }
+    else if(acodSel==='rivaroxaban'){ txt='TVP / TEP aguda: financiado (junto con dabigatrán).'; }
+    else { cls='danger'; titulo='No financiado'; txt='TVP / TEP aguda: solo dabigatrán y rivaroxabán están financiados.'; }
+  }
+  if(cls!=='danger') txt+=' Requiere visado de inspección con informe (12 meses en prescripción crónica).';
+  out.innerHTML=`<div class="alert-box ${cls} fin-box"><strong>Financiación SMS Murcia · ${n} — ${titulo}</strong>${txt}</div>`;
+}
+
+function renderDosis(){
+  const sec=g('acod_dosis_section'),msg=g('no_acod_msg');
+  if(!acodSel){sec.style.display='none';msg.style.display='block';financiacionAcod();return;}
+  sec.style.display='block';msg.style.display='none';
+  const acod=ACOD[acodSel];
+  const fg=getFG(), edad=edadAnos||0, peso=parseFloat(g('peso').value)||0, cr=parseFloat(g('cr').value)||0;
+  const check=acod.checkReduccion(fg,edad,peso,cr);
+
+  // Calcular qué dosis corresponde según FG/criterios
+  let dosisRecomendada = null; // label de la dosis que toca
+  let dosisCI = false;
+  if(fg !== null){
+    if(fg < acod.minFG){
+      dosisCI = true;
+    } else if(check.reducir){
+      dosisRecomendada = acod.dosis[1]?.label || null; // dosis reducida
+    } else {
+      dosisRecomendada = acod.dosis[0]?.label || null; // dosis estándar
+    }
+  }
+
+  // Dosis buttons con color automático
+  const row=g('dosis_row'); row.innerHTML='';
+  acod.dosis.forEach(d=>{
+    const btn=document.createElement('button');
+    const isManualSel = dosisSel===d.label;
+    const isRecomendada = !dosisCI && fg!==null && d.label===dosisRecomendada;
+    const isNoRecomendada = !dosisCI && fg!==null && dosisRecomendada!==null && d.label!==dosisRecomendada;
+
+    btn.className='dosis-btn'+(isManualSel?' selected':'');
+
+    // Color automático si hay FG y no hay selección manual
+    if(!dosisSel && isRecomendada){
+      btn.style.borderColor='var(--green)';
+      btn.style.background='var(--green-l)';
+      btn.style.color='var(--green)';
+    } else if(!dosisSel && isNoRecomendada){
+      btn.style.borderColor='#ddd';
+      btn.style.background='#f8f9fb';
+      btn.style.color='#bbb';
+    }
+
+    // Etiqueta con indicador
+    const indicador = fg===null ? '' : isRecomendada ? ' ←' : '';
+    btn.textContent = d.label + indicador;
+    btn.title = d.nota + (isRecomendada ? ' · Dosis recomendada según FG' : '');
+
+    btn.onclick=()=>{
+      dosisSel=d.label;
+      document.querySelectorAll('.dosis-btn').forEach(b=>{
+        b.classList.remove('selected');
+        b.style.borderColor=''; b.style.background=''; b.style.color='';
+      });
+      btn.classList.add('selected');
+      calc(); renderSeguimiento();
+    };
+    row.appendChild(btn);
+  });
+
+  // Criterios reducción apixabán visible
+  const redDiv=g('reduccion_criterios');
+  if(acodSel==='apixaban'){
+    const c1=edad>=80,c2=peso>0&&peso<=60,c3=cr>=1.5;
+    const nCrit=[c1,c2,c3].filter(Boolean).length;
+    redDiv.style.display='block';
+    redDiv.innerHTML=`<div style="font-size:11px;padding:8px 10px;border-radius:8px;background:#f8f9fb;border:1px solid var(--border);margin-bottom:8px">
+      <strong style="font-size:11.5px">Criterios reducción apixabán (necesita ≥ 2 de 3):</strong><br>
+      <span style="color:${c1?'var(--green)':'#bbb'}">${c1?'✓':'○'} Edad ≥ 80 años${edad?' ('+edad+'a)':''}</span> &nbsp;
+      <span style="color:${c2?'var(--green)':'#bbb'}">${c2?'✓':'○'} Peso ≤ 60 kg${peso?' ('+peso+' kg)':''}</span> &nbsp;
+      <span style="color:${c3?'var(--green)':'#bbb'}">${c3?'✓':'○'} Cr ≥ 1,5 mg/dL${cr?' ('+cr+')':''}</span><br>
+      <strong style="color:${nCrit>=2?'var(--orange)':'var(--green)'}">${nCrit>=2?'⚠ Cumple '+nCrit+'/3 → dosis recomendada: 2,5 mg/12h':'✓ Cumple '+nCrit+'/3 → dosis recomendada: 5 mg/12h (no reducir por criterios incompletos)'}</strong>
+    </div>`;
+  } else {
+    redDiv.style.display='none';
+  }
+
+  // Alerta FG
+  const alertDiv=g('acod_alert_box'); alertDiv.innerHTML='';
+  if(fg!==null){
+    if(dosisCI){
+      alertDiv.innerHTML=`<div class="alert-box danger"><strong>⛔ Contraindicado (FG ${fg} ml/min)</strong>${acod.nombre.charAt(0).toUpperCase()+acod.nombre.slice(1)} está contraindicado con FG < ${acod.minFG} ml/min. Valorar alternativa.</div>`;
+    } else if(check.reducir){
+      alertDiv.innerHTML=`<div class="alert-box warn"><strong>⚠ Dosis reducida recomendada — ${dosisRecomendada}</strong>${check.texto}</div>`;
+    } else {
+      alertDiv.innerHTML=/^Valorar/.test(check.texto)
+        ?`<div class="alert-box info"><strong>Dosis estándar — ${dosisRecomendada}</strong>${check.texto}.</div>`
+        :`<div class="alert-box ok"><strong>✓ Dosis estándar — ${dosisRecomendada}</strong>FG ${fg} ml/min. No precisa reducción.</div>`;
+    }
+    // NUEVO (ficha técnica edoxabán) · revisar
+    if(acodSel==='edoxaban'&&fg>95){
+      alertDiv.innerHTML+=`<div class="alert-box warn"><strong>Edoxabán con ClCr ${fg} ml/min (> 95)</strong>La ficha técnica describe menor eficacia frente a warfarina con aclaramiento alto. Usar solo tras valorar con cuidado el riesgo tromboembólico y hemorrágico.</div>`;
+    }
+  }
+  financiacionAcod();
+
+}
+
+// ─── CALC PRINCIPAL ───
+function calc(){
+  const fg=getFG(), edad=edadAnos;
+  // Edad CHA
+  let eCha=0,eChaLbl='',eChaOn=false;
+  if(edad!==null){
+    if(edad>=75){eCha=2;eChaLbl='Edad ≥ 75 años';eChaOn=true;}
+    else if(edad>=65){eCha=1;eChaLbl='Edad 65–74 años';eChaOn=true;}
+    else{eChaLbl='Edad < 65 años (sin puntos)';eChaOn=false;}
+  }
+  // Edad HAS
+  let eHas=0,eHasLbl='',eHasOn=false;
+  if(edad!==null){
+    if(edad>65){eHas=1;eHasLbl='Edad > 65 años';eHasOn=true;}
+    else{eHasLbl='Edad ≤ 65 años';eHasOn=false;}
+  }
+  ['c_ic','c_hta','c_dm','c_ictus','c_vasc'].forEach(id=>g('row_'+id).className='frow'+(chk(id)?' active':''));
+  ['h_hta','h_renal','h_hepat','h_ictus','h_sangrado','h_inr','h_farmacos','h_alcohol'].forEach(id=>g('row_'+id).className='frow'+(chk(id)?' active':''));
+
+  g('age_cha_label').textContent=edad!==null?eChaLbl:'Introduzca fecha de nacimiento';
+  g('age_cha_label').style.color=eChaOn?'var(--text)':'var(--muted)';
+  g('age_cha_pts').textContent='+'+eCha;
+  g('age_cha_pts').style.background=eChaOn?'var(--blue)':'#f0f0f0';
+  g('age_cha_pts').style.color=eChaOn?'#fff':'#bbb';
+  g('age_cha_row').className='age-row'+(eChaOn?' on':'');
+
+  g('age_has_label').textContent=edad!==null?eHasLbl:'Introduzca fecha de nacimiento';
+  g('age_has_label').style.color=eHasOn?'var(--text)':'var(--muted)';
+  g('age_has_pts').textContent='+'+eHas;
+  g('age_has_pts').style.background=eHasOn?'var(--blue)':'#f0f0f0';
+  g('age_has_pts').style.color=eHasOn?'#fff':'#bbb';
+  g('age_has_row').className='age-row'+(eHasOn?' on':'');
+
+  const cha=(chk('c_ic')?1:0)+(chk('c_hta')?1:0)+(chk('c_dm')?1:0)+(chk('c_ictus')?2:0)+(chk('c_vasc')?1:0)+eCha;
+  const has=(chk('h_hta')?1:0)+(chk('h_renal')?1:0)+(chk('h_hepat')?1:0)+(chk('h_ictus')?1:0)+(chk('h_sangrado')?1:0)+(chk('h_inr')?1:0)+(chk('h_farmacos')?1:0)+(chk('h_alcohol')?1:0)+eHas;
+
+  const chaCol=cha===0?'#0f6e56':cha===1?'#b45309':'#b91c1c';
+  const chaLbl=cha===0?'Bajo riesgo':cha===1?'Riesgo intermedio':'Riesgo elevado';
+  g('val_cha').textContent=cha;g('val_cha').style.color=chaCol;
+  g('lbl_cha').textContent=chaLbl;g('lbl_cha').style.color=chaCol;
+  g('bar_cha').style.width=Math.round(cha/9*100)+'%';g('bar_cha').style.background=chaCol;
+
+  const hasCol=has<=1?'#0f6e56':has===2?'#b45309':'#b91c1c';
+  const hasLbl=has<=1?'Bajo riesgo hemorrágico':has===2?'Riesgo intermedio':'Alto riesgo hemorrágico';
+  g('val_has').textContent=has;g('val_has').style.color=hasCol;
+  g('lbl_has').textContent=hasLbl;g('lbl_has').style.color=hasCol;
+  g('bar_has').style.width=Math.round(has/9*100)+'%';g('bar_has').style.background=hasCol;
+
+  const nombre=g('nombre').value.trim()||'el/la paciente';
+  const primerNombre=nombre.split(' ')[0];
+  const edadTxt=edad!==null?` de ${edad} años`:'';
+  const fgTxt=fg!==null?` FG: ${fg} ml/min.`:'';
+
+  const fCha=[];
+  if(chk('c_ic'))fCha.push('insuficiencia cardiaca');
+  if(chk('c_hta'))fCha.push('hipertensión arterial');
+  if(chk('c_dm'))fCha.push('diabetes mellitus');
+  if(chk('c_ictus'))fCha.push('ictus/AIT previo');
+  if(chk('c_vasc'))fCha.push('enfermedad vascular');
+  if(eChaOn)fCha.push(eChaLbl.toLowerCase());
+
+  const fHas=[];
+  if(chk('h_hta'))fHas.push('HTA no controlada');
+  if(chk('h_renal'))fHas.push('función renal alterada');
+  if(chk('h_hepat'))fHas.push('función hepática alterada');
+  if(chk('h_ictus'))fHas.push('ictus previo');
+  if(chk('h_sangrado'))fHas.push('sangrado previo');
+  if(chk('h_inr'))fHas.push('INR lábil');
+  if(chk('h_farmacos'))fHas.push('antitrombóticos/AINEs');
+  if(chk('h_alcohol'))fHas.push('alcohol');
+  if(eHasOn)fHas.push(eHasLbl.toLowerCase());
+
+  const listaC=fCha.length?fCha.join(', '):'ninguno';
+  const listaH=fHas.length?fHas.join(', '):'ninguno';
+  const hasAlto=has>=3;
+
+  // ACOD texto
+  let acodTxt='[especificar anticoagulante y dosis]';
+  if(acodSel){
+    const acod=ACOD[acodSel];
+    if(dosisSel){
+      const d=acod.dosis.find(x=>x.label===dosisSel);
+      if(d) acodTxt=d.txt.replace(` (${acod.marca})`,'');  // solo principio activo, sin nombre comercial
+    } else {
+      acodTxt=`${acod.nombre} [seleccionar dosis arriba]`;
+    }
+  }
+
+  const hasWarnTxt=hasAlto?`\n\nNota HAS-BLED ${has} pts (alto riesgo hemorrágico): puntuación elevada no contraindica anticoagular. Corregir factores modificables: optimizar control tensional, revisar y retirar si posible antiagregantes/AINEs, monitorizar función renal y hepática, seguimiento cada 3–6 meses con educación a ${primerNombre!=='el/la'?primerNombre:'el/la paciente'} sobre signos de alarma.`:'';
+
+  const indicTxt={fanv:'fibrilación auricular no valvular',cardioversion:'fibrilación auricular (cardioversión/ablación programada)',tvp:'trombosis venosa profunda / tromboembolismo pulmonar'}[indicSel];
+
+  let badge='',parrafo='';
+  if(cha===0){
+    badge=`<div class="decision-badge" style="background:var(--green-l);color:var(--green)">⊘ No anticoagular</div>`;
+    parrafo=`Se revisó la indicación de anticoagulación en ${nombre}${edadTxt} en el contexto de ${indicTxt}.${fgTxt} Escala CHA₂DS₂-VA: ${cha} puntos (factores: ${listaC}). Riesgo embólico bajo; no indicada anticoagulación según guías ESC 2024/AEMPS. Se programará reevaluación ante cambios en el perfil de riesgo.`;
+  } else if(cha===1){
+    badge=`<div class="decision-badge" style="background:var(--orange-l);color:var(--orange)">Decisión individualizada</div>`;
+    parrafo=`Se revisó la indicación de anticoagulación en ${nombre}${edadTxt} en el contexto de ${indicTxt}.${fgTxt} Escala CHA₂DS₂-VA: ${cha} punto (factores: ${listaC}). HAS-BLED: ${has} punto${has!==1?'s':''} (${hasLbl.toLowerCase()}), factores hemorrágicos: ${listaH}. Con CHA₂DS₂-VA = 1, se toma decisión individualizada y compartida con el paciente. Tras deliberación compartida, se decide: [consignar decisión].${hasWarnTxt}`;
+  } else {
+    badge=`<div class="decision-badge" style="background:var(--blue-l);color:var(--blue)">✓ Anticoagulación indicada</div>`;
+    parrafo=`Se revisó la indicación de anticoagulación en ${nombre}${edadTxt} en el contexto de ${indicTxt}.${fgTxt} Escala CHA₂DS₂-VA: ${cha} puntos (factores: ${listaC}); riesgo embólico elevado con indicación formal de anticoagulación oral (ESC 2024, IPT-230/2024 AEMPS, CHA₂DS₂-VA ≥ 2). HAS-BLED: ${has} punto${has!==1?'s':''} (${hasLbl.toLowerCase()}), factores hemorrágicos: ${listaH}. Se inicia/mantiene tratamiento con ${acodTxt}.${hasWarnTxt}`;
+  }
+
+  const ipt=calcIPT(fg); ultimoIPT=ipt;
+  if(cha>=2&&ipt.fav.length) parrafo+=` Criterios del IPT 2024 (AEMPS) que justifican ACOD: ${ipt.fav.join(', ')}.`;
+  if(cha>=2&&ipt.avk.length) parrafo+=` Situación que requiere AVK (ACOD no indicados): ${ipt.avk.join(', ')}.`;
+  g('decision_badge').innerHTML=badge;
+  g('parrafo').textContent=parrafo+'\n\nRecomendación basada en la guía ESC 2024 (fibrilación auricular), el consenso perioperatorio SEC 2025 y los criterios de financiación IPT-230/2024 AEMPS / SMS.';
+  g('has_warn').innerHTML=hasAlto?`<div class="alert-box warn" style="margin-top:8px"><strong>⚠ HAS-BLED ≥ 3 — Factores modificables:</strong>• Control tensional (TAS < 130-140) &nbsp;• Retirar AINEs/antiagregantes si posible &nbsp;• Vigilar función renal/hepática &nbsp;• Ajuste de dosis según FG &nbsp;• Revisión cada 3–6 meses</div>`:'';
+
+  if(acodSel) renderDosis();
+  g('copy_btn').classList.remove('copied');
+
+  // Paso 1: veredicto visible junto a las escalas
+  g('veredicto').innerHTML=badge+`<p class="verdict-txt">CHA₂DS₂-VA <strong>${cha}</strong> (${chaLbl.toLowerCase()}) · HAS-BLED <strong>${has}</strong> (${hasLbl.toLowerCase()})</p>`;
+  g('veredicto_has').innerHTML=g('has_warn').innerHTML;
+
+  actualizarResumen(edad,fg,cha,chaCol,has,hasCol,badge);
+  actualizarMapa();
+  perfilAutomatico(fg,has);
+}
+
+
+// ─── ¿ACOD o AVK? (IPT AEMPS 2024) · NUEVO, revisar ───
+const IPT_ACOD={ipt_intol:'intolerancia o contraindicación a AVK',ipt_cv:'cardioversión/ablación programada',ipt_icp:'ICP con antiagregación',ipt_hic:'HIC previa o alto riesgo de HIC',ipt_ictus:'ictus isquémico previo',ipt_ttr:'mal control con AVK (TTR < 70 %)',ipt_noinr:'imposibilidad de controles de INR'};
+const IPT_AVK={ipt_protesis:'prótesis valvular mecánica',ipt_em:'estenosis mitral moderada-grave',ipt_saf:'síndrome antifosfolípido'};
+let iptPrevio={protesis:false,saf:false};
+function calcIPT(fg){
+  const fav=Object.keys(IPT_ACOD).filter(chk).map(k=>IPT_ACOD[k]);
+  const avk=Object.keys(IPT_AVK).filter(chk).map(k=>IPT_AVK[k]);
+  if(fg!==null&&fg<15) avk.push('ClCr < 15 ml/min');
+  Object.keys(IPT_ACOD).concat(Object.keys(IPT_AVK),['ipt_buen']).forEach(id=>{const r=g(id).closest('.frow'); r.classList.toggle('active',chk(id));});
+  let html='';
+  if(avk.length) html=`<div class="alert-box danger"><strong>AVK: ACOD no indicados</strong>${avk.join(' · ')}.</div>`;
+  else if(fav.length) html=`<div class="alert-box ok"><strong>ACOD preferente según IPT 2024</strong>${fav.join(' · ')}.</div>`;
+  else if(chk('ipt_buen')) html=`<div class="alert-box info"><strong>Buen control con AVK</strong>Puede mantenerse el AVK (IPT 2024).</div>`;
+  else html=`<div class="alert-box info"><strong>Sin criterios específicos</strong>En paciente nuevo, ACOD o AVK son opciones según el IPT 2024. Para el visado del ACOD en Murcia, consigna el motivo en el informe.</div>`;
+  g('ipt_out').innerHTML=html;
+
+  // Prótesis/estenosis mitral y SAF se trasladan al perfil del paso 2
+  const prot=chk('ipt_protesis')||chk('ipt_em'), saf=chk('ipt_saf');
+  const sync=(key,on,prev,btnId)=>{
+    if(on===prev) return;
+    const b=g(btnId);
+    if(on){calcState.clinic[key]=true; b.classList.add('on-bad','is-auto'); b.querySelector('.crit-check').textContent='✓';}
+    else{delete calcState.clinic[key]; b.classList.remove('on-bad','on-warn','is-auto'); b.querySelector('.crit-check').textContent='';}
+  };
+  if(prot!==iptPrevio.protesis||saf!==iptPrevio.saf){
+    sync('protesis',prot,iptPrevio.protesis,'cl_protesis');
+    sync('saf',saf,iptPrevio.saf,'cl_saf');
+    iptPrevio={protesis:prot,saf:saf};
+    runCalc();
+  }
+  return {fav,avk};
+}
+
+
+// ─── CAMBIO DE ANTICOAGULANTE · NUEVO, revisar ───
+const INR_INICIO={apixaban:'INR < 2,0',dabigatran:'INR < 2,0',rivaroxaban:'INR ≤ 3,0',edoxaban:'INR ≤ 2,5'};
+const ACOD_A_AVK={
+  apixaban:'Dar el AVK junto con apixabán al menos 2 días y seguir con ambos hasta INR ≥ 2,0. Medir el INR antes de la siguiente dosis de apixabán.',
+  rivaroxaban:'Dar el AVK junto con rivaroxabán hasta INR ≥ 2,0. Medir el INR pasadas 24 h de la dosis de rivaroxabán (antes de la siguiente).',
+  edoxaban:'Edoxabán 30 mg/día (15 mg si ya tomaba 30 mg) junto con el AVK, sin dosis de carga. INR al menos 3 veces en 14 días; suspender edoxabán cuando INR ≥ 2,0.',
+  dabigatran:'Empezar el AVK 3 días antes de suspender dabigatrán si ClCr ≥ 50 ml/min; 2 días antes si ClCr 30–49 ml/min.'
+};
+const NOMBRE_ACOD={apixaban:'Apixabán',rivaroxaban:'Rivaroxabán',dabigatran:'Dabigatrán',edoxaban:'Edoxabán'};
+function renderCambio(){
+  const out=g('cambio_out'); if(!out) return;
+  const t=g('trat_actual').value;
+  const avkN={acenocumarol:'acenocumarol (Sintrom®)',warfarina:'warfarina (Aldocumar®)'}[t];
+  if(!t){
+    out.innerHTML='<p class="card-note">Inicio de tratamiento: no hay cambio. Si el paciente ya toma Sintrom, warfarina u otro ACOD, indícalo en <strong>Datos del paciente</strong>.</p>';
+    return;
+  }
+  if(avkN){
+    if(acodSel){
+      out.innerHTML=`<ol class="pasos-cambio">
+        <li>Suspender ${avkN}.</li>
+        <li>Controlar el INR en los días siguientes.</li>
+        <li>Empezar <strong>${NOMBRE_ACOD[acodSel].toLowerCase()}</strong> cuando <strong>${INR_INICIO[acodSel]}</strong>. No solapar ambos.</li>
+      </ol>`;
+    } else {
+      out.innerHTML=`<p class="card-note">Desde ${avkN}: suspender el AVK y empezar el ACOD cuando el INR baje del umbral:</p>
+      <table class="surg-table"><thead><tr><th>ACOD</th><th>Empezar cuando</th></tr></thead><tbody>
+      ${Object.keys(INR_INICIO).map(k=>`<tr><td><strong>${NOMBRE_ACOD[k]}</strong></td><td>${INR_INICIO[k]}</td></tr>`).join('')}
+      </tbody></table>`;
+    }
+    return;
+  }
+  // ACOD → AVK
+  const lista=acodSel?[acodSel]:Object.keys(ACOD_A_AVK);
+  out.innerHTML=`<p class="card-note">Paso de ACOD a AVK${acodSel?' ('+NOMBRE_ACOD[acodSel].toLowerCase()+')':''}:</p>
+    <table class="surg-table"><thead><tr><th>ACOD</th><th>Cómo pasar a AVK</th></tr></thead><tbody>
+    ${lista.map(k=>`<tr><td><strong>${NOMBRE_ACOD[k]}</strong></td><td>${ACOD_A_AVK[k]}</td></tr>`).join('')}
+    </tbody></table>`;
+}
+
+
+// ─── SEGUIMIENTO Y HOJA DE INICIO · NUEVO, revisar ───
+function sumarMeses(n){const d=new Date(); d.setMonth(d.getMonth()+n); return d;}
+function fmtLargo(d){return d.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});}
+function planSeguimiento(){
+  // Consenso SMS 12/2024: 1.ª visita al mes; después cada 3–6 meses.
+  // Analítica anual (Hb, función renal y hepática); ClCr 30–50: valorar cada 6 meses; ClCr < 30: cada 3 meses.
+  // Visado de inspección: 12 meses en prescripción crónica.
+  const fg=getFG();
+  let cadaRenal=null;
+  if(fg!==null) cadaRenal=fg<30?3:fg<=50?6:12;
+  const sel=document.querySelector('input[name="seg_int"]:checked');
+  // Por defecto las visitas coinciden con la analítica si esta es más frecuente que anual
+  const cadaVisita=sel?parseInt(sel.value,10):(cadaRenal&&cadaRenal<12?cadaRenal:6);
+  return {cadaRenal,cadaVisita,fg,calendario:calendarioRevisiones(cadaVisita,cadaRenal)};
+}
+
+// Qué toca y para qué, el primer año
+const PARA_QUE={
+  primera:'Comprobar que lo toma bien y a su hora, la tolerancia y los efectos adversos, si ha habido sangrados, que la dosis es la correcta y las interacciones con otros fármacos. Resolver dudas.',
+  visita:'Cumplimiento, eventos tromboembólicos, sangrados, efectos adversos y medicación concomitante (también la que toma sin receta).',
+  analitica:'Hemoglobina, función renal (ClCr por Cockcroft-Gault) y función hepática. Reajustar la dosis si cambian el ClCr, la edad o el peso.',
+  visado:'Renovar el visado de inspección del ACOD, que se concede por 12 meses en prescripción crónica.'
+};
+function calendarioRevisiones(cadaVisita,cadaRenal){
+  const ev={};
+  const add=(m,tipo)=>{ (ev[m]=ev[m]||new Set()).add(tipo); };
+  add(1,'primera');
+  for(let m=1+cadaVisita;m<=12;m+=cadaVisita) add(m,'visita');
+  if(cadaRenal) for(let m=cadaRenal;m<=12;m+=cadaRenal) add(m,'analitica');
+  add(12,'visado');
+  const filas=Object.keys(ev).map(Number).sort((a,b)=>a-b).map(m=>({m,fecha:sumarMeses(m),tipos:[...ev[m]]}));
+  // Cumpleaños de 80 años en el primer año: cambia criterios de dosis (apixabán, dabigatrán)
+  const fnac=g('fnac').value;
+  if(fnac&&edadAnos!==null&&edadAnos<80&&(!acodSel||['apixaban','dabigatran'].includes(acodSel))){
+    const c80=new Date(fnac); c80.setFullYear(c80.getFullYear()+80);
+    const hoy=new Date(), lim=sumarMeses(12);
+    if(c80>hoy&&c80<=lim) filas.push({m:null,fecha:c80,tipos:['ochenta']});
+  }
+  return filas.sort((a,b)=>a.fecha-b.fecha);
+}
+
+const TIPO_TXT={primera:'Primera visita',visita:'Visita de control',analitica:'Analítica',visado:'Renovar visado',ochenta:'Cumple 80 años'};
+function renderSeguimiento(){
+  const out=g('seguimiento_out'); if(!out) return;
+  const p=planSeguimiento();
+  const anal=p.cadaRenal===null?'Según ClCr (faltan datos)':p.cadaRenal===12?'Anual':'Cada '+p.cadaRenal+' meses';
+  const filas=p.calendario.map(f=>{
+    const tipos=f.tipos.map(t=>`<span class="cal-chip cal-chip--${t}">${TIPO_TXT[t]}</span>`).join('');
+    let para=f.tipos.filter(t=>t!=='ochenta').map(t=>PARA_QUE[t==='visita'&&f.tipos.includes('primera')?'primera':t]).filter((v,i,a)=>a.indexOf(v)===i).join(' ');
+    if(f.tipos.includes('ochenta')) para='Revisar la dosis: la edad ≥ 80 años es criterio de reducción en apixabán (junto a peso ≤ 60 kg o Cr ≥ 1,5) y en dabigatrán.';
+    return `<tr><td class="cal-fecha">${fmtLargo(f.fecha)}${f.m?`<small>${f.m===1?'al mes':'a los '+f.m+' meses'}</small>`:''}</td><td>${tipos}</td><td>${para}</td></tr>`;
+  }).join('');
+  out.innerHTML=`<div class="seg-ctrl">
+      <span>Visitas de control cada</span>
+      <label><input type="radio" name="seg_int" value="3" ${p.cadaVisita===3?'checked':''} onchange="renderSeguimiento()"> 3 meses</label>
+      <label><input type="radio" name="seg_int" value="6" ${p.cadaVisita===6?'checked':''} onchange="renderSeguimiento()"> 6 meses</label>
+      <span class="seg-ctrl-note">Analítica: <strong>${anal}</strong>${p.fg!==null?` · ClCr ${p.fg} ml/min`:''}</span>
+    </div>
+    <table class="surg-table cal-table"><thead><tr><th>Cuándo</th><th>Qué toca</th><th>Para qué</th></tr></thead><tbody>${filas}</tbody></table>
+    <div class="seg-grid">
+      <div><div class="group-lbl">Antes de iniciar</div>
+        <ul class="seg-list"><li>Función renal con ClCr (Cockcroft-Gault; si no, CKD-EPI)</li><li>Función hepática: Child-Pugh B, no rivaroxabán; Child-Pugh C, ningún ACOD</li><li>Hemograma y peso</li><li>Revisar antiagregantes, AINE e interacciones (paso 2)</li><li>Valorar adherencia y capacidad de seguir el tratamiento</li></ul></div>
+      <div><div class="group-lbl">Fuera de calendario</div>
+        <ul class="seg-list"><li>Sangrado, caída o traumatismo craneal</li><li>Enfermedad aguda que pueda empeorar la función renal (deshidratación, vómitos, diarrea)</li><li>Fármaco nuevo con posible interacción</li><li>Intervención o prueba invasiva programada (Perioperatorio)</li></ul></div>
+    </div>`;
+  renderHoja(p);
+  actualizarMapa();
+}
+
+const HOJA={
+  apixaban:{toma:'Tome un comprimido cada 12 horas, a la misma hora. Puede tomarlo con o sin comida.',
+    olvido:'Si se le olvida la dosis de la mañana, tómela en cuanto se acuerde aunque se acerque la de la noche. Si olvida la de la noche, tómela solo si se acuerda esa misma noche. Nunca tome dos dosis juntas al día siguiente.',
+    tragar:'Si no puede tragar el comprimido, puede triturarlo y mezclarlo con agua o puré de manzana.'},
+  rivaroxaban:{toma:'Tome un comprimido una vez al día, siempre con comida (en la cena).',
+    olvido:'Si se le olvida una dosis, tómela en cuanto se acuerde ese mismo día. Al día siguiente siga como siempre. Nunca tome dos dosis en el mismo día.',
+    tragar:'Si no puede tragar el comprimido, puede triturarlo y mezclarlo con agua o puré de manzana, y comer justo después.'},
+  dabigatran:{toma:'Tome una cápsula cada 12 horas, entera, con un vaso de agua.',
+    olvido:'Si se le olvida una dosis, tómela solo si faltan más de 6 horas para la siguiente. Si faltan menos, sáltela y siga con la siguiente a su hora. Nunca tome dos dosis juntas.',
+    tragar:'No abra ni mastique las cápsulas. Si no puede tragarlas, consulte con su médico: habrá que cambiar de anticoagulante.'},
+  edoxaban:{toma:'Tome un comprimido una vez al día, a la misma hora. Puede tomarlo con o sin comida.',
+    olvido:'Si se le olvida una dosis, tómela en cuanto se acuerde ese mismo día. Al día siguiente siga como siempre. Nunca tome dos dosis en el mismo día.',
+    tragar:'Si no puede tragar el comprimido, puede triturarlo y mezclarlo con agua o puré de manzana.'}
+};
+function renderHoja(p){
+  const wrap=g('hoja_inicio_wrap'); if(!wrap) return;
+  if(!acodSel){ wrap.innerHTML='<p class="hoja-note">Elige un ACOD en el paso 2 para generar la hoja.</p>'; return; }
+  const a=ACOD[acodSel], h=HOJA[acodSel];
+  const d=dosisSel?a.dosis.find(x=>x.label===dosisSel):null;
+  const nombre=g('nombre').value.trim();
+  const medic=d?d.txt:`${a.nombre} (${a.marca}), en la dosis que le indique su médico`;
+  wrap.innerHTML=`<div id="hoja_inicio" class="hoja">
+    <p>${nombre?'Estimado/a '+nombre.split(' ')[0]+',':'Estimado/a paciente,'}</p>
+    <p>Su médico le ha indicado <strong>${medic}</strong> para prevenir la formación de coágulos.</p>
+    <h4>Cómo tomarlo</h4><p>${h.toma}</p>
+    <h4>Si se le olvida una dosis</h4><p>${h.olvido}</p>
+    <h4>Si no puede tragarlo</h4><p>${h.tragar}</p>
+    <h4>Vaya a Urgencias si…</h4>
+    <ul>
+      <li>Se da un golpe en la cabeza, aunque se encuentre bien.</li>
+      <li>Vomita sangre, hace heces negras, orina con mucha sangre o tiene un sangrado que no para.</li>
+    </ul>
+    <p><strong>Llame al 112</strong> si nota dolor de cabeza muy intenso, pérdida de fuerza o de sensibilidad, dificultad para hablar o pérdida de visión.</p>
+    <h4>Recuerde</h4>
+    <ul>
+      <li>Avise siempre de que toma un anticoagulante antes de una operación, una prueba o una extracción dental.</li>
+      <li>No tome antiinflamatorios (ibuprofeno, naproxeno…) ni aspirina sin consultarlo.</li>
+      <li>No deje de tomarlo sin hablar antes con su médico.</li>
+    </ul>
+    <h4>Sus revisiones (aproximadas)</h4>
+    <ul>${p.calendario.filter(f=>f.tipos.some(t=>['primera','visita','analitica'].includes(t))).map(f=>`<li><strong>${fmtLargo(f.fecha)}</strong>: ${f.tipos.filter(t=>t!=='visado'&&t!=='ochenta').map(t=>({primera:'revisión con su médico',visita:'revisión con su médico',analitica:'análisis de sangre'})[t]).filter((v,i,a)=>a.indexOf(v)===i).join(' y ')}</li>`).join('')}</ul>
+    <p>Su centro de salud le dará la cita exacta. Traiga a la revisión todos los medicamentos que toma.</p>
+  </div>`;
+}
+
+
+// ─── RECORRIDO DEL CASO (React Flow, se carga al abrir el paso 3) ───
+let mapaApi=null, mapaCargando=false, ultimoIPT={fav:[],avk:[]};
+function cargarMapa(){
+  if(mapaApi||mapaCargando) return;
+  mapaCargando=true;
+  const css=document.createElement('link'); css.rel='stylesheet'; css.href='js/mapa-anticoag.css'; document.head.appendChild(css);
+  import('./js/mapa-anticoag.js').then(m=>{
+    const host=g('mapa_caso'); host.innerHTML='';
+    mapaApi=m.mountMapaAnticoag(host, estadoMapa(), goStep);
+  }).catch(()=>{ g('mapa_caso').innerHTML='<p class="card-note">No se pudo cargar el mapa del recorrido.</p>'; mapaCargando=false; });
+}
+function actualizarMapa(){ if(mapaApi) mapaApi.update(estadoMapa()); }
+
+function estadoMapa(){
+  const fg=getFG();
+  const cha=parseInt(g('val_cha').textContent,10)||0, has=parseInt(g('val_has').textContent,10)||0;
+  const hayDatos=edadAnos!==null||document.querySelectorAll('#tab-paso1 .frow input:checked').length>0;
+  const veredicto=g('res_verdict').textContent.replace(/^[^A-Za-zÁÉÍÓÚáéíóú]+/,'');
+  const indic={fanv:'FA no valvular',cardioversion:'Cardioversión / ablación',tvp:'TVP / TEP aguda'}[indicSel];
+  // ¿ACOD o AVK?
+  let iptV='ACOD o AVK', iptS='Sin criterios específicos', iptE='info';
+  if(ultimoIPT.avk.length){iptV='AVK';iptS=ultimoIPT.avk.join(' · ');iptE='alert';}
+  else if(ultimoIPT.fav.length){iptV='ACOD preferente';iptS=ultimoIPT.fav.join(' · ');iptE='done';}
+  else if(chk('ipt_buen')){iptV='Mantener AVK';iptS='Buen control (TTR ≥ 70 %)';}
+  // ACOD y dosis
+  const a=acodSel?ACOD[acodSel]:null;
+  const ci=a&&fg!==null&&fg<a.minFG;
+  const nombre=a?a.nombre.charAt(0).toUpperCase()+a.nombre.slice(1):'Sin elegir';
+  const recom=[...document.querySelectorAll('#dosis_row .dosis-btn')].find(b=>b.textContent.includes('←'));
+  const fin=g('fin_acod')?.querySelector('strong')?.textContent||'';
+  const finV=/No financiado/.test(fin)?'No financiado':/90 días/.test(fin)?'Autorización 90 días':a?'Financiado':'—';
+  const seg=planSeguimiento();
+  return [
+    {id:'ind',tag:'Paso 1',titulo:'Indicación',valor:indic,sub:'',estado:'done',go:'paso1'},
+    {id:'cha',tag:'Paso 1',titulo:'CHA₂DS₂-VA',valor:hayDatos?cha+' puntos':'—',sub:hayDatos?veredicto:'Marca los factores',estado:hayDatos?(cha>=1?'done':'info'):'pending',go:'paso1'},
+    {id:'has',tag:'Paso 1',titulo:'HAS-BLED',valor:hayDatos?has+' puntos':'—',sub:hayDatos?(has>=3?'Corregir factores modificables':g('lbl_has').textContent):'',estado:hayDatos?(has>=3?'alert':'done'):'pending',go:'paso1'},
+    {id:'ipt',tag:'Paso 1',titulo:'¿ACOD o AVK?',valor:iptV,sub:iptS,estado:iptE,go:'paso1'},
+    {id:'acod',tag:'Paso 2',titulo:'ACOD elegido',valor:nombre,sub:ci?'Contraindicado con este ClCr':(a?a.marca:'Elige en el ranking'),estado:!a?'pending':ci?'alert':'done',go:'paso2'},
+    {id:'fin',tag:'Paso 2',titulo:'Financiación SMS',valor:finV,sub:a&&finV!=='No financiado'?'Visado de inspección · 12 meses':'',estado:!a?'pending':finV==='No financiado'?'alert':'done',go:'paso2'},
+    {id:'dosis',tag:'Paso 2',titulo:'Dosis',valor:dosisSel||(recom?recom.textContent.replace(' ←',''):'—'),sub:fg!==null?'ClCr '+fg+' ml/min'+(dosisSel?'':' · recomendada'):'Falta ClCr',estado:!a?'pending':ci?'alert':dosisSel?'done':'info',go:'paso2'},
+    {id:'seg',tag:'Paso 3',titulo:'Seguimiento',valor:'1.ª visita: 1 mes',sub:'Visitas cada 3–6 meses · analítica '+(seg.cadaRenal===null?'según ClCr':seg.cadaRenal===12?'anual':'cada '+seg.cadaRenal+' meses'),estado:a?'done':'pending',go:'paso3'}
+  ];
+}
+
+
+// ─── EFICIENCIA (consenso SMS 12/2024) · NUEVO, revisar ───
+let ultimoRanking=[];
+function renderEficiencia(){
+  const out=g('eficiencia_out'); if(!out) return;
+  const t=g('trat_actual')?g('trat_actual').value:'';
+  const nombres={apixaban:'apixabán',rivaroxaban:'rivaroxabán',dabigatran:'dabigatrán',edoxaban:'edoxabán'};
+  let html=`<p class="card-note"><strong>En pacientes que inician tratamiento, el consenso del SMS indica que «resultará de elección la molécula más eficiente»</strong>, teniendo en cuenta la llegada de los genéricos.</p>`;
+  if(t==='acenocumarol'||t==='warfarina'||t===''){
+    if(ultimoRanking.length>=2){
+      const top=ultimoRanking[0].score;
+      const empatados=ultimoRanking.filter(r=>top-r.score<=1).map(r=>nombres[r.k]);
+      if(empatados.length>=2){
+        html+=`<div class="alert-box info"><strong>Opciones con encaje parecido en el perfil</strong>${empatados.join(', ')} (diferencia ≤ 1 punto en el ranking). Entre ellas, elige la más eficiente.</div>`;
+      } else {
+        html+=`<div class="alert-box ok"><strong>El perfil marca una opción clara</strong>${nombres[ultimoRanking[0].k].charAt(0).toUpperCase()+nombres[ultimoRanking[0].k].slice(1)} encaja mejor que el resto; si eliges otra por eficiencia, compruébala en el ranking.</div>`;
+      }
+    } else {
+      html+=`<p class="card-note">Marca el perfil del paciente arriba para ver qué opciones encajan de forma parecida.</p>`;
+    }
+  } else {
+    html+=`<p class="card-note">El paciente ya toma un ACOD: el criterio se aplica sobre todo a quien inicia tratamiento.</p>`;
+  }
+  out.innerHTML=html;
+}
+
+// ─── RESUMEN FIJO ───
+function actualizarResumen(edad,fg,cha,chaCol,has,hasCol,badge){
+  // Colores claros para leerse sobre la barra oscura
+  const nivel=c=>!c?'':/0f6e56|green/.test(c)?'ok':/b45309|orange/.test(c)?'mid':'high';
+  const set=(id,val,col)=>{const s=g(id).querySelector('strong');s.textContent=val;s.dataset.nivel=nivel(col);};
+  set('res_edad',edad!==null?edad+' a':'—');
+  set('res_fg',fg!==null?fg+' ml/min':'—',fg!==null?fgCategoria(fg).col:'');
+  set('res_cha',cha,chaCol);
+  set('res_has',has,hasCol);
+  let acodTxt='Sin elegir';
+  if(acodSel){ acodTxt=ACOD[acodSel].nombre.charAt(0).toUpperCase()+ACOD[acodSel].nombre.slice(1)+(dosisSel?' '+dosisSel:''); }
+  set('res_acod',acodTxt);
+  g('res_acod').classList.toggle('is-set',!!acodSel);
+  const tmp=document.createElement('div'); tmp.innerHTML=badge;
+  g('res_verdict').textContent=tmp.textContent.trim();
+  g('res_verdict').className='res-verdict'+(cha>=2?' v-si':cha===1?' v-ind':' v-no');
+}
+
+// ─── PERFIL AUTOMÁTICO (paso 2) ───
+// Marca función renal y riesgo hemorrágico a partir del FG y del HAS-BLED.
+// Solo se recalcula cuando cambian esos datos, así se respeta lo que el usuario cambie a mano.
+let perfilPrevio={renal:undefined,alto:undefined,tvp:undefined};
+function perfilAutomatico(fg,has){
+  const renal=fg===null?null:fg>=50?'normal':fg>=30?'mod':fg>=15?'grav':'ci';
+  const alto=has>=3;
+  const tvp=indicSel==='tvp';
+  let cambio=false;
+
+  if(renal!==perfilPrevio.renal){
+    ['normal','mod','grav','ci'].forEach(v=>{const b=g('cr_'+v); if(b){b.classList.remove('on-good','on-bad','on-warn','is-auto'); b.querySelector('.crit-check').textContent='';}});
+    calcState.renal=renal;
+    if(renal){
+      const b=g('cr_'+renal);
+      b.classList.add(renal==='normal'?'on-good':(renal==='ci'||renal==='grav')?'on-bad':'on-warn','is-auto');
+      b.querySelector('.crit-check').textContent='✓';
+    }
+    perfilPrevio.renal=renal; cambio=true;
+  }
+  if(alto!==perfilPrevio.alto){
+    const b=g('rh_alto');
+    if(alto){calcState.sangrado.alto=true; b.classList.add('on-bad','is-auto'); b.querySelector('.crit-check').textContent='✓';}
+    else if(perfilPrevio.alto){delete calcState.sangrado.alto; b.classList.remove('on-bad','on-warn','is-auto'); b.querySelector('.crit-check').textContent='';}
+    perfilPrevio.alto=alto; cambio=true;
+  }
+  if(tvp!==perfilPrevio.tvp){
+    const b=g('cl_tvp');
+    if(tvp){calcState.clinic.tvp=true; b.classList.add('on-warn','is-auto'); b.querySelector('.crit-check').textContent='✓';}
+    else if(perfilPrevio.tvp){delete calcState.clinic.tvp; b.classList.remove('on-bad','on-warn','is-auto'); b.querySelector('.crit-check').textContent='';}
+    perfilPrevio.tvp=tvp; cambio=true;
+  }
+  if(cambio) runCalc();
+}
+
+// ─── PERIOPERATORIO ───
+function setProcRisk(){
+  const v=g('surg_proc').value;
+  if(v) g('surg_risk').value=v;
+  calcSurgery();
+}
+
+// ─── helpers de presentación perioperatoria (estilo premium) ───
+function periPanel(drug, riskTxt, riskKind, tiles){
+  const badge = riskKind==='alto'?{bg:'#E24B4A',c:'#fff'}:riskKind==='min'?{bg:'#2e6b3e',c:'#fff'}:{bg:'#D4AF37',c:'#16223f'};
+  const tilesHtml = tiles.map(t=>`<div style="flex:1;min-width:118px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.10);border-radius:4px;padding:11px 13px">
+      <div style="font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px">${t.label}</div>
+      <div style="font-family:'Source Serif 4',serif;font-size:1.4rem;font-weight:600;color:#F5D97A;line-height:1.12">${t.big}</div>
+      ${t.sub?`<div style="font-size:.72rem;color:rgba(255,255,255,.72);margin-top:3px">${t.sub}</div>`:''}
+    </div>`).join('');
+  return `<div style="background:linear-gradient(140deg,#16223f 0%,#243352 100%);border-radius:6px;padding:16px 18px;box-shadow:0 4px 18px rgba(26,46,92,.16)">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px">
+      <div style="font-family:'Source Serif 4',serif;font-size:1.05rem;font-weight:600;color:#fff">${drug}</div>
+      <span style="font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:.28rem .7rem;border-radius:2px;background:${badge.bg};color:${badge.c}">${riskTxt}</span>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">${tilesHtml}</div>
+  </div>`;
+}
+
+function periSheet(cfg){
+  const T={take:{bar:'#D4AF37',txt:'#9a6a08'},skip:{bar:'#c98a86',txt:'#b3201f'},surgery:{bar:'#1A2E5C',txt:'#1A2E5C'},restart:{bar:'#2e6b3e',txt:'#2e6b3e'},control:{bar:'#4a5673',txt:'#4a5673'}};
+  const rowsHtml=cfg.rows.map(r=>{const s=T[r.tipo]||T.control;return `<tr style="border-top:1px solid #eef0f4">
+      <td style="padding:10px 14px;border-left:4px solid ${s.bar};font-weight:600;color:${s.txt};white-space:nowrap">${r.cuando}</td>
+      <td style="padding:10px 14px;color:#4a5673;white-space:nowrap">${r.fecha||'—'}</td>
+      <td style="padding:10px 14px;color:#16223f">${r.accion}</td>
+    </tr>`;}).join('');
+  return `<div class="card" style="padding:0;overflow:hidden;border:1px solid #C8CDD6;box-shadow:0 6px 22px rgba(26,46,92,.12)">
+    <div style="height:4px;background:linear-gradient(90deg,#D4AF37,#F5D97A)"></div>
+    <div style="padding:18px 20px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;border-bottom:1px solid #e4e8ef;padding-bottom:13px;margin-bottom:14px">
+        <div>
+          <div style="font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:#9a6a08;font-weight:700;margin-bottom:4px">Hoja para el paciente</div>
+          <div style="font-family:'Source Serif 4',serif;font-size:1.2rem;font-weight:600;color:#16223f;line-height:1.2">Instrucciones sobre su anticoagulante</div>
+          ${cfg.subtitulo?`<div style="font-size:12px;color:#4a5673;margin-top:4px">${cfg.subtitulo}</div>`:''}
+        </div>
+        <div style="display:flex;gap:7px">
+          <button onclick="copiarNota('${cfg.id}')" class="no-print" style="padding:6px 14px;border-radius:3px;border:1.5px solid #16223f;background:#fff;color:#16223f;font-family:'Source Sans 3',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">Copiar</button>
+          <button onclick="imprimirNota('${cfg.id}')" class="no-print" style="padding:6px 14px;border-radius:3px;border:1.5px solid #16223f;background:#16223f;color:#F5D97A;font-family:'Source Sans 3',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">Imprimir</button>
+        </div>
+      </div>
+      <div id="${cfg.id}" style="font-size:13px;line-height:1.7;color:#16223f">
+        ${cfg.intro}
+        <table style="width:100%;border-collapse:separate;border-spacing:0;margin:14px 0;border:1px solid #C8CDD6;border-radius:8px;overflow:hidden">
+          <thead><tr style="background:#16223f">
+            <th style="padding:9px 14px;text-align:left;color:#f4f6f9;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:600">Cuándo</th>
+            <th style="padding:9px 14px;text-align:left;color:#f4f6f9;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:600">Fecha</th>
+            <th style="padding:9px 14px;text-align:left;color:#f4f6f9;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:600">Qué hacer</th>
+          </tr></thead>
+          <tbody>${rowsHtml}</tbody>
+        </table>
+        ${cfg.aviso?`<div style="background:#faf2d6;border-left:4px solid #D4AF37;padding:11px 14px;border-radius:0 4px 4px 0;font-size:12px;color:#7a5b00;line-height:1.6"><strong>Importante:</strong> ${cfg.aviso}</div>`:''}
+        <div style="margin-top:12px;font-size:10.5px;color:#9aa3b2;border-top:1px solid #eef0f4;padding-top:9px">Documento informativo · ${cfg.fechaHoy} · No sustituye las indicaciones de su médico.</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function calcSurgery(){
+  const acod=g('surg_acod').value, riesgo=g('surg_risk').value;
+  const fg=parseFloat(g('surg_fg').value);
+  const out=g('surgery_output');
+  if(!acod||!riesgo){out.innerHTML='';return;}
+
+  const isAVK=acod==='acenocumarol'||acod==='warfarina';
+  const nombresFull={apixaban:'Apixabán (Eliquis®)',rivaroxaban:'Rivaroxabán (Xarelto®)',edoxaban:'Edoxabán (Lixiana®)',dabigatran:'Dabigatrán (Pradaxa®)',acenocumarol:'Acenocumarol (Sintrom®)',warfarina:'Warfarina (Aldocumar®)'};
+  const nombres={apixaban:'Apixabán',rivaroxaban:'Rivaroxabán',edoxaban:'Edoxabán',dabigatran:'Dabigatrán',acenocumarol:'Acenocumarol',warfarina:'Warfarina'};
+  const nombrePac=g('nombre').value.trim()||'';
+  const procNombre=g('surg_proc').options[g('surg_proc').selectedIndex]?.text||'su intervención';
+  const procCorto=g('surg_proc').value?procNombre.split('·')[0].trim():'su intervención';
+  const procFrase=procCorto!=='su intervención'?('la intervención de '+procCorto.toLowerCase()):'su intervención';
+
+  const surgStr=g('surg_fecha').value;
+  const surgDate=surgStr?new Date(surgStr+'T08:00:00'):null;
+  const dOff=(n)=>new Date(surgDate.getTime()+n*86400000);
+  const fmtFecha=(d)=>d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+  const fmtDM=(d)=>d.toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit'});
+  const fechaHoy=new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+  const subtitulo=(nombrePac?('<strong>'+nombrePac+'</strong>'):'')+((nombrePac&&surgDate)?' · ':'')+(surgDate?('Operación: '+fmtFecha(surgDate)):'');
+  const subhead=(t)=>`<div style="font-size:.66rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#9a6a08;margin:16px 0 9px">${t}</div>`;
+  const defGrid=(items)=>`<div style="display:grid;grid-template-columns:max-content 1fr;gap:8px 16px;font-size:13px;line-height:1.5">${items.filter(Boolean).map(it=>`<div style="color:#4a5673;font-weight:600">${it[0]}</div><div style="color:#16223f">${it[1]}</div>`).join('')}</div>`;
+  const greeting=`<p style="margin:0 0 11px">Estimado/a paciente${nombrePac?' '+nombrePac.split(' ')[0]:''},</p>`;
+
+  // ===================== RIESGO MÍNIMO =====================
+  if(riesgo==='min'){
+    const tiles=[
+      {label:'Suspensión', big:'No', sub:'no de rutina'},
+      {label:'Día de la cirugía', big: surgDate?fmtDM(surgDate):'—', sub:'no tomar ese día'},
+      {label:'Reinicio', big: surgDate?fmtDM(dOff(1)):'Día +1', sub:'a la mañana siguiente'}
+    ];
+    let clin=`<div class="card" style="margin-bottom:14px"><div class="card-title">Plan perioperatorio</div>`;
+    clin+=periPanel(nombresFull[acod], 'Riesgo mínimo (~0%)', 'min', tiles);
+    clin+=subhead('Detalle clínico')+defGrid([
+      ['Procedimiento', (procCorto!=='su intervención'?procCorto:'Procedimiento de riesgo mínimo')+' · sangrado ~0%'],
+      ['Pauta', 'Valorar <strong>no suspender</strong> de forma sistemática'],
+      ['El día', 'No tomar el anticoagulante el día del procedimiento'],
+      ['ACOD cada 12 h', 'Omitir la toma de la noche anterior (última ≥ 24 h antes)'],
+      ['Si IRC u otros factores', 'Valorar suspensión corta de 24–48 h'],
+      isAVK?['INR', 'Control previo; objetivo 2,0–2,5 según procedimiento']:null,
+      ['Reinicio', 'Lo antes posible (preferible la mañana siguiente)']
+    ]);
+    clin+='</div>';
+    const rows=[{cuando:'Día del procedimiento', fecha:surgDate?fmtFecha(surgDate):'', accion:'No tome la pastilla ese día', tipo:'skip'}];
+    if(isAVK) rows.unshift({cuando:'Día anterior', fecha:surgDate?fmtFecha(dOff(-1)):'', accion:'Acuda a su centro de salud para control de sangre (INR)', tipo:'control'});
+    rows.push({cuando:'Al día siguiente', fecha:surgDate?fmtFecha(dOff(1)):'', accion:'Retome su anticoagulante con normalidad', tipo:'restart'});
+    const sheet=periSheet({id:'nota_min', subtitulo, fechaHoy, aviso:'Si le realizan alguna prueba adicional o tiene cualquier duda, consulte antes con su médico. Avise siempre de que toma anticoagulantes.',
+      intro: greeting+`<p style="margin:0 0 11px">Está usted tomando <strong>${nombresFull[acod]}</strong>. Para ${procFrase}, que tiene un riesgo de sangrado mínimo, <strong>no es necesario suspender de forma habitual</strong> su anticoagulante.</p>`,
+      rows});
+    out.innerHTML=clin+sheet; return;
+  }
+
+  // ===================== AVK (Sintrom / Warfarina) =====================
+  if(isAVK){
+    const diasAvk=acod==='acenocumarol'?3:5, diasBajoAvk=acod==='acenocumarol'?2:4;
+    const riskTxt=riesgo==='alto'?'Riesgo alto (≥ 2%)':'Riesgo bajo-moderado (0–2%)';
+    const lastDoseAvk=surgDate?dOff(-diasAvk):null;
+    const tiles=[
+      {label:'Suspender', big:diasAvk+' días', sub:'antes (INR 2–3)'},
+      {label:'Última toma', big: lastDoseAvk?fmtDM(lastDoseAvk):'—', sub:'última dosis'},
+      {label:'INR objetivo', big:'< 1,5', sub:'control preoperatorio'}
+    ];
+    let clin=`<div class="card" style="margin-bottom:14px"><div class="card-title">Plan perioperatorio</div>`;
+    clin+=periPanel(nombresFull[acod], riskTxt, riesgo, tiles);
+    clin+=subhead('Detalle clínico')+defGrid([
+      ['Suspender', `<strong>${diasAvk} días antes</strong> si INR en rango (2–3); ${diasBajoAvk} días si INR subterapéutico`],
+      ['INR objetivo', '< 1,2 (< 1,5 en algunos procedimientos); control inmediatamente antes'],
+      ['INR supraterapéutico', 'Ampliar el tiempo de suspensión y reevaluar'],
+      ['Si INR > 1,5 sin margen', 'Vitamina K 10 mg i.v. ± CCP (no vitamina K oral en cirugía electiva)'],
+      ['Terapia puente (HBPM)', 'Solo si riesgo trombótico ALTO (última dosis 24 h antes, mitad de dosis)'],
+      ['Reinicio', 'Lo antes posible; efecto a las 48–96 h']
+    ]);
+    clin+='</div>';
+    const rows=[
+      {cuando:`– ${diasAvk} días antes`, fecha:lastDoseAvk?fmtFecha(lastDoseAvk):'', accion:`Tome su última dosis de ${nombres[acod]}; después no tome más`, tipo:'take'},
+      {cuando:'– 1 día antes', fecha:surgDate?fmtFecha(dOff(-1)):'', accion:'Acuda a su centro de salud para analítica de control (INR)', tipo:'control'},
+      {cuando:'Día de la cirugía', fecha:surgDate?fmtFecha(surgDate):'', accion:'No tome nada. Acuda en ayunas según le indiquen.', tipo:'surgery'},
+      {cuando:'Después', fecha:'', accion:`Su médico le indicará cuándo retomar ${nombres[acod]}. No lo reinicie por su cuenta.`, tipo:'restart'}
+    ];
+    const sheet=periSheet({id:'nota_avk', subtitulo, fechaHoy, aviso:`No deje de tomar su anticoagulante por otros motivos sin consultar con su médico. Avise siempre de que toma ${nombres[acod]}.`,
+      intro: greeting+`<p style="margin:0 0 11px">Está usted tomando <strong>${nombresFull[acod]}</strong> para prevenir la formación de coágulos. Antes de ${procFrase} es necesario suspenderlo temporalmente y realizar un control de sangre.</p>`,
+      rows});
+    out.innerHTML=clin+sheet; return;
+  }
+
+  // ===================== ACOD (esquema Consenso 2025 SEC/SEDAR) =====================
+  const fgVal=isNaN(fg)?null:fg;
+  let lowH, highH, clcrNote, renalWarn='';
+  if(acod==='dabigatran'){
+    if(fgVal!==null&&fgVal<30){
+      out.innerHTML=`<div class="card"><div class="alert-box danger"><strong>Dabigatrán no recomendado (ClCr ${fgVal} ml/min)</strong>Con aclaramiento de creatinina < 30 ml/min el dabigatrán no está recomendado. Reevaluar el anticoagulante o consultar con especialista.</div></div>`;
+      return;
+    }
+    if(fgVal===null||fgVal>=50){ lowH=24; highH=48; clcrNote=fgVal===null?'ClCr ≥ 50 ml/min (asumido)':`ClCr ${fgVal} ml/min (≥ 50 · semivida 10–14 h)`; }
+    else { lowH=48; highH=96; clcrNote=`ClCr ${fgVal} ml/min (30–49 · semivida 18–24 h)`; }
+  } else {
+    if(fgVal!==null&&fgVal<30){
+      lowH=36; highH=48; clcrNote=`ClCr ${fgVal} ml/min (< 30 · semivida prolongada)`;
+      if(acod==='rivaroxaban'&&fgVal<15) renalWarn='Rivaroxabán no recomendado con ClCr < 15 ml/min.';
+    } else {
+      lowH=24; highH=48; clcrNote=fgVal===null?'ClCr > 30 ml/min (asumido)':`ClCr ${fgVal} ml/min (> 30 · semivida 8–12 h)`;
+    }
+  }
+  const suspH=riesgo==='alto'?highH:lowH;
+  const diasSinTomar=Math.max(1,Math.round(suspH/24));
+  const reintroH=riesgo==='alto'?72:24;
+  const reintroShort=riesgo==='alto'?'48–72 h':'24 h';
+  const reintroLong=riesgo==='alto'?'48–72 horas':'24 horas';
+  const suspShort=(acod==='dabigatran'&&suspH===96)?'72–96 h':`${suspH} h`;
+  const suspLong=(acod==='dabigatran'&&suspH===96)?'72–96 horas':`${suspH} horas`;
+  const lastDose=surgDate?dOff(-diasSinTomar):null;
+  const restartDate=surgDate?dOff(reintroH/24):null;
+  const bid=(acod==='apixaban'||acod==='dabigatran');
+  const riskTxt=riesgo==='alto'?'Riesgo alto (≥ 2%)':'Riesgo bajo-moderado (0–2%)';
+
+  const calStep=(fecha,lbl,color,solid)=>`<div class="cal-step"><div class="cal-dot" style="border-color:${color};background:${solid?color:'#fff'}"></div><div class="cal-date">${fecha}</div><div class="cal-lbl" style="color:${color}">${lbl}</div></div>`;
+  let tl='<div class="cal">';
+  tl+=calStep(lastDose?fmtDM(lastDose):'—','Última toma','#9a6a08',true);
+  for(let k=diasSinTomar-1;k>=1;k--){ const dt=surgDate?dOff(-k):null; tl+=calStep(dt?fmtDM(dt):'–'+k+'d','No tomar','#b06a64',false); }
+  tl+=calStep(surgDate?fmtDM(surgDate):'Cirugía','Cirugía','#1A2E5C',true);
+  tl+=calStep(restartDate?fmtDM(restartDate):'Reinicio','Reinicio','#2e6b3e',true);
+  tl+='</div>';
+
+  const tiles=[
+    {label:'Suspender', big:suspShort, sub:`${diasSinTomar} día${diasSinTomar>1?'s':''} sin tomar`},
+    {label:'Última toma', big: lastDose?fmtDM(lastDose):'—', sub: lastDose?'última dosis':'indique la fecha'},
+    {label:'Reiniciar', big:reintroShort, sub: restartDate?('desde '+fmtDM(restartDate)):'si hay hemostasia'}
+  ];
+
+  let clin=`<div class="card" style="margin-bottom:14px"><div class="card-title">Plan perioperatorio</div>`;
+  clin+=periPanel(nombresFull[acod], riskTxt, riesgo, tiles);
+  clin+=subhead('Calendario')+tl;
+  clin+=subhead('Detalle clínico')+defGrid([
+    ['Función renal', clcrNote],
+    ['Suspensión', `última toma <strong>${suspLong}</strong> antes${lastDose?` (${fmtFecha(lastDose)})`:''}`],
+    ['Reinicio', `<strong>${reintroLong}</strong> postcirugía si hay hemostasia · inicio rápido (2–4 h)${restartDate?` · no antes del ${fmtFecha(restartDate)}`:''}`],
+    ['Terapia puente', 'No recomendada con HBPM/HNF en los ACOD'],
+    renalWarn?['Aviso renal', `<span style="color:#b3201f">⚠ ${renalWarn}</span>`]:null
+  ]);
+  if(riesgo==='alto'){
+    clin+=`<div class="alert-box warn" style="margin-top:12px"><strong>Riesgo alto — consideraciones</strong>• Diferir la cirugía si es posible para reducir el riesgo trombótico<br>• Si urgencia: valorar reversión (idarucizumab → dabigatrán; anti-Xa: CCP, ya que andexanet alfa no se comercializa en España)<br>• Coordinar con cirujano y anestesista</div>`;
+  }
+  clin+='</div>';
+
+  const poslogia={apixaban:'5 mg cada 12 horas (o 2,5 mg cada 12 horas si le han indicado dosis reducida)',rivaroxaban:'15 ó 20 mg una vez al día (con la cena)',dabigatran:'110 ó 150 mg cada 12 horas',edoxaban:'30 ó 60 mg una vez al día'}[acod];
+  const ultimaFrase=lastDose
+    ? `Su <strong>última toma</strong> será el <strong>${fmtFecha(lastDose)}</strong>${bid?' (en la dosis de la mañana)':''}; después no tome más comprimidos hasta que su médico se lo indique.`
+    : `Su <strong>última toma</strong> debe realizarse aproximadamente <strong>${suspLong} antes</strong> de la cirugía; después no tome más comprimidos hasta que su médico se lo indique.`;
+  const rows=[];
+  if(lastDose) rows.push({cuando:'Última toma', fecha:fmtFecha(lastDose), accion:`Tome su dosis habitual${bid?' (la de la mañana)':''}; después NO tome más`, tipo:'take'});
+  for(let k=diasSinTomar-1;k>=1;k--){ rows.push({cuando:`– ${k} día${k>1?'s':''} antes`, fecha:surgDate?fmtFecha(dOff(-k)):'', accion:`No tome ${nombres[acod]}`, tipo:'skip'}); }
+  rows.push({cuando:'Cirugía', fecha:surgDate?fmtFecha(surgDate):'', accion:'Día de la intervención — no tome la pastilla', tipo:'surgery'});
+  rows.push({cuando:'Reinicio', fecha: restartDate?('no antes del '+fmtFecha(restartDate)):('≈ '+reintroShort+' después'), accion:'Reinicie cuando su médico lo indique', tipo:'restart'});
+  const sheet=periSheet({id:'nota_acod', subtitulo, fechaHoy, aviso:'No deje de tomar su anticoagulante por otros motivos sin consultar antes con su médico. Si le realizan alguna prueba o procedimiento adicional, avise siempre de que toma este medicamento.',
+    intro: greeting+`<p style="margin:0 0 11px">Está usted tomando <strong>${nombresFull[acod]}</strong> ${poslogia} para prevenir la formación de coágulos. Antes de ${procFrase}${surgDate?` del <strong>${fmtFecha(surgDate)}</strong>`:''}, es necesario suspenderlo temporalmente para reducir el riesgo de sangrado.</p>`+`<p style="margin:0 0 11px">${ultimaFrase}</p>`,
+    rows});
+  out.innerHTML=clin+sheet;
+}
+
+// ─── IRC ───
+function calcRenal(){
+  const fg=parseFloat(g('renal_fg').value);
+  const edad=parseFloat(g('renal_edad').value)||0;
+  const peso=parseFloat(g('renal_peso').value)||0;
+  const cr=parseFloat(g('renal_cr').value)||0;
+  const out=g('renal_output');
+  if(isNaN(fg)){out.innerHTML='<div style="font-size:12px;color:var(--muted);font-style:italic">Introduce el FG para ver las dosis recomendadas.</div>';return;}
+
+  const apixCrit=[edad>=80,peso>0&&peso<=60,cr>=1.5].filter(Boolean).length;
+  const drugs=[
+    {n:'Apixabán',m:'Eliquis®',
+      dosis:fg>=30?(apixCrit>=2?'2,5 mg/12h ⚠':' 5 mg/12h'):(fg>=15?'2,5 mg/12h (IRC grave)':null),
+      al:fg<15?'danger':(fg<30?'warn':(apixCrit>=2?'warn':'ok')),
+      nota:fg<15?'⛔ Contraindicado (FG < 15)':fg<30?'⚠ Solo 2,5 mg/12h. Monitorizar.':apixCrit>=2?`⚠ Reducir (${apixCrit}/3 criterios)`:'✓ Dosis estándar'},
+    {n:'Rivaroxabán',m:'Xarelto®',
+      dosis:fg>=50?'20 mg/24h':fg>=15?'15 mg/24h':null,
+      al:fg<15?'danger':fg<50?'warn':'ok',
+      nota:fg<15?'⛔ Contraindicado (FG < 15)':fg<50?'⚠ Reducir a 15 mg/24h':'✓ Dosis estándar'},
+    {n:'Dabigatrán',m:'Pradaxa®',
+      dosis:fg>=30?(edad>=80?'110 mg/12h':'150 mg/12h'):null,
+      al:fg<30?'danger':(edad>=80||fg<=50||edad>=75)?'warn':'ok',
+      nota:fg<30?'⛔ Contraindicado (ClCr < 30)':edad>=80?'⚠ Reducir (edad ≥ 80)':(fg<=50||edad>=75)?'⚠ Valorar 110 mg/12h según riesgo hemorrágico':'✓ Dosis estándar'},
+    {n:'Edoxabán',m:'Lixiana®',
+      dosis:fg>=50?(peso<=60?'30 mg/24h':' 60 mg/24h'):fg>=15?'30 mg/24h':null,
+      al:fg<15?'danger':(fg<50||peso<=60?'warn':'ok'),
+      nota:fg<15?'⛔ Contraindicado (FG < 15)':fg<50?'⚠ Reducir a 30 mg/24h':peso<=60?'⚠ Reducir (peso ≤60 kg)':'✓ Dosis estándar'},
+  ];
+
+  let html='<table class="surg-table"><thead><tr><th>ACOD</th><th>Dosis recomendada</th><th>Consideración</th></tr></thead><tbody>';
+  drugs.forEach(d=>{
+    const col=d.al==='danger'?'var(--red)':d.al==='warn'?'var(--orange)':'var(--green)';
+    const bg=d.al==='danger'?'var(--red-l)':d.al==='warn'?'var(--orange-l)':'var(--green-l)';
+    html+=`<tr>
+      <td><strong>${d.n}</strong><br><span style="font-size:10px;color:var(--muted)">${d.m}</span></td>
+      <td><strong style="font-family:var(--mono);color:${col}">${d.dosis||'CONTRAINDICADO'}</strong></td>
+      <td style="font-size:11px;background:${bg};border-radius:5px;padding:5px 8px;color:${col}">${d.nota}</td>
+    </tr>`;
+  });
+  html+='</tbody></table>';
+  if(fg<15) html+=`<div class="alert-box danger" style="margin-top:10px"><strong>⛔ FG < 15 ml/min — Todos los ACOD contraindicados</strong>Consultar con nefrología/hematología sobre alternativas (heparina, AVK con monitorización).</div>`;
+  out.innerHTML=html;
+}
+
+function copiar(){
+  navigator.clipboard.writeText(g('parrafo').textContent).then(()=>{
+    g('copy_btn').textContent='✓ Copiado';g('copy_btn').classList.add('copied');
+    setTimeout(()=>{g('copy_btn').classList.remove('copied');g('copy_btn').textContent='⎘ Copiar texto';},2000);
+  });
+}
+
+function copiarNota(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  navigator.clipboard.writeText(el.innerText).then(()=>{
+    const btns=document.querySelectorAll(`button[onclick="copiarNota('${id}')"]`);
+    btns.forEach(b=>{
+      const prev=b.textContent; b.textContent='✓ Copiado';
+      b.style.background='var(--green-l)'; b.style.borderColor='var(--green)'; b.style.color='var(--green)';
+      setTimeout(()=>{b.textContent=prev; b.style.background='var(--blue-l)'; b.style.borderColor='var(--blue)'; b.style.color='var(--blue)';},2000);
+    });
+  });
+}
+
+function imprimirNota(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  const nombre=g('nombre').value.trim()||'Paciente';
+  const fechaHoy=new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+  const win=window.open('','_blank','width=760,height=700');
+  win.document.write(`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+  <title>Instrucciones sobre su anticoagulante</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Source Sans 3',Arial,sans-serif;font-size:13px;color:#16223f;padding:32px 40px;max-width:700px;margin:0 auto;line-height:1.65}
+    .lh-top{height:5px;background:linear-gradient(90deg,#D4AF37,#F5D97A);border-radius:3px;margin-bottom:18px}
+    .eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9a6a08;font-weight:700;margin-bottom:5px}
+    h1{font-family:'Source Serif 4',serif;font-size:22px;color:#16223f;font-weight:600;line-height:1.2;margin-bottom:8px}
+    .meta{font-size:12.5px;color:#4a5673;border-bottom:1px solid #e4e8ef;padding-bottom:15px;margin-bottom:18px}
+    p{margin-bottom:11px;line-height:1.7}
+    table{width:100%;border-collapse:separate;border-spacing:0;margin:14px 0;border:1px solid #C8CDD6;border-radius:8px;overflow:hidden}
+    th{background:#16223f;color:#f4f6f9;padding:9px 14px;text-align:left;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:600}
+    td{padding:10px 14px;font-size:12.5px;line-height:1.5}
+    .footer{margin-top:22px;font-size:10.5px;color:#9aa3b2;border-top:1px solid #eef0f4;padding-top:10px}
+    @media print{body{padding:6mm 12mm} .no-print{display:none}}
+  </style>
+  </head><body>
+  <div class="lh-top"></div>
+  <div class="eyebrow">Hoja para el paciente</div>
+  <h1>Instrucciones sobre su anticoagulante</h1>
+  <div class="meta"><strong>${nombre}</strong> · ${fechaHoy}</div>
+  ${el.innerHTML}
+  <div class="footer"><strong>Recomendación realizada con herramienta de decisión clínica desarrollada por la Dra. Laura Bernal Martínez.</strong><br>Herramienta de apoyo a la decisión clínica. La recomendación es orientativa, no sustituye el juicio del profesional ni la valoración individual del paciente, y debe interpretarse en su contexto clínico.</div>
+  <script>setTimeout(()=>{window.print();},500);<\/script>
+  </body></html>`);
+  win.document.close();
+}
+
+// ─── CALCULADORA ACOD ───
+const calcState = {
+  renal: null,      // 'normal' | 'mod' | 'grav' | 'ci'
+  sangrado: {},     // alto, gi
+  adher: {},        // 1d, gi, comida
+  clinic: {},       // antidoto, ecva, saf, protesis, tvp, cancer
+  farms: {}         // drug keys seleccionados
+};
+
+// Grupos mutuamente excluyentes (renal)
+const exclusiveGroups = { renal: ['normal','mod','grav','ci'] };
+
+function toggleCrit(group, val, btn){
+  document.querySelectorAll('.crit-btn.is-auto').forEach(b=>{ if(b===btn || (exclusiveGroups[group]&&b.id.startsWith('cr_'))) b.classList.remove('is-auto'); });
+  if(exclusiveGroups[group]){
+    // Deseleccionar todos del grupo
+    exclusiveGroups[group].forEach(v=>{
+      const b=document.getElementById('cr_'+v);
+      if(b){ b.classList.remove('on-good','on-bad','on-warn'); b.querySelector('.crit-check').textContent=''; }
+    });
+    if(calcState[group]===val){ calcState[group]=null; }
+    else{
+      calcState[group]=val;
+      const cls = (val==='normal')?'on-good':(val==='ci'||val==='grav')?'on-bad':'on-warn';
+      btn.classList.add(cls);
+      btn.querySelector('.crit-check').textContent='✓';
+    }
+  } else {
+    if(calcState[group][val]){
+      delete calcState[group][val];
+      btn.classList.remove('on-good','on-bad','on-warn');
+      btn.querySelector('.crit-check').textContent='';
+    } else {
+      calcState[group][val]=true;
+      const cls=(group==='sangrado'||group==='clinic'&&['saf','protesis','cancer'].includes(val))?'on-bad':'on-warn';
+      btn.classList.add(cls);
+      btn.querySelector('.crit-check').textContent='✓';
+    }
+  }
+  runCalc();
+}
+
+function toggleFarm(btn){
+  const drug=btn.dataset.drug;
+  if(calcState.farms[drug]){
+    delete calcState.farms[drug];
+    btn.classList.remove('sel-bad','sel-warn');
+  } else {
+    calcState.farms[drug]=btn.dataset.type;
+    const cls=btn.dataset.type.startsWith('ci')?'sel-bad':'sel-warn';
+    btn.classList.add(cls);
+  }
+  updateFarmAlert();
+  runCalc();
+}
+
+// Tabla de interacciones por fármaco y ACOD
+const FARM_DETAIL = {
+  ketoconazol:   {api:'✗ CI',  riv:'✗ CI',  dab:'✗ CI',  edo:'✗ CI',  nota:'Inhibidor potente CYP3A4+gp-P: CI con todos los ACOD.'},
+  ciclosporina:  {api:'✗ CI',  riv:'✗ CI',  dab:'✗ CI',  edo:'✗ CI',  nota:'Inhibidor potente gp-P y CYP3A4: CI con todos.'},
+  dronedarona:   {api:'⚠ OK', riv:'⚠ OK', dab:'✗ CI',  edo:'⚠ -30mg', nota:'CI con dabigatrán. Reducir edoxabán a 30 mg. Precaución general.'},
+  rifampicina:   {api:'✗ CI',  riv:'✗ CI',  dab:'✗ CI',  edo:'✗ CI',  nota:'Inductor potente CYP3A4+gp-P: reduce eficacia de todos → CI.'},
+  fenitoina:     {api:'✗ CI',  riv:'✗ CI',  dab:'✗ CI',  edo:'✗ CI',  nota:'Fenitoína/Carbamazepina: inductores potentes → CI todos.'},
+  hiv:           {api:'✗ CI',  riv:'✗ CI',  dab:'✗ CI',  edo:'✗ CI',  nota:'Inhibidores de proteasa (ritonavir, etc.): CI con todos.'},
+  hierba_san_juan:{api:'✗ CI', riv:'✗ CI',  dab:'✗ CI',  edo:'✗ CI',  nota:'Inductor gp-P y CYP3A4 → reduce niveles de todos → CI.'},
+  verapamilo:    {api:'✓ OK',  riv:'✓ OK',  dab:'⚠ -110', edo:'⚠ OK', nota:'Inhibidor gp-P: reducir dabigatrán obligatoriamente a 110 mg/12h.'},
+  diltiazem:     {api:'⚠ OK', riv:'⚠ OK', dab:'⚠ OK',  edo:'⚠ OK', nota:'Inhibidor gp-P y CYP3A4 leve-moderado: vigilar, especialmente en IRC.'},
+  amiodarona:    {api:'⚠ OK', riv:'⚠ OK', dab:'⚠ OK',  edo:'⚠ OK', nota:'Inhibidor gp-P moderado: monitorizar, especialmente con IRC.'},
+  digoxina:      {api:'✓ OK',  riv:'✓ OK',  dab:'⚠ OK',  edo:'✓ OK',  nota:'Dabigatrán puede aumentar niveles de digoxina. Vigilar toxicidad.'},
+  eritromicina:  {api:'⚠ OK', riv:'⚠ OK', dab:'⚠ OK',  edo:'⚠ -30mg', nota:'Reducir edoxabán a 30 mg. Aumenta dabigatrán. Precaución apixabán/rivaroxabán.'},
+  fluconazol:    {api:'⚠ ↑',  riv:'⚠ ↑',  dab:'✓ OK',  edo:'✓ OK',  nota:'Inhibidor CYP3A4: aumenta niveles apixabán y rivaroxabán. Dabigatrán y edoxabán menos afectados.'},
+  quinidina:     {api:'⚠ OK', riv:'⚠ OK', dab:'⚠ OK',  edo:'⚠ -30mg', nota:'Inhibidor gp-P: reducir edoxabán a 30 mg. Precaución con dabigatrán.'},
+  tacrolimus:    {api:'⚠ OK', riv:'⚠ OK', dab:'⚠ OK',  edo:'⚠ OK', nota:'Sustrato gp-P/CYP3A4: vigilar niveles de ambos fármacos.'},
+  aas:           {api:'⚠ ↑sang', riv:'⚠ ↑sang', dab:'⚠ ↑sang', edo:'⚠ ↑sang', nota:'Aumenta riesgo hemorrágico. Usar solo si indicado. Valorar IBP.'},
+  clopidogrel:   {api:'⚠ ↑sang', riv:'⚠ ↑sang', dab:'⚠ ↑sang', edo:'⚠ ↑sang', nota:'Doble antiagregación + ACOD = triple terapia: solo si es imprescindible y por el menor tiempo posible.'},
+  aines:         {api:'⚠ ↑sang', riv:'⚠ ↑sang', dab:'⚠ ↑GI+sang', edo:'⚠ ↑sang', nota:'Aumentan riesgo hemorrágico, especialmente GI con dabigatrán. Evitar; si necesario usar IBP.'},
+  ssri:          {api:'⚠ ↑sang', riv:'⚠ ↑sang', dab:'⚠ ↑sang', edo:'⚠ ↑sang', nota:'ISRS/IRSN aumentan moderadamente el riesgo hemorrágico. Vigilar en combinación.'},
+  hbpm:          {api:'✗ CI',  riv:'✗ CI',  dab:'✗ CI',  edo:'✗ CI',  nota:'Doble anticoagulación contraindicada excepto en situaciones de cambio terapéutico puntual.'},
+  estatinas:     {api:'✓ OK',  riv:'✓ OK',  dab:'✓ OK',  edo:'✓ OK',  nota:'Sin interacción clínicamente relevante con ningún ACOD.'},
+  iecas_ara2:    {api:'✓ OK',  riv:'✓ OK',  dab:'✓ OK',  edo:'✓ OK',  nota:'Sin interacción relevante.'},
+  betabloqueantes:{api:'✓ OK', riv:'✓ OK',  dab:'✓ OK',  edo:'✓ OK',  nota:'Sin interacción relevante.'},
+  metformina:    {api:'✓ OK',  riv:'✓ OK',  dab:'✓ OK',  edo:'✓ OK',  nota:'Sin interacción relevante.'},
+  diureticos:    {api:'✓ OK',  riv:'✓ OK',  dab:'✓ OK',  edo:'✓ OK',  nota:'Sin interacción relevante directa. Vigilar función renal si deshidratación.'},
+  ibp:           {api:'✓ OK',  riv:'✓ OK',  dab:'✓ OK',  edo:'✓ OK',  nota:'Sin interacción. Recomendado en combinación con antiagregantes o AINEs.'},
+  levotiroxina:  {api:'✓ OK',  riv:'✓ OK',  dab:'✓ OK',  edo:'✓ OK',  nota:'Sin interacción relevante.'},
+  alopurinol:    {api:'✓ OK',  riv:'✓ OK',  dab:'✓ OK',  edo:'✓ OK',  nota:'Sin interacción relevante.'},
+};
+
+function farmCell(val){
+  const color=val.startsWith('✗')?'color:var(--red);font-weight:700':val.startsWith('⚠')?'color:var(--orange);font-weight:600':'color:var(--green)';
+  return `<span style="${color}">${val}</span>`;
+}
+
+function updateFarmAlert(){
+  const al=document.getElementById('farm_alert');
+  const selected=[...document.querySelectorAll('.farm-tag.sel-bad,.farm-tag.sel-warn')].map(b=>b.dataset.drug);
+  if(!selected.length){ al.innerHTML=''; return; }
+
+  // Tabla de interacciones para los fármacos seleccionados
+  let html=`<div style="overflow-x:auto;margin-top:8px">
+  <table style="width:100%;border-collapse:collapse;font-size:11.5px;">
+    <thead><tr style="background:#f0f2f7">
+      <th style="padding:6px 8px;text-align:left;border-bottom:1px solid #ddd">Fármaco</th>
+      <th style="padding:6px 8px;text-align:center;border-bottom:1px solid #ddd;color:#6d28d9">Apixabán</th>
+      <th style="padding:6px 8px;text-align:center;border-bottom:1px solid #ddd;color:#1a56db">Rivaroxabán</th>
+      <th style="padding:6px 8px;text-align:center;border-bottom:1px solid #ddd;color:#b45309">Dabigatrán</th>
+      <th style="padding:6px 8px;text-align:center;border-bottom:1px solid #ddd;color:#057a55">Edoxabán</th>
+      <th style="padding:6px 8px;text-align:left;border-bottom:1px solid #ddd">Comentario</th>
+    </tr></thead>
+    <tbody>`;
+
+  selected.forEach(drug=>{
+    const fd=FARM_DETAIL[drug];
+    if(!fd) return;
+    const label=document.querySelector('[data-drug="'+drug+'"')?.innerText?.trim()||drug;
+    html+=`<tr style="border-bottom:1px solid #f0f2f7">
+      <td style="padding:5px 8px;font-weight:600">${label}</td>
+      <td style="padding:5px 8px;text-align:center">${farmCell(fd.api)}</td>
+      <td style="padding:5px 8px;text-align:center">${farmCell(fd.riv)}</td>
+      <td style="padding:5px 8px;text-align:center">${farmCell(fd.dab)}</td>
+      <td style="padding:5px 8px;text-align:center">${farmCell(fd.edo)}</td>
+      <td style="padding:5px 8px;font-size:10.5px;color:#555">${fd.nota}</td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div>`;
+  al.innerHTML=html;
+}
+
+function resetCalc(){
+  calcState.renal=null;
+  calcState.sangrado={}; calcState.adher={}; calcState.clinic={}; calcState.farms={};
+  document.querySelectorAll('.crit-btn').forEach(b=>{ b.classList.remove('on-good','on-bad','on-warn'); b.querySelector('.crit-check').textContent=''; });
+  document.querySelectorAll('.farm-tag').forEach(b=>b.classList.remove('sel-bad','sel-warn'));
+  document.getElementById('farm_alert').innerHTML='';
+  document.getElementById('calc_result').innerHTML='';
+  document.querySelectorAll('.crit-btn.is-auto').forEach(b=>b.classList.remove('is-auto'));
+  perfilPrevio={renal:undefined,alto:undefined,tvp:undefined};
+  calc();
+}
+
+// Añadir también interacciones del fármaco seleccionado en los result cards
+function getFarmRowsForDrug(key, selectedFarms){
+  if(!selectedFarms.length) return '';
+  const map={apixaban:'api',rivaroxaban:'riv',dabigatran:'dab',edoxaban:'edo'};
+  const col=map[key];
+  let rows='';
+  selectedFarms.forEach(drug=>{
+    const fd=FARM_DETAIL[drug];
+    if(!fd) return;
+    const val=fd[col];
+    const label=document.querySelector('[data-drug="'+drug+'"')?.innerText?.trim()||drug;
+    const color=val.startsWith('✗')?'var(--red)':val.startsWith('⚠')?'var(--orange)':'var(--green)';
+    rows+=`<div class="arc-farmrow"><span style="color:${color};font-weight:700">${val}</span> ${label}</div>`;
+  });
+  return rows?`<div style="margin-top:8px;border-top:1px solid rgba(0,0,0,.07);padding-top:6px"><div style="font-size:9px;font-weight:700;text-transform:uppercase;color:#aaa;margin-bottom:4px">Interacciones</div>${rows}</div>`:'';
+}
+
+function runCalc(){
+  // Puntuaciones: positivo = favor, negativo = en contra
+  // Cada ACOD: {score, pros, cons, ci}
+  const scores = {
+    apixaban:   { score:0, pros:[], cons:[], ci:false, ciReasons:[] },
+    rivaroxaban:{ score:0, pros:[], cons:[], ci:false, ciReasons:[] },
+    dabigatran: { score:0, pros:[], cons:[], ci:false, ciReasons:[] },
+    edoxaban:   { score:0, pros:[], cons:[], ci:false, ciReasons:[] }
+  };
+  const s=scores;
+
+  const fg=calcState.renal;
+  const hasFarms=Object.keys(calcState.farms).length>0;
+  const farmTypes=Object.values(calcState.farms);
+
+  // ─ FUNCIÓN RENAL ─
+  if(fg==='ci'){
+    ['apixaban','rivaroxaban','dabigatran','edoxaban'].forEach(d=>{ s[d].ci=true; s[d].ciReasons.push('FG < 15 ml/min'); });
+  }
+  if(fg==='grav'){
+    s['dabigatran'].ci=true; s['dabigatran'].ciReasons.push('FG 15-29 ml/min → dabigatrán CI (requiere FG ≥ 30)');
+    s['apixaban'].score+=3; s['apixaban'].pros.push('Mejor opción en IRC grave (25% elim. renal)');
+    s['rivaroxaban'].score+=1; s['rivaroxaban'].pros.push('FG ≥ 15 permitido (15 mg/24h)');
+    s['edoxaban'].score+=1; s['edoxaban'].pros.push('FG ≥ 15 permitido (30 mg/24h)');
+  }
+  if(fg==='mod'){
+    s['dabigatran'].score-=1; s['dabigatran'].cons.push('FG 30-49: solo 110 mg/12h, monitorizar');
+    s['apixaban'].score+=2; s['apixaban'].pros.push('Menor dependencia renal (25%), sin reducción obligatoria por FG solo');
+    s['rivaroxaban'].score+=1; s['rivaroxaban'].cons.push('FG 30-49: reducir a 15 mg/24h');
+    s['edoxaban'].score+=1; s['edoxaban'].cons.push('FG 30-49: reducir a 30 mg/24h');
+  }
+  if(fg==='normal'){
+    // Todos válidos, leve ventaja apixabán por perfil general
+    s['apixaban'].score+=1; s['apixaban'].pros.push('FG normal: dosis estándar sin restricciones');
+  }
+
+  // ─ SANGRADO ─
+  if(calcState.sangrado.alto){
+    s['apixaban'].score+=3; s['apixaban'].pros.push('Mejor perfil hemorrágico (ARISTOTLE: ↓ sangrado intracraneal)');
+    s['dabigatran'].score-=1; s['dabigatran'].cons.push('Mayor sangrado GI vs. warfarina en algunos subgrupos');
+    s['rivaroxaban'].score-=1; s['rivaroxaban'].cons.push('Mayor sangrado GI en algunos registros');
+    s['edoxaban'].score+=1; s['edoxaban'].pros.push('Perfil hemorrágico intermedio favorable');
+  }
+  if(calcState.sangrado.gi){
+    s['apixaban'].score+=2; s['apixaban'].pros.push('Menor riesgo de sangrado GI en metaanálisis');
+    s['dabigatran'].score-=2; s['dabigatran'].cons.push('⚠ Mayor sangrado GI — evitar si úlcera activa');
+    s['rivaroxaban'].score-=1; s['rivaroxaban'].cons.push('Asociado a mayor sangrado GI en algunos estudios');
+    s['edoxaban'].score+=1; s['edoxaban'].pros.push('Perfil GI más favorable que dabigatrán');
+  }
+
+  // ─ ADHERENCIA ─
+  if(calcState.adher['1d']){
+    s['rivaroxaban'].score+=2; s['rivaroxaban'].pros.push('Toma única diaria (con la cena)');
+    s['edoxaban'].score+=2; s['edoxaban'].pros.push('Toma única diaria');
+    s['apixaban'].score-=1; s['apixaban'].cons.push('Dos tomas diarias (puede ser problema de adherencia)');
+    s['dabigatran'].score-=1; s['dabigatran'].cons.push('Dos tomas diarias');
+  }
+  if(calcState.adher.gi){
+    s['dabigatran'].score-=3; s['dabigatran'].cons.push('⚠ Dispepsia en ~10% de pacientes — evitar si intolerancia GI');
+    s['apixaban'].score+=2; s['apixaban'].pros.push('Sin problema de dispepsia documentado');
+    s['rivaroxaban'].score+=1; s['rivaroxaban'].pros.push('Tomado con comida, mejor tolerancia GI');
+    s['edoxaban'].score+=1; s['edoxaban'].pros.push('Sin dispepsia documentada');
+  }
+  if(calcState.adher.comida){
+    s['rivaroxaban'].score-=2; s['rivaroxaban'].cons.push('⚠ Requiere comida abundante para absorción correcta');
+    s['apixaban'].score+=1; s['apixaban'].pros.push('No requiere comida para absorción');
+    s['dabigatran'].score+=1; s['dabigatran'].pros.push('No requiere comida');
+    s['edoxaban'].score+=1; s['edoxaban'].pros.push('No requiere comida');
+  }
+
+  // ─ CLÍNICA ─
+  if(calcState.clinic.antidoto){
+    s['dabigatran'].score+=3; s['dabigatran'].pros.push('✓ Idarucizumab (Praxbind®) — antídoto específico ampliamente disponible');
+    s['apixaban'].cons.push('Andexanet alfa no comercializado en España (CCP)');
+    s['rivaroxaban'].cons.push('Andexanet alfa no comercializado en España (CCP)');
+    s['edoxaban'].score-=1; s['edoxaban'].cons.push('Sin antídoto específico (CCP como alternativa)');
+  }
+  if(calcState.clinic.ecva){
+    s['rivaroxaban'].score+=3; s['rivaroxaban'].pros.push('✓ Única indicación de dosis vascular 2,5 mg/12h + AAS (COMPASS: −24% MACE)');
+    s['apixaban'].score+=0;
+    s['dabigatran'].score+=0;
+    s['edoxaban'].score+=0;
+  }
+  if(calcState.clinic.saf){
+    ['apixaban','rivaroxaban','dabigatran','edoxaban'].forEach(d=>{ s[d].ci=true; s[d].ciReasons.push('Síndrome antifosfolípido → usar AVK (TRAPS)'); });
+  }
+  if(calcState.clinic.protesis){
+    ['apixaban','rivaroxaban','dabigatran','edoxaban'].forEach(d=>{ s[d].ci=true; s[d].ciReasons.push('Prótesis mecánica / estenosis mitral → AVK obligatorio (RE-ALIGN)'); });
+  }
+  if(calcState.clinic.tvp){
+    s['dabigatran'].score+=2; s['dabigatran'].pros.push('✓ Financiado en TVP/TEP');
+    s['apixaban'].score-=1; s['apixaban'].cons.push('No financiado en TVP/TEP (Murcia) — coste para el paciente');
+    s['rivaroxaban'].score+=2; s['rivaroxaban'].pros.push('✓ Financiado en TVP/TEP');
+    s['edoxaban'].score-=1; s['edoxaban'].cons.push('No financiado en TVP/TEP (Murcia)');
+  }
+  if(calcState.clinic.cancer){
+    s['dabigatran'].ci=true; s['dabigatran'].ciReasons.push('TEV asociado a cáncer → dabigatrán no indicado');
+    s['apixaban'].score+=2; s['apixaban'].pros.push('Apixabán: opción en TEV-cáncer (sin financiación específica en Murcia)');
+    s['rivaroxaban'].score+=1; s['rivaroxaban'].pros.push('Rivaroxabán: opción en TEV-cáncer (estudio SELECT-D)');
+    s['edoxaban'].score+=1; s['edoxaban'].pros.push('Edoxabán: opción en TEV-cáncer (estudio Hokusai)');
+  }
+
+  // ─ INTERACCIONES ─
+  const ciAll=farmTypes.some(t=>t==='ci_all');
+  if(ciAll){
+    ['apixaban','rivaroxaban','dabigatran','edoxaban'].forEach(d=>{ s[d].ci=true; s[d].ciReasons.push('Interacción grave con CYP3A4/gp-P (CI absoluta o relativa)'); });
+  }
+  const ciDabiEdox=farmTypes.some(t=>t==='ci_dabi_edox');
+  if(ciDabiEdox&&!ciAll){
+    s['dabigatran'].ci=true; s['dabigatran'].ciReasons.push('Dronedarona CI con dabigatrán');
+    s['edoxaban'].score-=2; s['edoxaban'].cons.push('Dronedarona → reducir edoxabán a 30 mg');
+    s['apixaban'].score+=1; s['apixaban'].pros.push('Mejor tolerancia con dronedarona');
+    s['rivaroxaban'].score+=1; s['rivaroxaban'].pros.push('Mejor tolerancia con dronedarona');
+  }
+  if(calcState.farms.verapamilo){
+    s['dabigatran'].score-=1; s['dabigatran'].cons.push('Verapamilo → reducir a 110 mg/12h obligatorio');
+    s['apixaban'].score+=1; s['apixaban'].pros.push('Menor interacción con verapamilo');
+  }
+  if(calcState.farms.amiodarona){
+    s['dabigatran'].score-=1; s['dabigatran'].cons.push('Amiodarona: inhibidor gp-P, vigilar especialmente en IRC');
+  }
+  if(calcState.farms.eritromicina){
+    s['edoxaban'].score-=2; s['edoxaban'].cons.push('Eritromicina → reducir edoxabán a 30 mg');
+    s['dabigatran'].score-=1; s['dabigatran'].cons.push('Eritromicina: aumenta concentración de dabigatrán');
+    s['apixaban'].score+=1; s['apixaban'].pros.push('Menor interacción con macrólidos');
+  }
+  if(calcState.farms.fluconazol){
+    s['apixaban'].score-=1; s['apixaban'].cons.push('Fluconazol aumenta concentración (CYP3A4)');
+    s['rivaroxaban'].score-=1; s['rivaroxaban'].cons.push('Fluconazol aumenta concentración (CYP3A4)');
+    s['dabigatran'].score+=1; s['dabigatran'].pros.push('Dabigatrán no usa CYP3A4 → menos interacción con azoles');
+  }
+  if(calcState.farms.aas||calcState.farms.aines||calcState.farms.clopidogrel||calcState.farms.ssri){
+    s['apixaban'].score+=1; s['apixaban'].pros.push('Menor riesgo de sangrado GI (favorable con antiagregantes/ISRS)');
+    s['dabigatran'].score-=2; s['dabigatran'].cons.push('⚠ Mayor sangrado GI con AAS/AINEs/ISRS — evitar si antecedente GI');
+    s['rivaroxaban'].score-=1; s['rivaroxaban'].cons.push('Cierto aumento sangrado GI; tomar con comida mitiga algo');
+  }
+  if(calcState.farms.diltiazem||calcState.farms.tacrolimus){
+    s['apixaban'].score-=1; s['apixaban'].cons.push('Diltiazem/Tacrolimus: inhibidor CYP3A4+gp-P moderado, vigilar');
+    s['rivaroxaban'].score-=1; s['rivaroxaban'].cons.push('Diltiazem/Tacrolimus: inhibidor moderado, monitorizar');
+    s['dabigatran'].score+=1; s['dabigatran'].pros.push('Solo afectado por gp-P, menos que los anti-Xa por diltiazem');
+  }
+  if(calcState.farms.digoxina){
+    s['dabigatran'].score-=1; s['dabigatran'].cons.push('Dabigatrán puede elevar niveles de digoxina → vigilar toxicidad');
+  }
+  if(calcState.farms.quinidina){
+    s['edoxaban'].score-=2; s['edoxaban'].cons.push('Quinidina → reducir edoxabán a 30 mg/24h');
+    s['dabigatran'].score-=1; s['dabigatran'].cons.push('Quinidina: inhibidor gp-P, aumenta dabigatrán');
+    s['apixaban'].score+=1; s['apixaban'].pros.push('Menor interacción con quinidina');
+  }
+  if(calcState.farms.hierba_san_juan){
+    ['apixaban','rivaroxaban','dabigatran','edoxaban'].forEach(d=>{ s[d].ci=true; s[d].ciReasons.push('Hierba de San Juan: inductor gp-P y CYP3A4 → contraindicada'); });
+  }
+  if(calcState.farms.hbpm){
+    ['apixaban','rivaroxaban','dabigatran','edoxaban'].forEach(d=>{ s[d].ci=true; s[d].ciReasons.push('Doble anticoagulación: no combinar ACOD + HBPM de forma crónica'); });
+  }
+
+  // ── RENDER RESULTADO ──
+  const keys=['apixaban','rivaroxaban','dabigatran','edoxaban'];
+  const names={apixaban:'Apixabán',rivaroxaban:'Rivaroxabán',dabigatran:'Dabigatrán',edoxaban:'Edoxabán'};
+  const brands={apixaban:'Eliquis®',rivaroxaban:'Xarelto®',dabigatran:'Pradaxa®',edoxaban:'Lixiana®'};
+  const colors={apixaban:'#6d28d9',rivaroxaban:'#1a56db',dabigatran:'#b45309',edoxaban:'#057a55'};
+
+  // Ordenar: CI al final, luego por puntuación
+  const sorted=[...keys].sort((a,b)=>{
+    if(s[a].ci&&!s[b].ci) return 1;
+    if(!s[a].ci&&s[b].ci) return -1;
+    return s[b].score-s[a].score;
+  });
+
+  const allChecked=Object.keys(calcState.sangrado).length||calcState.renal||Object.keys(calcState.adher).length||Object.keys(calcState.clinic).length||Object.keys(calcState.farms).length;
+  ultimoRanking=sorted.filter(k=>!s[k].ci).map(k=>({k,score:s[k].score}));
+  if(!allChecked){ ultimoRanking=[]; document.getElementById('calc_result').innerHTML=''; renderEficiencia(); return; }
+
+  const allCI=sorted.every(k=>s[k].ci);
+
+  let html=`<div style="margin-top:6px;padding-top:14px;border-top:1px solid var(--border)">
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:10px">Resultado — ordenado por adecuación al perfil</div>`;
+
+  if(allCI){
+    html+=`<div class="alert-box danger"><strong>⛔ Todos los ACOD contraindicados</strong>Según las características marcadas, ningún ACOD está indicado. Valorar AVK (acenocumarol/warfarina) o consultar con hematología/cardiología.</div>`;
+  }
+
+  html+=`<div class="acod-result-grid">`;
+
+  sorted.forEach((key,idx)=>{
+    const d=s[key];
+    const isCI=d.ci;
+    const isTop=!isCI&&idx===sorted.findIndex(k=>!s[k].ci);
+    const scoreColor=isCI?'var(--red)':d.score>0?'var(--green)':d.score===0?'var(--muted)':'var(--orange)';
+    const rankClass=isCI?'rank-ci':isTop?'rank-1':idx<=1?'rank-2':'';
+    const rankLabel=isCI?'CONTRAINDICADO':isTop?'PRIMERA OPCIÓN':idx===sorted.findIndex(k=>!s[k].ci)+1?'ALTERNATIVA':'VALORAR';
+
+    // Bar chart width
+    const maxAbsScore=Math.max(...keys.map(k=>Math.abs(s[k].ci?-10:s[k].score)),1);
+    const barPct=isCI?100:Math.round(Math.max(0,d.score)/maxAbsScore*100);
+    const barColor=isCI?'var(--red)':d.score>0?'var(--green)':d.score===0?'#ccc':'var(--orange)';
+    const selectedFarmDrugs=Object.keys(calcState.farms);
+
+    html+=`<div class="acod-result-card ${rankClass}">
+      ${isCI?'<div class="arc-ci-banner">C.I.</div>':''}
+      <div class="arc-name" style="color:${colors[key]}">${names[key]}</div>
+      <div class="arc-brand">${brands[key]}</div>
+      <div class="arc-score" style="color:${scoreColor}">${d.score>0?'+':''}${d.score}</div>
+      <div class="arc-bar-wrap"><div class="arc-bar" style="width:${barPct}%;background:${barColor}"></div></div>
+      <div class="arc-label">${rankLabel}</div>`;
+
+    if(isCI&&d.ciReasons.length){
+      html+=`<div class="arc-cons"><ul>${d.ciReasons.map(r=>`<li>✗ ${r}</li>`).join('')}</ul></div>`;
+    } else {
+      if(d.pros.length) html+=`<div class="arc-pros"><ul>${d.pros.map(p=>`<li>✓ ${p}</li>`).join('')}</ul></div>`;
+      if(d.cons.length) html+=`<div class="arc-cons"><ul>${d.cons.map(c=>`<li>✗ ${c}</li>`).join('')}</ul></div>`;
+    }
+    if(selectedFarmDrugs.length) html+=getFarmRowsForDrug(key, selectedFarmDrugs);
+    if(!isCI) html+=`<button class="arc-pick${acodSel===key?' is-picked':''}" onclick="elegirAcod('${key}')">${acodSel===key?'✓ Elegido':'Elegir '+names[key]}</button>`;
+    html+=`</div>`;
+  });
+
+  html+=`</div>`;
+
+  // Mensaje de contexto
+  if(!allCI){
+    const winner=sorted.find(k=>!s[k].ci);
+    if(winner){
+      html+=`<div class="alert-box ok" style="margin-top:4px"><strong>✓ Orientación según perfil: ${names[winner]} (${brands[winner]})</strong>
+      Esta calculadora es orientativa. No hay ensayos head-to-head entre ACOD. La decisión final debe individualizarse con el paciente, considerando sus preferencias, comorbilidades y contexto clínico completo.</div>`;
+    }
+  }
+  html+=`</div>`;
+  document.getElementById('calc_result').innerHTML=html;
+  renderEficiencia();
+}
+
+// Resumen: cada dato lleva a su paso
+document.querySelectorAll('.res-chip').forEach(c=>c.addEventListener('click',()=>{
+  const d=c.dataset.go;
+  if(d==='patient'){ g('patient-card').scrollIntoView({behavior:'smooth',block:'center'}); g('fg_manual').focus({preventScroll:true}); }
+  else goStep(d);
+}));
+
+// Init
+calc(); renderCambio(); renderSeguimiento(); renderEficiencia();
+</script>
+</body>
+</html>

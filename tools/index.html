@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Herramientas clínicas y de desarrollo de la Dra. Laura Bernal: calculadoras y escalas basadas en evidencia, integración de datos oficiales e inteligencia artificial clínica">
+    <title>Herramientas clínicas - Dra. Laura Bernal</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="../index.html" class="nav-logo-link" aria-label="Dra. Laura Bernal · Inicio"><img src="../images/logo.png" alt="Dra. Laura Bernal" class="nav-logo-img" width="2400" height="852"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../sobre-mi.html">Dra. Laura Bernal</a></li>
+                <li><a href="../clinica.html">Clínica</a></li>
+                <li><a href="index.html" class="active">Herramientas clínicas</a></li>
+                <li><a href="../estudios.html">Estudios clínicos</a></li>
+                <li><a href="../contacto.html">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Herramientas clínicas y desarrollo</h1>
+                <p class="page-subtitle">Desarrollo tecnológico desde el problema asistencial real</p>
+            </div>
+        </section>
+
+        <section class="tools-intro">
+            <div class="container">
+                <div class="intro-content">
+                    <p class="lead">Desarrollo herramientas de salud digital desde el problema asistencial real — construidas por alguien que toma decisiones clínicas cada día y sabe qué es lo que realmente hace falta. Algunas son calculadoras y algoritmos basados en evidencia; otras integran datos oficiales en tiempo real; y otras incorporan inteligencia artificial.</p>
+                    
+                    <p>Además de construir, enseño. Formo a médicos en IA, programación y bioinformática — desde niveles introductorios hasta formación avanzada. He sido docente en el Programa UPRO de Competencias Digitales para Médicos, enmarcado en Next Generation EU y la Organización Médica Colegial.</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>No me interesan las demos vacías</strong> — me interesa construir herramientas que funcionen y formar a profesionales que las usen de verdad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools-list">
+            <div class="container">
+                <div class="tools-toolbar" role="search" data-tools-toolbar>
+                    <div class="tools-search">
+                        <svg class="tools-search-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                        <label for="toolSearch" class="visually-hidden">Buscar herramienta</label>
+                        <input type="search" id="toolSearch" placeholder="Buscar: tiroides, DM2, FRAX…" autocomplete="off" spellcheck="false">
+                        <button type="button" class="tools-search-clear" aria-label="Borrar búsqueda" hidden>
+                            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <div class="tools-filters" role="group" aria-label="Filtrar por estado">
+                        <button type="button" class="tools-filter" data-filter="todas" aria-pressed="true">Todas <span class="tools-filter-n"></span></button>
+                        <button type="button" class="tools-filter" data-filter="disponible" aria-pressed="false">Disponible <span class="tools-filter-n"></span></button>
+                        <button type="button" class="tools-filter" data-filter="privado" aria-pressed="false">Acceso privado <span class="tools-filter-n"></span></button>
+                        <button type="button" class="tools-filter" data-filter="uso-privado" aria-pressed="false">Uso privado <span class="tools-filter-n"></span></button>
+                        <button type="button" class="tools-filter" data-filter="desarrollo" aria-pressed="false">En desarrollo <span class="tools-filter-n"></span></button>
+                    </div>
+                    <p class="tools-count" aria-live="polite"></p>
+                </div>
+
+                <div class="tools-empty" hidden>
+                    <p>No hay herramientas que coincidan con tu búsqueda.</p>
+                    <button type="button" class="btn btn-secondary" data-tools-reset>Ver todas</button>
+                </div>
+
+                <div class="tools-section">
+                    <h2 class="section-heading">Calculadoras y escalas clínicas</h2>
+                    <p class="tools-section-desc">Calculadoras, escalas y guías de ayuda diagnóstica basadas en evidencia y guías clínicas actualizadas. No usan inteligencia artificial: aplican criterios y fórmulas validadas de forma transparente.</p>
+
+                    <div class="tools-grid">
+                        <div class="tool-card tool-card--link">
+                            <div class="tool-header">
+                                <h3>Calculadora de anticoagulación</h3>
+                                <span class="tool-badge tool-badge-available">Disponible</span>
+                            </div>
+                            <p>Herramienta para el manejo de anticoagulación en atención primaria. Incluye cálculo de escalas de riesgo, dosificación y seguimiento de pacientes anticoagulados según protocolos actualizados.</p>
+                            <div class="tool-tech">
+                                <span>CHA₂DS₂-VASc</span>
+                                <span>HAS-BLED</span>
+                            </div>
+                            <a href="anticoagulacion.html" class="tool-link" target="_blank">Abrir herramienta →</a>
+                        </div>
+
+                        <div class="tool-card tool-card--link">
+                            <div class="tool-header">
+                                <h3>Osteoporosis en Atención Primaria</h3>
+                                <span class="tool-badge tool-badge-available">Disponible</span>
+                            </div>
+                            <p>Guía clínica y ayuda diagnóstica para el manejo de la osteoporosis en atención primaria. Incluye cálculo de riesgo de fractura con FRAX e interpretación de densitometría ósea (DEXA / T-score).</p>
+                            <div class="tool-tech">
+                                <span>FRAX</span>
+                                <span>DEXA</span>
+                                <span>T-score</span>
+                            </div>
+                            <a href="osteoporosis.html" class="tool-link" target="_blank">Abrir herramienta →</a>
+                        </div>
+
+                        <div class="tool-card tool-card--link">
+                            <div class="tool-header">
+                                <h3>Patología Tiroidea en Atención Primaria</h3>
+                                <span class="tool-badge tool-badge-available">Disponible</span>
+                            </div>
+                            <p>Guía clínica y ayuda diagnóstica para el abordaje de la patología tiroidea en atención primaria. Orientación en hipotiroidismo, hipertiroidismo e interpretación del perfil tiroideo.</p>
+                            <div class="tool-tech">
+                                <span>TSH</span>
+                                <span>Hipotiroidismo</span>
+                                <span>Hipertiroidismo</span>
+                            </div>
+                            <a href="tiroides.html" class="tool-link" target="_blank">Abrir herramienta →</a>
+                        </div>
+
+                        <div class="tool-card tool-card--link">
+                            <div class="tool-header">
+                                <h3>STUI en la Mujer</h3>
+                                <span class="tool-badge tool-badge-private"><svg class="icon-lock" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Acceso privado</span>
+                            </div>
+                            <p>Guía clínica para la evaluación de los síntomas del tracto urinario inferior (STUI) no neurógenos en la mujer en atención primaria. Incluye orientación diagnóstica de la incontinencia y signos de alarma.</p>
+                            <div class="tool-tech">
+                                <span>STUI</span>
+                                <span>Incontinencia</span>
+                                <span>Atención Primaria</span>
+                            </div>
+                            <a href="stuimujer.html" class="tool-link" target="_blank"><svg class="icon-lock" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Entrar (contraseña) →</a>
+                        </div>
+
+                        <div class="tool-card tool-card--link">
+                            <div class="tool-header">
+                                <h3>STUI en el Varón</h3>
+                                <span class="tool-badge tool-badge-private"><svg class="icon-lock" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Acceso privado</span>
+                            </div>
+                            <p>Guía clínica para la evaluación de los síntomas del tracto urinario inferior (STUI) no neurógenos en el varón en atención primaria. Incluye cuestionario IPSS y orientación en patología prostática.</p>
+                            <div class="tool-tech">
+                                <span>IPSS</span>
+                                <span>Próstata</span>
+                                <span>HBP</span>
+                            </div>
+                            <a href="stuihombre.html" class="tool-link" target="_blank"><svg class="icon-lock" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Entrar (contraseña) →</a>
+                        </div>
+
+                        <div class="tool-card tool-card--link">
+                            <div class="tool-header">
+                                <h3>FarmacoGenómica AP</h3>
+                                <span class="tool-badge tool-badge-private"><svg class="icon-lock" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Acceso privado</span>
+                            </div>
+                            <p>Consulta farmacogenómica para Atención Primaria: orienta la selección y el ajuste de fármacos según el perfil genético del paciente, con criterios basados en AEMPS, SEMERGEN y la Cartera de Servicios del SNS.</p>
+                            <div class="tool-tech">
+                                <span>Farmacogenómica</span>
+                                <span>AEMPS</span>
+                                <span>SEMERGEN</span>
+                                <span>Cartera SNS</span>
+                            </div>
+                            <a href="farmacogenomica.html" class="tool-link" target="_blank"><svg class="icon-lock" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Entrar (contraseña) →</a>
+                        </div>
+
+                        <div class="tool-card tool-card--link">
+                            <div class="tool-header">
+                                <h3>Insulinización en DM2</h3>
+                                <span class="tool-badge tool-badge-private"><svg class="icon-lock" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Acceso privado</span>
+                            </div>
+                            <p>Guía clínica para el inicio y ajuste de insulina en la diabetes mellitus tipo 2 en atención primaria. Orientación sobre insulina basal, titulación de dosis, intensificación y manejo de la hipoglucemia.</p>
+                            <div class="tool-tech">
+                                <span>DM2</span>
+                                <span>Insulina basal</span>
+                                <span>Titulación</span>
+                            </div>
+                            <a href="insulinizacion.html" class="tool-link" target="_blank"><svg class="icon-lock" aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Entrar (contraseña) →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-section">
+                    <h2 class="section-heading">Integración con sistemas oficiales</h2>
+                    <p class="tools-section-desc">Herramientas que conectan en tiempo real con bases de datos oficiales para apoyar la decisión clínica.</p>
+
+                    <div class="tools-grid">
+                        <div class="tool-card tool-card--dev">
+                            <div class="tool-header">
+                                <h3>Sistema de apoyo a la decisión terapéutica (CDSS)</h3>
+                                <span class="tool-badge">Uso privado</span>
+                            </div>
+                            <p>Integración con la API oficial de la Agencia Española de Medicamentos y Productos Sanitarios para sugerir opciones farmacológicas según el problema clínico del paciente. El sistema cruza el contexto clínico con la base de datos oficial de medicamentos en tiempo real.</p>
+                            <div class="tool-tech">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-card tool-card--dev">
+                            <div class="tool-header">
+                                <h3>Farmacogenética avanzada (FDA · ClinPGx)</h3>
+                                <span class="tool-badge tool-badge-dev">En desarrollo</span>
+                            </div>
+                            <p>Programa de mayor alcance, en desarrollo: cruzará el perfil genético del paciente con las bases de datos oficiales de la FDA (farmacogenómica) y ClinPGx / PharmGKB para anticipar la respuesta y el riesgo de toxicidad a los fármacos según su genotipo, orientando la selección del medicamento y el ajuste de dosis.</p>
+                            <div class="tool-tech">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>Python</span>
+                                <span>FDA API</span>
+                                <span>ClinPGx</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-section">
+                    <h2 class="section-heading">Inteligencia artificial clínica</h2>
+                    <p class="tools-section-desc">Herramientas que sí incorporan modelos de inteligencia artificial. En desarrollo y uso bajo supervisión médica.</p>
+
+                    <div class="tools-grid">
+                        <div class="tool-card tool-card--dev">
+                            <div class="tool-header">
+                                <h3>Motor de diagnóstico diferencial</h3>
+                                <span class="tool-badge">Uso privado</span>
+                            </div>
+                            <p>Herramienta basada en IA para generación y priorización de diagnósticos diferenciales a partir de síntomas y datos clínicos. Utiliza modelos de lenguaje y arquitecturas MCP para procesamiento de información clínica.</p>
+                            <div class="tool-tech">
+                                <span>Python</span>
+                                <span>OpenAI API</span>
+                                <span>MCP</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-card tool-card--link">
+                            <div class="tool-header">
+                                <h3>Mi Gluco CS</h3>
+                                <span class="tool-badge tool-badge-available">Disponible · GPT</span>
+                            </div>
+                            <p>Asistente educativo de IA sobre alimentación, nutrición mediterránea y control glucémico. Analiza la foto de un plato, reconoce los alimentos y orienta sobre las raciones de hidratos y cómo suavizar los picos de glucosa, con consejos sencillos como empezar por la verdura, elegir integrales o dar un paseo después de comer. Tiene fines educativos y no sustituye el consejo médico.</p>
+                            <div class="tool-tech">
+                                <span>GPT</span>
+                                <span>ChatGPT</span>
+                                <span>Nutrición</span>
+                                <span>Control glucémico</span>
+                            </div>
+                            <a href="https://chatgpt.com/g/g-691b1bd6690c81919d534613531513f7-mi-gluco-cs" class="tool-link" target="_blank" rel="noopener">Abrir en ChatGPT →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-section">
+                    <h2 class="section-heading">Proyectos de desarrollo</h2>
+                    <p class="tools-section-desc">Aplicaciones clínicas full-stack desarrolladas desde la lógica real de la consulta.</p>
+
+                    <div class="tools-grid">
+                        <div class="tool-card tool-card--dev">
+                            <div class="tool-header">
+                                <h3>Plataforma de gestión de pacientes crónicos</h3>
+                                <span class="tool-badge">Uso privado</span>
+                            </div>
+                            <p>Aplicación full-stack para seguimiento longitudinal de pacientes con patología crónica, diseñada desde la lógica real de la consulta de atención primaria. Incluye monitorización de parámetros, alertas y registro de evolución.</p>
+                            <div class="tool-tech">
+                                <span>React</span>
+                                <span>Supabase</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                        </div>
+
+                        <div class="tool-card tool-card--dev">
+                            <div class="tool-header">
+                                <h3>Nutrigenética y nutrición de precisión</h3>
+                                <span class="tool-badge">Uso privado</span>
+                            </div>
+                            <p>Aplicación full-stack que integra el perfil genético del paciente —polimorfismos relacionados con el metabolismo de macronutrientes, vitaminas, cafeína, intolerancias y respuesta a la dieta— para generar recomendaciones nutricionales personalizadas basadas en su ADN. Traduce datos genómicos en un plan nutricional claro y accionable en consulta.</p>
+                            <div class="tool-tech">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>Python</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tools-disclaimer">
+                    <h3>Aviso importante</h3>
+                    <p>Estas herramientas han sido diseñadas y desarrolladas por la Dra. Laura Bernal Martínez como apoyo a la toma de decisiones clínicas. Tienen carácter orientativo y están dirigidas a profesionales sanitarios.</p>
+                    <p>No sustituyen en ningún caso el juicio clínico, la exploración del paciente ni la consulta médica presencial. La responsabilidad de cualquier decisión diagnóstica o terapéutica corresponde siempre al profesional que las utiliza.</p>
+                </div>
+
+                <div class="tools-note">
+                    <p><strong>Nota:</strong> Las herramientas aquí mostradas son proyectos de desarrollo propio orientados a resolver problemas reales del entorno clínico. Algunas están disponibles públicamente, otras en desarrollo continuo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>¿Interesado en colaborar?</h2>
+                <p>Estoy abierta a colaboraciones en formación, consultoría o desarrollo de soluciones digitales para el ámbito sanitario.</p>
+                <a href="../contacto.html" class="btn btn-primary">Hablemos</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Dra. Laura Bernal</h4>
+                    <p>Medicina de precisión<br>Murcia, España</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="../sobre-mi.html">Sobre mí</a></li>
+                        <li><a href="../clinica.html">Clínica</a></li>
+                        <li><a href="index.html">Herramientas clínicas</a></li>
+                        <li><a href="../contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>
+                        <a href="mailto:drabernalm@gmail.com">drabernalm@gmail.com</a>
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/laura-bernal-4a9760118/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Dra. Laura Bernal. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

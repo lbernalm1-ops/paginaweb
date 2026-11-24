@@ -1,0 +1,2371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patología Tiroidea en Atención Primaria — Guía Clínica 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    /* Paleta de marca */
+    --navy:      #1A2E5C;   /* azul marino principal */
+    --cobalt:    #0047AB;   /* azul cobalto */
+    --gold:      #D4AF37;   /* dorado */
+    --gold-lt:   #F5D97A;   /* dorado claro */
+    --grayblue:  #C8CDD6;   /* gris azulado (bordes) */
+    --alert:     #E24B4A;   /* rojo alerta */
+
+    /* Mapeo a roles existentes (no romper reglas que usan estas vars) */
+    --bone:      #f4f6f9;   /* fondo general (gris muy claro) */
+    --bone-dark: #e4e8ef;   /* fondo hover/alt */
+    --ink:       #16223f;   /* texto principal (navy muy oscuro) */
+    --ink-mid:   #4a5673;   /* texto secundario */
+    --rust:      #1A2E5C;   /* acento principal -> navy */
+    --rust-lt:   #0047AB;   /* acento claro -> cobalto */
+    --teal:      #0047AB;   /* acento secundario -> cobalto */
+    --teal-lt:   #2a6fd0;
+    --amber:     #D4AF37;   /* dorado */
+    --amber-lt:  #F5D97A;   /* dorado claro */
+    --slate:     #3a5068;
+    --green:     #2e6b3e;   /* verde sutil (semáforo: bajo) */
+    --red:       #E24B4A;   /* alerta */
+    --border:    #C8CDD6;   /* bordes */
+    --shadow:    rgba(26,46,92,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bone);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,71,171,0.30) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 10%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,0.22) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .header-badge {
+    display: inline-block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--rust);
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+  header h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+    color: var(--bone);
+  }
+  header h1 span { color: var(--amber-lt); }
+  .header-sub {
+    font-size:.9rem;
+    color: rgba(245,240,232,0.65);
+    font-weight: 300;
+    max-width: 560px;
+  }
+  .header-meta {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-size:.8rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: rgba(245,240,232,0.5);
+    letter-spacing: 0.06em;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--ink-mid);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--rust);
+  }
+  .nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav a {
+    display: inline-block;
+    padding: 0.75rem 1.1rem;
+    font-size:.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(245,240,232,0.65);
+    white-space: nowrap;
+    transition: color 0.2s, background 0.2s;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  nav a:hover { color: var(--bone); background: rgba(255,255,255,0.06); }
+
+  /* MAIN */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* SECTIONS */
+  section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 4rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    font-weight: 500;
+    color: var(--rust);
+    letter-spacing: 0.08em;
+    min-width: 2rem;
+  }
+  .section-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-icon {
+    margin-left: auto;
+    font-size: 1.3rem;
+    opacity: 0.5;
+  }
+
+  /* CARDS */
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .card-title {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  /* RISK GRID */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .risk-card {
+    border-left: 4px solid;
+    padding: 1rem 1.1rem;
+    border-radius: 0 4px 4px 0;
+    background: #fff;
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .risk-card.muy-alto { border-color: var(--red); }
+  .risk-card.alto     { border-color: var(--rust); }
+  .risk-card.moderado { border-color: var(--amber); }
+  .risk-badge {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+    color: #fff;
+  }
+  .risk-card.muy-alto .risk-badge { background: var(--red); }
+  .risk-card.alto     .risk-badge { background: var(--rust); }
+  .risk-card.moderado .risk-badge { background: var(--amber); color: var(--ink); }
+  .risk-card ul { padding-left: 1.1rem; }
+  .risk-card li { font-size:.85rem; line-height: 1.55; margin-bottom: 0.25rem; }
+
+  /* T-SCORE TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size:.85rem;
+    box-shadow: 0 1px 4px var(--shadow);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  th {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 0.65rem 1rem;
+    text-align: left;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--bone-dark);
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bone); }
+  .tag {
+    display: inline-block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .tag-normal  { background: #d4edda; color: #155724; }
+  .tag-osteo   { background: #fff3cd; color: #856404; }
+  .tag-op      { background: #fde3d4; color: #721c24; }
+  .tag-op-grav { background: var(--red); color: #fff; }
+
+  /* FRAX BOX */
+  .frax-box {
+    background: linear-gradient(135deg, var(--teal) 0%, #134f4f 100%);
+    color: #fff;
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .frax-box h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #fff;
+  }
+  .frax-metrics {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .frax-metric {
+    background: rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 0.65rem 1rem;
+    flex: 1;
+    min-width: 160px;
+  }
+  .frax-metric .val {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--amber-lt);
+    display: block;
+  }
+  .frax-metric .lbl { font-size:.8rem; opacity: 0.8; }
+  .frax-link {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.8rem;
+    color: var(--amber-lt);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--amber-lt);
+  }
+
+  /* DXA */
+  .dxa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+  .dxa-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.9rem 1rem;
+    font-size:.85rem;
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+  .dxa-item strong {
+    display: block;
+    font-size:.8rem;
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--teal);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  /* TREATMENT */
+  .drug-group {
+    margin-bottom: 1.25rem;
+  }
+  .drug-header {
+    background: var(--ink-mid);
+    color: var(--bone);
+    padding: 0.55rem 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .drug-header .linea {
+    font-size:.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    background: var(--rust);
+  }
+  .drug-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size:.85rem;
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .drug-table th {
+    background: var(--bone-dark);
+    color: var(--ink-mid);
+    padding: 0.5rem 0.85rem;
+    font-size:.7rem;
+  }
+  .drug-table td {
+    padding: 0.55rem 0.85rem;
+    border-bottom: 1px solid var(--bone);
+    vertical-align: top;
+    font-size:.8rem;
+  }
+  .drug-table tr:last-child td { border-bottom: none; }
+
+  /* ALERT BOXES */
+  .alert {
+    border-left: 4px solid;
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 1rem;
+    background: #fff;
+    font-size:.85rem;
+  }
+  .alert-warning { border-color: var(--amber); }
+  .alert-danger  { border-color: var(--red); }
+  .alert-info    { border-color: var(--teal); }
+  .alert-success { border-color: var(--green); }
+  .alert strong  { font-weight: 600; }
+  .alert-label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .alert-warning .alert-label { color: var(--amber); }
+  .alert-danger  .alert-label { color: var(--red); }
+  .alert-info    .alert-label { color: var(--teal); }
+  .alert-success .alert-label { color: var(--green); }
+
+  /* REFERRAL */
+  .referral-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1rem;
+  }
+  .referral-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem 1.1rem;
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .referral-card h4 {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--bone-dark);
+  }
+  .referral-card.urgent h4 { color: var(--red); }
+  .referral-card.prefer h4 { color: var(--rust); }
+  .referral-card.option h4 { color: var(--teal); }
+  .referral-card ul { padding-left: 1.1rem; }
+  .referral-card li { font-size:.85rem; margin-bottom: 0.3rem; line-height: 1.5; }
+
+  /* ANALYTIC BOX */
+  .analytic-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+  }
+  .chip {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    padding: 0.28rem 0.65rem;
+    border-radius: 2px;
+    background: var(--bone-dark);
+    color: var(--ink-mid);
+    border: 1px solid var(--border);
+  }
+
+  /* FOLLOWUP */
+  .followup-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 2rem;
+  }
+  .followup-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.55rem;
+    top: 0.8rem;
+    bottom: 0.8rem;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    position: relative;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -1.65rem;
+    top: 1.1rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rust);
+    border: 2px solid var(--bone);
+    flex-shrink: 0;
+  }
+  .timeline-time {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    color: var(--rust);
+    min-width: 90px;
+    padding-top: 0.15rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .timeline-content {
+    font-size:.85rem;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .timeline-content strong { font-weight: 600; }
+
+  /* SPECIAL SITUATIONS */
+  .sp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  .sp-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .sp-card-head {
+    padding: 0.65rem 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #fff;
+  }
+  .sp-card-head.male   { background: var(--slate); }
+  .sp-card-head.gc     { background: #5a3070; }
+  .sp-card-head.renal  { background: var(--teal); }
+  .sp-card-body {
+    padding: 0.9rem 1rem;
+    font-size:.8rem;
+    line-height: 1.55;
+  }
+  .sp-card-body ul { padding-left: 1.1rem; }
+  .sp-card-body li { margin-bottom: 0.3rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink-mid);
+    color: rgba(245,240,232,0.55);
+    padding: 1.5rem 2rem;
+    font-size:.8rem;
+    font-family: 'Source Sans 3', sans-serif;
+    letter-spacing: 0.04em;
+    text-align: center;
+  }
+  footer a { color: var(--amber-lt); text-decoration: none; }
+
+  /* UTILS */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+  .mt-sm { margin-top: 0.5rem; }
+  .mt-md { margin-top: 1rem; }
+  ul.checklist { list-style: none; padding: 0; }
+  ul.checklist li { padding-left: 1.4rem; position: relative; margin-bottom: 0.3rem; font-size:.85rem; }
+  ul.checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size:.73rem; top: 0.1rem; }
+  ul.dotlist { padding-left: 1.2rem; }
+  ul.dotlist li { font-size:.85rem; margin-bottom: 0.25rem; line-height: 1.55; }
+  .highlight-row td:first-child { font-weight: 600; }
+  .mono { font-family: 'Source Sans 3', sans-serif; }
+
+  /* ===== AYUDA DIAGNÓSTICA ===== */
+  #ayuda {
+    scroll-margin-top: 4rem;
+  }
+  .ayuda-wrap {
+    background: var(--ink);
+    border-radius: 6px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(26,21,16,0.22);
+  }
+  .ayuda-header {
+    background: linear-gradient(100deg, #16223f 60%, #1A2E5C 100%);
+    padding: 1.5rem 2rem 1.2rem;
+    border-bottom: 2px solid var(--rust);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .ayuda-header h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.25rem;
+    color: var(--bone);
+    font-weight: 600;
+  }
+  .ayuda-header p {
+    font-size:.8rem;
+    color: rgba(245,240,232,0.5);
+    margin-top: 0.2rem;
+  }
+  .ayuda-badge {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--amber);
+    color: var(--ink);
+    padding: 0.2rem 0.65rem;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+  .ayuda-body {
+    padding: 1.5rem 2rem;
+    background: var(--bone);
+  }
+  .form-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (max-width: 640px) {
+    .form-grid-3, .form-grid-2 { grid-template-columns: 1fr; }
+  }
+  .f-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .f-group label {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    font-weight: 500;
+  }
+  .f-group input,
+  .f-group select {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: #fff;
+    color: var(--ink);
+    width: 100%;
+    transition: border-color 0.15s;
+  }
+  .f-group input:focus,
+  .f-group select:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 2px rgba(0,71,171,0.15);
+  }
+  .fr-subsection {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 500;
+    margin: 1.1rem 0 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .fr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem 1.5rem;
+  }
+  @media (max-width: 640px) { .fr-grid { grid-template-columns: 1fr; } }
+  .fr-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.2rem 0;
+  }
+  .fr-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    accent-color: var(--rust);
+    cursor: pointer;
+  }
+  .fr-item span {
+    font-size:.85rem;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .btn-calcular {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.85rem 1rem;
+    background: var(--ink);
+    color: var(--amber-lt);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.85rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    border: 2px solid var(--amber);
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-calcular:hover {
+    background: var(--rust);
+    color: #fff;
+    border-color: var(--rust);
+  }
+  .btn-calcular:active { transform: scale(0.99); }
+
+  /* Resultado */
+  #resultado-dx { display: none; }
+  #resultado-dx.visible { display: block; }
+  .res-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  @media (max-width: 500px) { .res-metrics { grid-template-columns: 1fr 1fr; } }
+  .res-metric {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.85rem 1rem;
+    text-align: center;
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .res-metric .mval {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1.1;
+  }
+  .res-metric .mlbl {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    color: var(--ink-mid);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+    display: block;
+  }
+  .mval.col-red    { color: var(--red); }
+  .mval.col-amber  { color: var(--amber); }
+  .mval.col-teal   { color: var(--teal); }
+  .mval.col-green  { color: var(--green); }
+  .mval.col-ink    { color: var(--ink-mid); }
+
+  .res-block {
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 1px 4px var(--shadow);
+  }
+  .res-block-head {
+    padding: 0.6rem 1rem;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+  }
+  .res-block-head.blue   { background: #185FA5; }
+  .res-block-head.teal   { background: var(--teal); }
+  .res-block-head.green  { background: var(--green); }
+  .res-block-head.amber  { background: #7a5506; }
+  .res-block-head.red    { background: var(--red); }
+  .res-block-body {
+    background: #fff;
+    padding: 1rem 1.1rem;
+    font-size:.85rem;
+    line-height: 1.6;
+  }
+  .res-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+  .res-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.15rem; }
+  .res-row:last-child { margin-bottom: 0; }
+  .rdivider { height: 1px; background: var(--bone-dark); margin: 0.6rem 0; }
+
+  .tag-res {
+    display: inline-block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 2px;
+    font-weight: 500;
+    margin-left: 0.3rem;
+  }
+  .tag-res.red    { background: #fde3d4; color: var(--red); }
+  .tag-res.amber  { background: #fdf2d8; color: #7a5506; }
+  .tag-res.teal   { background: #d4f0ec; color: var(--teal); }
+  .tag-res.blue   { background: #d8eaf8; color: #185FA5; }
+  .tag-res.gray   { background: var(--bone-dark); color: var(--ink-mid); }
+  .tag-res.green  { background: #d6edda; color: var(--green); }
+
+  .mini-alert {
+    border-left: 3px solid;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0 3px 3px 0;
+    font-size:.8rem;
+    margin: 0.5rem 0;
+    line-height: 1.5;
+  }
+  .mini-alert.danger { border-color: var(--red);   background: #fde8e8; color: #5c1010; }
+  .mini-alert.warn   { border-color: var(--amber);  background: #fdf4dc; color: #6a4200; }
+  .mini-alert.info   { border-color: var(--teal);   background: #dff0ed; color: #0a4040; }
+  .mini-alert.success{ border-color: var(--green);  background: #dff0e2; color: #1a4425; }
+
+  .drug-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--bone-dark);
+    gap: 0.5rem;
+  }
+  .drug-line:last-child { border-bottom: none; }
+  .drug-line .dn { font-size:.85rem; font-weight: 600; }
+  .drug-line .dd { font-size:.8rem; color: var(--ink-mid); }
+  .tl-item {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    align-items: flex-start;
+  }
+  .tl-time {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    color: var(--rust);
+    min-width: 90px;
+    font-weight: 500;
+    padding-top: 0.05rem;
+    flex-shrink: 0;
+  }
+  .tl-desc { font-size:.85rem; line-height: 1.5; }
+  .res-footer {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--bone-dark);
+    border-radius: 3px;
+    font-size:.73rem;
+    color: var(--ink-mid);
+    font-family: 'Source Sans 3', sans-serif;
+    line-height: 1.55;
+  }
+  .btn-reset {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--ink-mid);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size:.73rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 0.75rem;
+    transition: background 0.15s;
+  }
+  .btn-reset:hover { background: var(--bone-dark); }
+
+
+/* ===== ESTILOS AYUDA (complementarios) ===== */
+
+:root{
+  --navy:#1A2E5C;--cobalt:#0047AB;--gold:#D4AF37;--gold-lt:#F5D97A;
+  --grayblue:#C8CDD6;--alert:#E24B4A;
+  --bone:#f4f6f9;--bone-dark:#e4e8ef;--ink:#16223f;--ink-mid:#4a5673;
+  --rust:#1A2E5C;--rust-lt:#0047AB;--teal:#0047AB;--teal-lt:#2a6fd0;
+  --amber:#D4AF37;--amber-lt:#F5D97A;--green:#2e6b3e;--red:#E24B4A;
+  --border:#C8CDD6;--shadow:rgba(26,46,92,0.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3', sans-serif;background:var(--bone);color:var(--ink);font-size:15px;line-height:1.65}
+
+/* NAV */
+nav{background:var(--ink);border-bottom:2px solid var(--rust);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1020px;margin:0 auto;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
+nav a{display:inline-block;padding:.7rem 1rem;font-size:.8rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:rgba(245,240,232,.65);white-space:nowrap;transition:color .2s,background .2s;font-family:'Source Sans 3', sans-serif}
+nav a:hover,nav a.active{color:var(--bone);background:rgba(255,255,255,.07)}
+nav a.active{border-bottom:2px solid var(--amber-lt);color:var(--amber-lt)}
+.nav-sep{width:1px;height:20px;background:rgba(245,240,232,.15);margin:.6rem .3rem}
+nav .nav-go{color:var(--amber-lt);font-weight:600}
+nav .nav-go:hover{background:rgba(212,147,10,.15)}
+
+/* HEADER */
+header{background:var(--ink);padding:2.5rem 2rem 2rem;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,71,171,0.30) 0%,transparent 70%);pointer-events:none}
+header::after{content:'';position:absolute;bottom:-50px;left:5%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.22) 0%,transparent 70%);pointer-events:none}
+.hdr{max-width:1020px;margin:0 auto;position:relative;z-index:1}
+.hdr-badge{display:inline-block;font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:.25rem .75rem;border-radius:2px;margin-bottom:.75rem}
+header h1{font-family:'Source Serif 4', serif;font-size:clamp(2rem,4vw,2.9rem);font-weight:600;color:var(--bone);line-height:1.1;margin-bottom:.4rem;letter-spacing:-0.01em}
+header h1 span{color:var(--amber-lt)}
+header p{font-size:.85rem;color:rgba(245,240,232,.55);max-width:560px}
+
+/* MAIN */
+main{max-width:1020px;margin:0 auto;padding:2rem 1.5rem 4rem}
+
+/* LAYOUT */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem}
+@media(max-width:640px){.two-col,.three-col{grid-template-columns:1fr}}
+
+/* FORM ELEMENTS */
+.f-group{display:flex;flex-direction:column;gap:4px}
+.f-label{font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-mid);font-weight:500}
+.f-group input,.f-group select{font-family:'Source Sans 3', sans-serif;font-size:.9rem;padding:.45rem .7rem;border:1px solid var(--border);border-radius:3px;background:#fff;color:var(--ink);width:100%;transition:border-color .15s,background .15s}
+.f-group input:focus,.f-group select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 2px rgba(212,175,55,.22)}
+.f-group input::placeholder{color:#cfcabb;font-style:italic}
+.f-group input.filled,.f-group select.filled{background:#fcf3d8;border-color:var(--gold)}
+.f-group select option:first-child{color:#ccc}
+.subsect{font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);font-weight:500;margin:1.1rem 0 .55rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
+.chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:.3rem 1.5rem}
+@media(max-width:640px){.chk-grid{grid-template-columns:1fr}}
+.chk-item{display:flex;align-items:flex-start;gap:.5rem;cursor:pointer;padding:.2rem 0}
+.chk-item input[type=checkbox]{width:15px;height:15px;margin-top:3px;flex-shrink:0;accent-color:var(--rust);cursor:pointer}
+.chk-item span{font-size:.85rem;line-height:1.45;color:var(--ink)}
+
+/* BLOCKS */
+.block{background:#fff;border:1px solid var(--border);border-radius:5px;margin-bottom:1rem;overflow:hidden;box-shadow:0 1px 4px var(--shadow)}
+.res-section{margin:1.6rem 0 1rem}
+.res-section{margin:1.8rem 0 1rem}
+.res-section-head{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;padding-bottom:.55rem;border-bottom:1.5px solid var(--border)}
+.res-section-head .rs-num{font-family:'Source Sans 3',sans-serif;font-size:.73rem;font-weight:500;color:var(--rust);letter-spacing:.08em;min-width:1.5rem}
+.res-section-head .rs-title{font-family:'Source Serif 4',serif;font-size:1.25rem;font-weight:600;color:var(--ink)}
+.res-section-head .rs-sub{font-size:.73rem;color:var(--ink-mid);margin-left:auto;font-weight:400}
+.block-head{padding:.55rem 1rem;font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:#fff;display:flex;align-items:center;gap:.5rem}
+.bh-blue{background:#185FA5}.bh-teal{background:var(--teal)}.bh-green{background:var(--green)}.bh-amber{background:#7a5506}.bh-red{background:var(--red)}.bh-purple{background:#533ab5}.bh-slate{background:#3a5068}
+.block-body{padding:.9rem 1.1rem;font-size:.85rem;line-height:1.6}
+
+/* CARD */
+.card{background:#fff;border:1px solid var(--border);border-radius:5px;padding:1.1rem 1.4rem;margin-bottom:1rem;box-shadow:0 1px 4px var(--shadow)}
+.card-title{font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:.7rem}
+
+/* ALERTS */
+.al{border-left:3px solid;padding:.55rem .85rem;border-radius:0 3px 3px 0;font-size:.85rem;margin:.5rem 0;line-height:1.5}
+.al-danger{border-color:var(--alert);background:#fdeaea;color:#8a1f1e}
+.al-warn{border-color:var(--gold);background:#fcf3d8;color:#6a5208}
+.al-info{border-color:var(--cobalt);background:#e4ecf8;color:#13315f}
+.al-success{border-color:var(--green);background:#e3f0e6;color:#1a4425}
+
+/* TAGS */
+.tg{display:inline-block;font-family:'Source Sans 3', sans-serif;font-size:.7rem;padding:.15rem .5rem;border-radius:2px;font-weight:500;vertical-align:middle}
+.tg-r{background:#fde3d4;color:var(--red)}.tg-a{background:#fdf2d8;color:#7a5506}.tg-t{background:#d4f0ec;color:var(--teal)}.tg-b{background:#d8eaf8;color:#185FA5}.tg-g{background:var(--bone-dark);color:var(--ink-mid)}.tg-gr{background:#d6edda;color:var(--green)}.tg-p{background:#ece6fa;color:#533ab5}
+
+/* ROW */
+.rrow{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.45rem}
+.rrow:last-child{margin-bottom:0}
+.rico{flex-shrink:0;margin-top:.1rem;font-size:.95rem}
+.rdiv{height:1px;background:var(--bone-dark);margin:.6rem 0}
+
+/* DRUG ROW */
+.drow{display:flex;justify-content:space-between;align-items:flex-start;padding:.45rem 0;border-bottom:1px solid var(--bone-dark);gap:.5rem}
+.drow:last-child{border-bottom:none}
+.drow .dn{font-size:.85rem;font-weight:600}
+.drow .dd{font-size:.8rem;color:var(--ink-mid);margin-top:2px}
+/* tarjetas de fármaco puntuadas y seleccionables */
+.fdrug{display:flex;align-items:flex-start;gap:.7rem;padding:.65rem .8rem;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;margin-bottom:.45rem;transition:border-color .15s,box-shadow .15s,background .15s}
+.fdrug:hover{border-color:var(--cobalt)}
+.fdrug.sel{border-color:var(--cobalt);background:#eef3fb;box-shadow:0 0 0 1.5px var(--cobalt)}
+.fdrug-score{flex-shrink:0;min-width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;font-variant-numeric:tabular-nums}
+.fscore-best{background:#e3f0e6;color:#1a6b34}
+.fscore-good{background:#eef3fb;color:#0047AB}
+.fscore-mid{background:#f4f6f9;color:#4a5673}
+.fscore-low{background:#fdeaea;color:#b0322f}
+.fdrug-body{flex:1;min-width:0}
+.fdrug-name{font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.fdrug-dose{font-size:.8rem;color:var(--ink-mid);margin-top:1px}
+.fdrug-why{font-size:.78rem;color:var(--ink-mid);margin-top:.35rem;line-height:1.45}
+.fdrug-why .plus{color:#1a6b34;font-weight:600}
+.fdrug-why .minus{color:#b0322f;font-weight:600}
+.fdrug-pick{flex-shrink:0;width:18px;height:18px;border:2px solid var(--border);border-radius:50%;margin-top:2px;transition:border-color .15s}
+.fdrug.sel .fdrug-pick{border-color:var(--cobalt);background:var(--cobalt);box-shadow:inset 0 0 0 3px #fff}
+.fdrug-badge{font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:1px 7px;border-radius:9px;background:var(--gold);color:var(--navy)}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.65rem;margin-bottom:1.25rem}
+.met{background:#fff;border:1px solid var(--border);border-radius:4px;padding:.8rem .9rem;text-align:center;box-shadow:0 1px 4px var(--shadow)}
+.mv{font-family:'Source Sans 3', sans-serif;font-size:1.45rem;font-weight:700;display:block;line-height:1.1}
+.ml{font-family:'Source Sans 3', sans-serif;font-size:.7rem;color:var(--ink-mid);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem;display:block}
+.mv.cr{color:var(--red)}.mv.ca{color:var(--amber)}.mv.ct{color:var(--teal)}.mv.cg{color:var(--green)}.mv.ck{color:var(--ink-mid)}
+
+/* TIMELINE */
+.tl{display:flex;gap:.75rem;margin-bottom:.5rem;align-items:flex-start}
+.tlt{font-family:'Source Sans 3', sans-serif;font-size:.7rem;color:var(--rust);min-width:88px;font-weight:500;padding-top:.05rem;flex-shrink:0}
+.tld{font-size:.85rem;line-height:1.5}
+
+/* BUTTONS */
+.btn-main{width:100%;margin-top:1.25rem;padding:.85rem 1rem;background:var(--ink);color:var(--amber-lt);font-family:'Source Sans 3', sans-serif;font-size:.85rem;letter-spacing:.08em;font-weight:500;border:2px solid var(--amber);border-radius:3px;cursor:pointer;text-transform:uppercase;transition:background .15s,color .15s}
+.btn-generar{width:100%;margin:.5rem 0 1.5rem;padding:1.15rem 1rem;background:linear-gradient(135deg,#fbf0c4 0%,#f5e3a3 100%);color:var(--navy);font-family:'Source Sans 3',sans-serif;font-size:1rem;letter-spacing:.03em;font-weight:700;border:1px solid #e9d488;border-radius:12px;cursor:pointer;box-shadow:0 4px 18px rgba(212,175,55,.28),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .12s,box-shadow .15s,background .15s;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.btn-generar:hover{transform:translateY(-2px);box-shadow:0 7px 24px rgba(212,175,55,.42),inset 0 1px 0 rgba(255,255,255,.6);background:linear-gradient(135deg,#fcf3d2 0%,#f3dd92 100%)}
+.btn-generar:active{transform:translateY(0)}
+.btn-generar .bg-ico{font-size:1.15rem;color:#c79a1f}
+.btn-main:hover{background:var(--rust);color:#fff;border-color:var(--rust)}
+.btn-main:active{transform:scale(.99)}
+.btn-sec{background:transparent;border:1px solid var(--border);color:var(--ink-mid);font-family:'Source Sans 3', sans-serif;font-size:.73rem;letter-spacing:.06em;text-transform:uppercase;padding:.35rem .85rem;border-radius:2px;cursor:pointer;margin-top:.75rem;transition:background .15s}
+.btn-sec:hover{background:var(--bone-dark)}
+
+/* ACCORDION */
+.accordion{border:1px solid var(--border);border-radius:5px;overflow:hidden;margin-bottom:1rem;box-shadow:0 1px 4px var(--shadow)}
+.acc-head{width:100%;background:var(--ink-mid);color:var(--bone);border:none;padding:.75rem 1.1rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:'Source Sans 3', sans-serif;font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;transition:background .15s}
+.acc-head:hover{background:var(--ink)}
+.acc-head .arrow{transition:transform .2s;font-size:.8rem}
+.acc-head.open .arrow{transform:rotate(180deg)}
+.acc-body{background:#fff;padding:0;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s}
+.acc-body.open{padding:1rem 1.1rem;max-height:2000px}
+
+/* SECONDARY SECTION */
+.sec-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1.1rem;padding-bottom:.55rem;border-bottom:1.5px solid var(--border)}
+.sec-num{font-family:'Source Sans 3', sans-serif;font-size:.73rem;font-weight:500;color:var(--rust);letter-spacing:.08em;min-width:2rem}
+.sec-title{font-family:'Source Serif 4', serif;font-size:1.25rem;font-weight:600}
+.sec-icon{margin-left:auto;font-size:1.2rem;opacity:.5}
+
+/* ===== CAMPOS USADOS PARA EL FRAX ===== */
+.frax-in{position:relative}
+.frax-in .f-label{color:var(--navy)}
+.frax-in input,.frax-in select{background:#fff;border-color:var(--border)}
+.frax-in input:focus,.frax-in select:focus{border-color:var(--amber);box-shadow:0 0 0 2px rgba(212,147,10,.22)}
+.frax-in input.filled,.frax-in select.filled{background:#fcf3d8;border-color:var(--gold)}
+/* chk usados en frax */
+.chk-item.frax-chk{background:#fcf3d8;border-radius:4px;padding:.25rem .5rem;margin:-.05rem -.2rem}
+.chk-item.frax-chk span{color:var(--navy)}
+/* badge FRAX en etiquetas */
+.frax-tag{display:inline-block;font-family:'Source Sans 3', sans-serif;font-size:.56rem;font-weight:600;letter-spacing:.05em;background:var(--amber);color:var(--navy);padding:1px 5px;border-radius:9px;vertical-align:middle;margin-left:.35rem;cursor:help;text-transform:uppercase}
+/* tooltip simple */
+[data-tip]{position:relative}
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);background:var(--ink);color:var(--bone);font-family:'Source Sans 3', sans-serif;font-size:.73rem;font-weight:400;letter-spacing:0;text-transform:none;line-height:1.4;padding:.4rem .6rem;border-radius:4px;white-space:nowrap;z-index:50;box-shadow:0 4px 14px rgba(0,0,0,.25);pointer-events:none}
+[data-tip]:hover::before{content:'';position:absolute;left:50%;bottom:calc(100% + 1px);transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--ink);z-index:50;pointer-events:none}
+
+/* ===== TOGGLE DXA (sí / no) ===== */
+.dxa-ask{background:#fff;border:1px solid var(--border);border-radius:5px;padding:1rem 1.1rem;box-shadow:0 1px 4px var(--shadow);margin-bottom:1rem}
+.dxa-ask-q{font-family:'Source Sans 3', sans-serif;font-size:.73rem;letter-spacing:.07em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:.7rem}
+.seg{display:inline-flex;background:var(--bone);border:1px solid var(--border);border-radius:5px;padding:3px;gap:3px}
+.seg button{font-family:'Source Sans 3', sans-serif;font-size:.8rem;letter-spacing:.04em;padding:.45rem 1.1rem;border:none;background:transparent;color:var(--ink-mid);border-radius:3px;cursor:pointer;transition:background .15s,color .15s}
+.seg button.on{background:var(--teal);color:#fff}
+.dxa-fields{margin-top:1rem;display:none}
+.dxa-fields.show{display:block}
+.dxa-noresult{margin-top:1rem;display:none}
+.dxa-noresult.show{display:block}
+
+/* RESULT HIDDEN */
+#resultado{display:none}
+#resultado.show{display:block}
+/* métrica FRAX destacada */
+.met.met-frax{background:#fcf3d8;border:1px solid var(--gold)}
+
+/* ANALYTIC TABLE */
+.atab{width:100%;border-collapse:collapse;font-size:.85rem}
+.atab th{background:var(--ink-mid);color:var(--bone);padding:.45rem .8rem;text-align:left;font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase}
+.atab td{padding:.45rem .8rem;border-bottom:1px solid var(--bone-dark);vertical-align:top}
+.atab tr:last-child td{border-bottom:none}
+.atab tr:hover td{background:var(--bone)}
+.atab .anormal{color:var(--red);font-weight:600}
+.atab .awarning{color:var(--amber);font-weight:600}
+
+/* SECONDARY OP CARDS */
+.sec-op-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.85rem;margin-top:.5rem}
+.sec-op-card{border-radius:4px;overflow:hidden;box-shadow:0 1px 4px var(--shadow)}
+.sec-op-head{padding:.55rem .9rem;font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;font-weight:500;color:#fff}
+.sec-op-body{background:#fff;padding:.8rem .9rem;font-size:.8rem;line-height:1.55}
+.sec-op-body ul{padding-left:1.1rem}
+.sec-op-body li{margin-bottom:.25rem}
+
+/* FOOTER */
+footer{background:var(--ink-mid);color:rgba(245,240,232,.5);padding:1.2rem 2rem;font-size:.73rem;font-family:'Source Sans 3', sans-serif;letter-spacing:.04em;text-align:center}
+footer a{color:var(--amber-lt);text-decoration:none}
+
+
+/* ===== SELECTOR TRATAMIENTO ===== */
+.tto-selector{margin:1rem 0 .5rem}
+.tto-selector-title{font-family:'Source Sans 3', sans-serif;font-size:.73rem;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:500;margin-bottom:.6rem}
+.tto-radio-group{display:flex;flex-direction:column;gap:.35rem}
+.tto-radio{display:flex;align-items:center;gap:.65rem;padding:.45rem .75rem;border:1px solid var(--border);border-radius:4px;cursor:pointer;background:#fff;transition:background .15s,border-color .15s}
+.tto-radio:hover{background:#f5faf5;border-color:#aaccaa}
+.tto-radio.selected{background:#eaf4ea;border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.tto-radio input[type=radio]{accent-color:var(--green);width:16px;height:16px;flex-shrink:0;cursor:pointer}
+.tto-radio .rn{font-size:.85rem;font-weight:600;flex:1}
+.tto-radio .rd{font-size:.8rem;color:var(--ink-mid);margin-top:1px}
+.tto-radio-none{background:var(--bone-dark)}
+
+/* ===== RESUMEN HISTORIA CLÍNICA ===== */
+#blk-resumen{display:none;margin-top:1rem}
+#blk-resumen.show{display:block}
+.resumen-box{background:#fff;border:1.5px solid var(--ink-mid);border-radius:5px;overflow:hidden;box-shadow:0 2px 8px var(--shadow)}
+.resumen-head{background:var(--ink);color:var(--bone);padding:.65rem 1.1rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.resumen-head span{font-family:'Source Sans 3', sans-serif;font-size:.73rem;letter-spacing:.09em;text-transform:uppercase;font-weight:500}
+.resumen-body{padding:1.1rem 1.4rem;font-size:.85rem;line-height:1.7;white-space:pre-wrap;font-family:'Source Sans 3', sans-serif}
+.btn-copy{font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;padding:.3rem .85rem;border-radius:2px;border:1px solid rgba(245,240,232,.4);background:transparent;color:rgba(245,240,232,.8);cursor:pointer;transition:background .15s}
+.btn-copy:hover{background:rgba(245,240,232,.12)}
+.btn-print-hc{font-family:'Source Sans 3', sans-serif;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;padding:.3rem .85rem;border-radius:2px;border:1px solid rgba(212,147,10,.6);background:transparent;color:var(--amber-lt);cursor:pointer;transition:background .15s;margin-left:.4rem}
+.btn-print-hc:hover{background:rgba(212,147,10,.1)}
+
+/* ===== HOJA PACIENTE ===== */
+@media print{
+  body>*{display:none!important}
+  #hoja-paciente{display:block!important;position:static;width:100%;background:#fff;padding:2cm 2.2cm;font-family:'Source Sans 3', sans-serif;font-size:11pt;line-height:1.65;color:#1a1a1a}
+  #hoja-paciente h1{font-size:19pt;font-family:'Source Serif 4',serif;color:#1A2E5C;margin-bottom:2pt;font-weight:600}
+  #hoja-paciente h1+p{color:#666;font-size:9.5pt;margin-bottom:14pt;border-bottom:2.5pt solid #D4AF37;padding-bottom:10pt}
+  #hoja-paciente h2{font-size:11.5pt;margin:14pt 0 5pt;color:#0047AB;font-weight:700;border-left:3pt solid #D4AF37;padding-left:8pt}
+  #hoja-paciente p,#hoja-paciente li{font-size:10.5pt;margin-bottom:4pt}
+  #hoja-paciente ul{padding-left:1.3em;margin-bottom:4pt}
+  #hoja-paciente li{margin-bottom:5pt}
+  .no-print{display:none!important}
+}
+#hoja-paciente{display:none}
+#hoja-preview-body h1{font-size:1.3rem;font-family:'Source Serif 4',serif;color:var(--navy);margin-bottom:.4rem;border-bottom:2px solid var(--gold);padding-bottom:.35rem}
+#hoja-preview-body h2{font-size:.9rem;text-transform:uppercase;letter-spacing:.05em;color:var(--cobalt);margin:1rem 0 .35rem;font-weight:600}
+#hoja-preview-body p,#hoja-preview-body li{font-size:.9rem;margin-bottom:.3rem}
+#hoja-preview-body ul{padding-left:1.3em;margin-bottom:.3rem}
+/* ===== TABS ===== */
+.tab-bar {
+  background: var(--ink);
+  border-bottom: 2px solid var(--rust);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.tab-bar-inner {
+  max-width: 1020px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab-btn {
+  padding: .8rem 1.5rem;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size:.8rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border: none;
+  background: transparent;
+  color: rgba(245,240,232,.6);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .2s, background .2s, border-bottom .2s;
+  border-bottom: 3px solid transparent;
+}
+.tab-btn:hover { color: var(--bone); background: rgba(255,255,255,.05); }
+.tab-btn.active { color: var(--amber-lt); border-bottom-color: var(--amber-lt); }
+.tab-sep { width: 1px; background: rgba(245,240,232,.15); margin: .6rem 0; flex-shrink: 0; }
+
+/* ===== SUB-NAV (dentro de guía) ===== */
+.sub-nav {
+  background: var(--ink-mid);
+  border-bottom: 1px solid rgba(245,240,232,.1);
+  position: sticky;
+  top: 49px;
+  z-index: 100;
+  display: none;
+}
+.sub-nav.visible { display: block; }
+.sub-nav-inner {
+  max-width: 1020px;
+  margin: 0 auto;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sub-nav a {
+  display: inline-block;
+  padding: .55rem .9rem;
+  font-size:.73rem;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(245,240,232,.55);
+  white-space: nowrap;
+  font-family: 'Source Sans 3', sans-serif;
+  transition: color .15s;
+}
+.sub-nav a:hover { color: var(--bone); }
+
+/* ===== PÁGINAS ===== */
+.page { display: none; }
+.page.active { display: block; }
+#page-guia main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+</style>
+<link rel="stylesheet" href="herramientas.css">
+</head>
+<body>
+<nav class="hc-topbar no-print" aria-label="Volver a la web">
+  <a href="index.html"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Herramientas clínicas</a>
+  <span class="hc-topbar-firma"><strong>Dra. Laura Bernal</strong> · dralaurabernal.es</span>
+</nav>
+
+<!-- BARRA DE TABS -->
+<div class="tab-bar">
+  <div class="tab-bar-inner">
+    <button class="tab-btn active" onclick="showTab('ayuda')" id="tab-ayuda">Ayuda Diagnóstica</button>
+    <div class="tab-sep"></div>
+    <button class="tab-btn" onclick="showTab('guia')" id="tab-guia">Guía Clínica Completa</button>
+  </div>
+</div>
+
+<!-- SUB-NAV (guía) -->
+<nav class="sub-nav" id="sub-nav">
+  <div class="sub-nav-inner">
+    <a href="#evaluacion" onclick="anchorClick(event,this)">Evaluación inicial</a>
+    <a href="#hipotiroidismo" onclick="anchorClick(event,this)">Hipotiroidismo</a>
+    <a href="#hipertiroidismo" onclick="anchorClick(event,this)">Hipertiroidismo</a>
+    <a href="#nodulo" onclick="anchorClick(event,this)">Nódulo</a>
+    <a href="#bocio" onclick="anchorClick(event,this)">Bocio</a>
+    <a href="#embarazo" onclick="anchorClick(event,this)">Embarazo</a>
+    <a href="#especiales" onclick="anchorClick(event,this)">Especiales</a>
+    <a href="#derivacion" onclick="anchorClick(event,this)">Derivación</a>
+  </div>
+</nav>
+
+<!-- ============================================================= -->
+<!-- PÁGINA: AYUDA DIAGNÓSTICA                                      -->
+<!-- ============================================================= -->
+<div class="page active" id="page-ayuda">
+
+<header>
+  <div class="hdr">
+    <span class="hdr-badge">Herramienta Clínica · AP 2026</span>
+    <h1>Patología tiroidea</h1>
+    <p class="hc-sub">Función tiroidea y nódulo (EU-TIRADS): diagnóstico, pruebas complementarias, tratamiento, seguimiento y derivación.</p>
+    <p class="hc-base">Basada en las guías ETA 2023 · ATA 2017 · SEEN · SEMERGEN (EU-TIRADS).</p>
+  </div>
+</header>
+<div class="hc-aviso-wrap no-print"><div class="hc-aviso" role="note">
+  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>
+  <p><strong>Herramienta de apoyo a la decisión clínica para profesionales sanitarios.</strong> Es orientativa: no sustituye el juicio clínico, la valoración individual del paciente ni la ficha técnica vigente. La responsabilidad de cada decisión diagnóstica o terapéutica corresponde al profesional que la utiliza. Los datos se procesan solo en este navegador: no se envían ni se guardan.</p>
+</div></div>
+
+<main class="hc-layout">
+<aside class="hc-ficha" data-auto aria-label="Datos del paciente">
+  <p class="fi-h">Paciente</p>
+  <div class="fi-grid">
+    <div class="f-group"><label class="f-label">Edad (años)</label><input type="number" id="edad" min="14" max="105" placeholder="ej. 52"></div>
+    <div class="f-group"><label class="f-label">Sexo</label>
+            <select id="sexo"><option value="">— seleccionar —</option><option value="mujer">Mujer</option><option value="varon">Varón</option></select>
+          </div>
+    <div class="f-group"><label class="f-label">Peso (kg) <span style="color:var(--ink-mid);font-style:italic">[dosis LT4]</span></label><input type="number" id="peso" min="30" max="200" placeholder="ej. 68"></div>
+    <div class="f-group"><label class="f-label">Frecuencia cardiaca (lpm)</label><input type="number" id="fc" min="30" max="220" placeholder="ej. 78"></div>
+    <div class="f-group fi-wide"><label class="f-label">Embarazo / gestación</label>
+            <select id="embarazo"><option value="no">No</option><option value="preconcep">Deseo gestacional / preconcepción</option><option value="t1">Gestante · 1er trimestre</option><option value="t2">Gestante · 2º trimestre</option><option value="t3">Gestante · 3er trimestre</option></select>
+          </div>
+    <div class="f-group fi-wide"><label class="f-label">Cardiopatía isquémica / arritmia</label>
+            <select id="cardiopatia"><option value="">No</option><option value="si">Sí</option></select>
+          </div>
+  </div>
+  <p class="fi-h fi-h2">Apartados</p>
+  <div class="fi-nav" role="navigation" aria-label="Apartados de la herramienta"></div>
+  <button type="button" class="fi-generar" hidden></button>
+  <button type="button" class="fi-ver" hidden>Ver el resultado</button>
+</aside>
+<div class="hc-main">
+
+  <!-- SELECTOR DE MÓDULO -->
+  <div class="dxa-ask" style="margin-bottom:1.5rem">
+    <div class="dxa-ask-q">¿Qué quieres evaluar?</div>
+    <div class="seg" id="mod-seg">
+      <button type="button" id="mod-funcion" class="on" onclick="setModulo('funcion')">Función tiroidea (TSH alterada)</button>
+      <button type="button" id="mod-nodulo" onclick="setModulo('nodulo')">Nódulo / bocio</button>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MÓDULO FUNCIÓN TIROIDEA                                        -->
+  <!-- ============================================================= -->
+  <div id="modulo-funcion">
+
+    <!-- SECCIÓN 01 · DATOS CLÍNICOS -->
+    <section style="margin-bottom:1.5rem">
+      <div class="sec-header"><span class="sec-num">01</span><h2 class="sec-title">Síntomas y antecedentes</h2></div>
+      <div class="card">
+        
+        
+        
+
+        <div class="subsect">Síntomas de HIPOfunción</div>
+        <div class="chk-grid">
+          <label class="chk-item"><input type="checkbox" id="s_cansancio"><span>Astenia / somnolencia</span></label>
+          <label class="chk-item"><input type="checkbox" id="s_frio"><span>Intolerancia al frío</span></label>
+          <label class="chk-item"><input type="checkbox" id="s_peso_gan"><span>Aumento de peso / estreñimiento</span></label>
+          <label class="chk-item"><input type="checkbox" id="s_piel_seca"><span>Piel seca / caída de pelo / edema</span></label>
+          <label class="chk-item"><input type="checkbox" id="s_bradipsiquia"><span>Bradipsiquia / depresión / bradicardia</span></label>
+          <label class="chk-item"><input type="checkbox" id="s_menstrual"><span>Trastorno menstrual / infertilidad</span></label>
+        </div>
+
+        <div class="subsect">Síntomas de HIPERfunción</div>
+        <div class="chk-grid">
+          <label class="chk-item"><input type="checkbox" id="h_nervios"><span>Nerviosismo / ansiedad / insomnio</span></label>
+          <label class="chk-item"><input type="checkbox" id="h_calor"><span>Intolerancia al calor / sudoración</span></label>
+          <label class="chk-item"><input type="checkbox" id="h_peso_perd"><span>Pérdida de peso / hiperfagia / diarrea</span></label>
+          <label class="chk-item"><input type="checkbox" id="h_palpit"><span>Palpitaciones / taquicardia / temblor</span></label>
+          <label class="chk-item"><input type="checkbox" id="h_oftalmo"><span>Síntomas oculares / exoftalmos (orbitopatía)</span></label>
+          <label class="chk-item"><input type="checkbox" id="h_bocio"><span>Bocio palpable / nódulo</span></label>
+        </div>
+
+        <div class="subsect">Antecedentes y factores</div>
+        <div class="chk-grid">
+          <label class="chk-item"><input type="checkbox" id="a_tiroidea"><span>Enf. tiroidea previa / autoinmune (DM1, celíaca, vitíligo)</span></label>
+          <label class="chk-item"><input type="checkbox" id="a_familiar"><span>Antecedente familiar de enf. tiroidea</span></label>
+          <label class="chk-item"><input type="checkbox" id="a_amiodarona"><span>Amiodarona / litio / contraste yodado / IFN</span></label>
+          <label class="chk-item"><input type="checkbox" id="a_rt_cervical"><span>Radioterapia cervical / cirugía tiroidea previa</span></label>
+          <label class="chk-item"><input type="checkbox" id="a_posparto"><span>Posparto (&lt;12 meses) / aborto reciente</span></label>
+          <label class="chk-item"><input type="checkbox" id="a_fa"><span>Fibrilación auricular / osteoporosis</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 02 · ANALÍTICA -->
+    <section style="margin-bottom:1.5rem">
+      <div class="sec-header"><span class="sec-num">02</span><h2 class="sec-title">Perfil tiroideo</h2></div>
+      <div class="card">
+        <div class="card-title" style="color:var(--teal)">Función <span style="font-weight:400;color:var(--ink-mid)">— introduce los resultados disponibles</span></div>
+        <div class="three-col" style="margin-bottom:.75rem">
+          <div class="f-group"><label class="f-label">TSH (mU/L) <span style="color:var(--ink-mid);font-style:italic">[N: 0.4–4.5]</span></label><input type="number" id="tsh" step="0.01" min="0" max="500" placeholder="ej. 8.4"></div>
+          <div class="f-group"><label class="f-label">T4 libre (ng/dL) <span style="color:var(--ink-mid);font-style:italic">[N: 0.9–1.7]</span></label><input type="number" id="t4l" step="0.01" min="0" max="12" placeholder="ej. 1.1"></div>
+          <div class="f-group"><label class="f-label">T3 libre (pg/mL) <span style="color:var(--ink-mid);font-style:italic">[N: 2.3–4.2]</span></label><input type="number" id="t3l" step="0.01" min="0" max="40" placeholder="opcional"></div>
+        </div>
+        <div class="subsect">Autoinmunidad / etiología (si disponible)</div>
+        <div class="three-col">
+          <div class="f-group"><label class="f-label">Anti-TPO</label>
+            <select id="antitpo"><option value="">No realizado</option><option value="pos">Positivo / elevado</option><option value="neg">Negativo</option></select>
+          </div>
+          <div class="f-group"><label class="f-label">Anti-tiroglobulina</label>
+            <select id="antitg"><option value="">No realizado</option><option value="pos">Positivo</option><option value="neg">Negativo</option></select>
+          </div>
+          <div class="f-group"><label class="f-label">TRAb (Ac. receptor TSH)</label>
+            <select id="trab"><option value="">No realizado</option><option value="pos">Positivo (Graves)</option><option value="neg">Negativo</option></select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <button class="btn-generar" onclick="generar()"><span class="bg-ico">▶</span> Interpretar función tiroidea</button>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- MÓDULO NÓDULO TIROIDEO                                         -->
+  <!-- ============================================================= -->
+  <div id="modulo-nodulo" style="display:none">
+
+    <!-- SECCIÓN 01 · DATOS DEL NÓDULO -->
+    <section style="margin-bottom:1.5rem">
+      <div class="sec-header"><span class="sec-num">01</span><h2 class="sec-title">Datos del nódulo / bocio</h2></div>
+      <div class="card">
+        <div class="card-title">Datos básicos y función</div>
+        <div class="three-col" style="margin-bottom:.75rem">
+          <div class="f-group"><label class="f-label">Tamaño mayor (mm)</label><input type="number" id="n_size" min="1" max="200" placeholder="ej. 14"></div>
+          <div class="f-group"><label class="f-label">Número de nódulos</label>
+            <select id="n_num"><option value="unico">Único</option><option value="multi">Multinodular / bocio</option></select>
+          </div>
+          <div class="f-group"><label class="f-label">TSH (mU/L)</label><input type="number" id="n_tsh" step="0.01" min="0" max="500" placeholder="ej. 1.8"></div>
+        </div>
+
+        <div class="subsect">Ecogenicidad / estructura predominante</div>
+        <div class="two-col" style="margin-bottom:.4rem">
+          <div class="f-group"><label class="f-label">Estructura ecográfica</label>
+            <select id="n_eco">
+              <option value="">— seleccionar —</option>
+              <option value="anecoico">Quístico puro / anecoico</option>
+              <option value="espongiforme">Espongiforme (&gt;50% microquistes)</option>
+              <option value="iso">Sólido iso/hiperecoico</option>
+              <option value="hipo_leve">Sólido levemente hipoecoico</option>
+              <option value="hipo_marcado">Sólido marcadamente hipoecoico</option>
+            </select>
+          </div>
+          <div class="f-group"></div>
+        </div>
+
+        <div class="subsect">Signos ecográficos de alto riesgo (EU-TIRADS)</div>
+        <div class="chk-grid">
+          <label class="chk-item"><input type="checkbox" id="n_taller"><span>Forma «más alta que ancha» (taller-than-wide)</span></label>
+          <label class="chk-item"><input type="checkbox" id="n_margen"><span>Márgenes irregulares / lobulados</span></label>
+          <label class="chk-item"><input type="checkbox" id="n_microcalc"><span>Microcalcificaciones</span></label>
+        </div>
+
+        <div class="subsect">Banderas clínicas de sospecha</div>
+        <div class="chk-grid">
+          <label class="chk-item"><input type="checkbox" id="n_adenop"><span>Adenopatías cervicales sospechosas</span></label>
+          <label class="chk-item"><input type="checkbox" id="n_extension"><span>Fijación / extensión extratiroidea / parálisis cuerda vocal</span></label>
+          <label class="chk-item"><input type="checkbox" id="n_crecimiento"><span>Crecimiento rápido</span></label>
+          <label class="chk-item"><input type="checkbox" id="n_rt"><span>Radioterapia cervical previa (infancia)</span></label>
+          <label class="chk-item"><input type="checkbox" id="n_familiar"><span>AF cáncer tiroideo / MEN2 / calcitonina elevada</span></label>
+          <label class="chk-item"><input type="checkbox" id="n_compresion"><span>Síntomas compresivos (disfagia, disnea, disfonía)</span></label>
+        </div>
+      </div>
+    </section>
+
+    <button class="btn-generar" onclick="generar()"><span class="bg-ico">▶</span> Estratificar nódulo (EU-TIRADS) y generar plan</button>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- RESULTADO                                                      -->
+  <!-- ============================================================= -->
+  <div id="resultado">
+    <div class="metrics" id="r-metrics"></div>
+
+    <div class="res-section">
+      <div class="res-section-head"><span class="rs-num">A</span><span class="rs-title">Diagnóstico</span><span class="rs-sub" id="rs-sub-a">Interpretación · pruebas</span></div>
+      <div class="block">
+        <div class="block-head bh-slate" id="hd-dx">Interpretación diagnóstica</div>
+        <div class="block-body" id="r-dx"></div>
+      </div>
+      <div class="block" id="blk-pruebas">
+        <div class="block-head bh-slate">Pruebas complementarias recomendadas</div>
+        <div class="block-body" id="r-pruebas"></div>
+      </div>
+    </div>
+
+    <div class="res-section">
+      <div class="res-section-head"><span class="rs-num">B</span><span class="rs-title">Tratamiento</span><span class="rs-sub">Medidas · fármacos</span></div>
+      <div class="block">
+        <div class="block-head bh-slate" id="hd-tto">Manejo terapéutico</div>
+        <div class="block-body" id="r-tto"></div>
+      </div>
+    </div>
+
+    <div class="res-section">
+      <div class="res-section-head"><span class="rs-num">C</span><span class="rs-title">Plan de seguimiento</span><span class="rs-sub">Controles · derivación</span></div>
+      <div class="block">
+        <div class="block-head bh-slate">Seguimiento</div>
+        <div class="block-body" id="r-seg"></div>
+      </div>
+      <div class="block">
+        <div class="block-head bh-slate">Criterios de derivación</div>
+        <div class="block-body" id="r-der"></div>
+      </div>
+    </div>
+
+    <div class="res-section">
+      <div class="res-section-head"><span class="rs-num">D</span><span class="rs-title">Documentación</span><span class="rs-sub">Historia clínica · paciente</span></div>
+      <div class="block">
+        <div class="block-head bh-slate">Texto para historia clínica</div>
+        <div class="block-body">
+          <div style="font-size:.8rem;color:var(--ink-mid);margin-bottom:.6rem">Generado automáticamente. Editable antes de copiar.</div>
+          <textarea id="hc-text" style="width:100%;min-height:200px;font-family:'Source Sans 3',sans-serif;font-size:.86rem;line-height:1.6;padding:.85rem 1rem;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--ink);resize:vertical"></textarea>
+          <div style="margin-top:.7rem"><button class="btn-main" style="margin-top:0;width:auto;padding:.6rem 1.3rem" onclick="copiarHC()">Copiar texto</button></div>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-head bh-slate">Recomendaciones para el paciente</div>
+        <div class="block-body">
+          <div style="font-size:.8rem;color:var(--ink-mid);margin-bottom:.7rem">Hoja en lenguaje sencillo para entregar al paciente. Editable e imprimible.</div>
+          <div id="hoja-preview-empty" style="text-align:center;padding:.5rem 0">
+            <button class="btn-generar" style="margin:0;width:auto;padding:.85rem 1.6rem;font-size:.92rem" onclick="previsualizarHojaPaciente()">Generar hoja para el paciente</button>
+          </div>
+          <div id="hoja-preview-wrap" style="display:none">
+            <textarea id="hoja-pac-text" style="width:100%;min-height:320px;font-family:'Source Sans 3',sans-serif;font-size:.88rem;line-height:1.6;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:8px;background:#fff;color:var(--ink);resize:vertical"></textarea>
+            <div style="display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap">
+              <button class="btn-main" style="margin-top:0;width:auto;padding:.6rem 1.3rem" onclick="imprimirHoja()">Imprimir hoja</button>
+              <button class="btn-main" style="margin-top:0;width:auto;padding:.6rem 1.3rem;background:#fff;color:var(--cobalt);border-color:var(--cobalt)" onclick="previsualizarHojaPaciente()">↻ Regenerar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--bone-dark);border-radius:3px;padding:.7rem 1rem;font-size:.73rem;color:var(--ink-mid);font-family:'Source Sans 3', sans-serif;line-height:1.55;margin-top:1rem">
+      Basado en: <strong>ETA 2023</strong> (Durante et al., Eur Thyroid J 2023; manejo del nódulo tiroideo, EU-TIRADS) · <strong>ATA 2017</strong> (embarazo y posparto) · <strong>Guías ETA hipo/hipertiroidismo subclínico</strong> · <strong>SEEN · SEMERGEN</strong>. Los rangos analíticos son orientativos: usa los de tu laboratorio (especialmente en gestación). Herramienta de apoyo a la decisión clínica; no sustituye el juicio médico.
+    </div>
+    <button class="btn-sec" onclick="resetForm()">↺ Nueva consulta</button>
+
+    <div id="hoja-paciente"></div>
+  </div>
+
+</div><!-- /hc-main -->
+</main>
+</div><!-- /page-ayuda -->
+
+<!-- ============================================================= -->
+<!-- PÁGINA: GUÍA CLÍNICA                                           -->
+<!-- ============================================================= -->
+<div class="page" id="page-guia">
+
+<header>
+  <div class="header-inner">
+    <span class="header-badge">Guía Clínica · Atención Primaria</span>
+    <h1>Guía Clínica<br><span>Patología Tiroidea en AP</span></h1>
+    <p class="header-sub">Evaluación inicial, hipotiroidismo, hipertiroidismo, nódulo y bocio, y tiroides en el embarazo. Diagnóstico, pruebas, tratamiento y criterios de derivación.</p>
+    <div class="header-meta">
+      <span>Actualización 2026</span>
+      <span>ETA · ATA · SEEN · SEMERGEN</span>
+      <span>Enfoque Atención Primaria</span>
+    </div>
+  </div>
+</header>
+
+<main id="guia-main">
+
+  <!-- DEFINICIÓN / EVALUACIÓN -->
+  <section id="evaluacion">
+    <div class="card" style="border-left:4px solid var(--rust);">
+      <div class="card-title" style="color:var(--rust)">La TSH es la prueba inicial</div>
+      <p style="font-size:.9rem;margin-bottom:.5rem;">En un adulto no gestante, la <strong>TSH</strong> es la prueba de cribado y seguimiento de elección. Si es normal, prácticamente excluye disfunción tiroidea primaria. Solo se añade <strong>T4 libre</strong> (± T3L) cuando la TSH está alterada o se sospecha origen central.</p>
+      <ul class="checklist">
+        <li><strong>TSH alta + T4L normal</strong> → hipotiroidismo subclínico</li>
+        <li><strong>TSH alta + T4L baja</strong> → hipotiroidismo franco (primario)</li>
+        <li><strong>TSH baja + T4L/T3L normales</strong> → hipertiroidismo subclínico</li>
+        <li><strong>TSH baja + T4L y/o T3L altas</strong> → hipertiroidismo franco</li>
+        <li><strong>TSH baja/normal + T4L baja</strong> → sospechar hipotiroidismo central (derivar)</li>
+      </ul>
+    </div>
+
+    <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Evaluación inicial en AP</h2></div>
+
+    <div class="card">
+      <div class="card-title">¿A quién solicitar función tiroidea? (cribado dirigido por síntomas/riesgo)</div>
+      <div class="two-col mt-sm">
+        <div>
+          <p style="font-size:.8rem;font-weight:600;color:var(--ink-mid);margin-bottom:.4rem;">Indicaciones</p>
+          <ul class="dotlist">
+            <li>Síntomas sugestivos de hipo/hipertiroidismo</li>
+            <li>Bocio o nódulo tiroideo</li>
+            <li>FA, dislipemia inexplicada, deterioro cognitivo</li>
+            <li>Enf. autoinmune (DM1, celíaca), Sd. Down/Turner</li>
+            <li>Fármacos: amiodarona, litio, IFN, contraste yodado</li>
+            <li>Gestación/deseo gestacional de riesgo, infertilidad, posparto</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:.8rem;font-weight:600;color:var(--ink-mid);margin-bottom:.4rem;">No se recomienda cribado universal</p>
+          <ul class="dotlist">
+            <li>No cribado poblacional en asintomáticos sin factores de riesgo</li>
+            <li>Confirmar siempre una TSH alterada con <strong>2ª determinación</strong> a las 6–8 semanas (con T4L ± anti-TPO) antes de etiquetar, salvo clínica florida</li>
+            <li>Considerar causas transitorias: enfermedad no tiroidea (eutiroideo enfermo), fármacos, tiroiditis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-info mt-md">
+      <span class="alert-label">Anticuerpos y pruebas de imagen</span>
+      <strong>Anti-TPO</strong>: confirman autoinmunidad (Hashimoto) y predicen progresión del hipotiroidismo subclínico. <strong>TRAb</strong>: diagnóstico de Graves. <strong>Ecografía</strong>: ante bocio/nódulo palpable o hallazgo, no de rutina en disfunción difusa. <strong>Gammagrafía</strong>: solo si TSH baja, para diferenciar Graves de nódulo/bocio tóxico o tiroiditis.
+    </div>
+  </section>
+
+  <!-- HIPOTIROIDISMO -->
+  <section id="hipotiroidismo">
+    <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Hipotiroidismo</h2></div>
+
+    <table>
+      <thead><tr><th>Patrón</th><th>TSH</th><th>T4 libre</th><th>Actitud</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag tag-op">Hipotiroidismo franco</span></td><td class="mono">↑ (&gt;10 frecuente)</td><td class="mono">baja</td><td>Tratar siempre con levotiroxina</td></tr>
+        <tr><td><span class="tag tag-osteo">Subclínico TSH &gt;10</span></td><td class="mono">&gt;10</td><td class="mono">normal</td><td>Tratar (sobre todo &lt;70 a)</td></tr>
+        <tr><td><span class="tag tag-osteo">Subclínico TSH 4.5–10</span></td><td class="mono">4.5–10</td><td class="mono">normal</td><td>Individualizar (ver criterios)</td></tr>
+        <tr><td><span class="tag tag-normal">Central</span></td><td class="mono">baja/normal</td><td class="mono">baja</td><td>Derivar. No iniciar LT4 sin descartar insuf. suprarrenal</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card mt-md">
+      <div class="card-title" style="color:var(--teal)">Tratamiento con levotiroxina (LT4)</div>
+      <ul class="dotlist mt-sm">
+        <li><strong>Dosis plena:</strong> ~1,6 µg/kg/día en hipotiroidismo franco del adulto joven sano.</li>
+        <li><strong>Inicio prudente:</strong> 25–50 µg/día en &gt;60–65 años o cardiopatía isquémica; titular cada 4–6 semanas. En jóvenes sanos puede iniciarse dosis casi plena.</li>
+        <li><strong>Subclínico:</strong> dosis menores (25–75 µg/día), objetivo normalizar la TSH.</li>
+        <li><strong>Toma:</strong> en ayunas, 30–60 min antes del desayuno (o al acostarse, 3 h tras la cena), separada de calcio/hierro/IBP.</li>
+        <li><strong>Control:</strong> TSH a las <strong>6–8 semanas</strong> de cada ajuste; una vez estable, anual.</li>
+        <li><strong>Objetivo TSH:</strong> 0,4–4,0 mU/L (en &gt;70–80 años se acepta 4–6; evitar sobretratamiento → FA y osteoporosis).</li>
+      </ul>
+    </div>
+
+    <div class="card mt-md">
+      <div class="card-title">Hipotiroidismo subclínico: ¿cuándo tratar TSH 4,5–10?</div>
+      <div class="two-col mt-sm">
+        <div>
+          <p style="font-size:.8rem;font-weight:600;color:var(--ink-mid);margin-bottom:.35rem;">A favor de tratar</p>
+          <ul class="checklist">
+            <li>Edad &lt;65–70 años</li>
+            <li>Síntomas claros de hipotiroidismo</li>
+            <li>Anti-TPO positivos / bocio</li>
+            <li>Gestación o deseo gestacional / infertilidad</li>
+            <li>Dislipemia o riesgo cardiovascular alto</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:.8rem;font-weight:600;color:var(--ink-mid);margin-bottom:.35rem;">Observar (recontrolar 6–12 m)</p>
+          <ul class="dotlist">
+            <li>Asintomático, anti-TPO negativos</li>
+            <li>Edad avanzada (&gt;70–80 a) con TSH &lt;10</li>
+            <li>TSH levemente elevada y estable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-warning mt-md"><span class="alert-label">Mixedema (emergencia)</span>Hipotiroidismo grave con hipotermia, bradicardia, alteración del nivel de consciencia e hiponatremia → derivación urgente hospitalaria.</div>
+  </section>
+
+  <!-- HIPERTIROIDISMO -->
+  <section id="hipertiroidismo">
+    <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Hipertiroidismo / Tirotoxicosis</h2></div>
+
+    <div class="card">
+      <div class="card-title">Principales etiologías</div>
+      <div class="risk-grid">
+        <div class="risk-card alto">
+          <span class="risk-badge">Enf. de Graves</span>
+          <ul><li>Causa más frecuente</li><li>TRAb positivos</li><li>Bocio difuso, orbitopatía</li><li>Captación difusa aumentada</li></ul>
+        </div>
+        <div class="risk-card moderado">
+          <span class="risk-badge">Nódulo/bocio tóxico</span>
+          <ul><li>Adenoma tóxico o BMN tóxico</li><li>Más en mayores</li><li>TRAb negativos</li><li>Nódulo(s) «caliente(s)»</li></ul>
+        </div>
+        <div class="risk-card moderado">
+          <span class="risk-badge">Tiroiditis</span>
+          <ul><li>Subaguda (dolorosa), posparto, silente, por fármacos</li><li>Captación baja</li><li>Suele ser autolimitada</li><li>Tratar síntomas (no antitiroideos)</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-md">
+      <div class="card-title" style="color:var(--teal)">Manejo desde AP</div>
+      <ul class="dotlist mt-sm">
+        <li><strong>Control sintomático:</strong> betabloqueante (propranolol 10–40 mg/8 h o bisoprolol) si taquicardia/temblor/ansiedad y sin contraindicación.</li>
+        <li><strong>Estudio etiológico:</strong> TRAb; si dudas, gammagrafía/ecografía-Doppler. Anti-TPO de apoyo.</li>
+        <li><strong>Antitiroideos:</strong> tiamazol/carbimazol de elección (PTU reservado al 1er trimestre de embarazo y crisis tirotóxica). Inicio y dosificación habitualmente <strong>coordinados con Endocrinología</strong>.</li>
+        <li><strong>Tratamiento definitivo:</strong> yodo radiactivo o cirugía según etiología, tamaño, preferencia y comorbilidad.</li>
+        <li><strong>Vigilar:</strong> hemograma (agranulocitosis: fiebre/odinofagia → suspender y analítica urgente) y perfil hepático con antitiroideos.</li>
+      </ul>
+    </div>
+
+    <div class="card mt-md">
+      <div class="card-title">Hipertiroidismo subclínico (TSH baja, T4L/T3L normales)</div>
+      <ul class="dotlist mt-sm">
+        <li><strong>TSH &lt;0,1:</strong> tratar/derivar si &gt;65 años, cardiopatía/FA, osteoporosis o posmenopausia, o síntomas.</li>
+        <li><strong>TSH 0,1–0,4:</strong> habitualmente observar y recontrolar en 3–6 meses (descartar causa transitoria, fármacos, T4 exógena).</li>
+      </ul>
+    </div>
+
+    <div class="alert alert-danger mt-md"><span class="alert-label">Crisis tirotóxica (emergencia)</span>Fiebre, taquicardia extrema/FA, agitación o insuficiencia cardiaca → derivación urgente hospitalaria.</div>
+  </section>
+
+  <!-- NÓDULO -->
+  <section id="nodulo">
+    <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Nódulo tiroideo (ETA 2023 · EU-TIRADS)</h2></div>
+
+    <div class="card">
+      <div class="card-title">Estudio inicial de todo nódulo</div>
+      <ul class="checklist mt-sm">
+        <li><strong>TSH</strong> + palpación + valorar factores de riesgo de malignidad e historia.</li>
+        <li><strong>Ecografía tiroidea</strong> con descripción y estratificación <strong>EU-TIRADS</strong> (tamaño, localización, características).</li>
+        <li>Si <strong>TSH baja</strong> → <strong>gammagrafía</strong>: nódulo «caliente»/autónomo ⇒ riesgo de malignidad muy bajo, <strong>no precisa PAAF</strong> (manejar como hipertiroidismo).</li>
+        <li>Si <strong>TSH normal/alta</strong> → decidir PAAF según EU-TIRADS y tamaño.</li>
+        <li><strong>Calcitonina</strong>: selectiva (AF carcinoma medular/MEN2, hallazgos sospechosos).</li>
+      </ul>
+    </div>
+
+    <table class="mt-md">
+      <thead><tr><th>EU-TIRADS</th><th>Características</th><th>Riesgo malignidad</th><th>PAAF (punción) si…</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag tag-normal">2 · Benigno</span></td><td>Quístico puro / espongiforme</td><td class="mono">~0%</td><td>No PAAF</td></tr>
+        <tr><td><span class="tag tag-normal">3 · Bajo</span></td><td>Sólido iso/hiperecoico, sin signos de alto riesgo</td><td class="mono">2–4%</td><td>&gt; 20 mm</td></tr>
+        <tr><td><span class="tag tag-osteo">4 · Intermedio</span></td><td>Levemente hipoecoico, ovalado, márgenes lisos</td><td class="mono">6–17%</td><td>&gt; 15 mm</td></tr>
+        <tr><td><span class="tag tag-op">5 · Alto</span></td><td>≥1: muy hipoecoico, más alto que ancho, márgenes irregulares, microcalcificaciones</td><td class="mono">26–87%</td><td>&gt; 10 mm</td></tr>
+      </tbody>
+    </table>
+
+    <div class="alert alert-info mt-md"><span class="alert-label">PAAF y citología de Bethesda</span>Resultado: <strong>I</strong> no diagnóstica (repetir), <strong>II</strong> benigna (vigilancia 3–5 años), <strong>III</strong> atipia de significado incierto (repetir/molecular), <strong>IV</strong> neoplasia folicular (cirugía/molecular), <strong>V</strong> sospechosa y <strong>VI</strong> maligna (cirugía). Repetir PAAF también si discordancia eco-citología o crecimiento significativo (&gt;20% en 2 dimensiones o &gt;50% volumen).</div>
+
+    <div class="card mt-md">
+      <div class="card-title">Seguimiento de nódulos no puncionados / benignos</div>
+      <ul class="dotlist mt-sm">
+        <li><strong>EU-TIRADS 2:</strong> 5–10 mm sin más controles; &gt;10 mm reevaluar en 3–5 años.</li>
+        <li><strong>EU-TIRADS 3 (&lt;20 mm) y 4 (&lt;15 mm):</strong> reevaluar ecográficamente en 3–5 años.</li>
+        <li><strong>Citología benigna (Bethesda II):</strong> nueva evaluación en 3–5 años; una 2ª citología benigna permite espaciar/suspender controles.</li>
+        <li>Considerar <strong>tratamiento mínimamente invasivo</strong> (radiofrecuencia en sólidos, etanolización en quísticos recidivantes) o cirugía en nódulos benignos sintomáticos.</li>
+      </ul>
+    </div>
+
+    <div class="alert alert-danger mt-md"><span class="alert-label">Derivar / sospecha</span>Adenopatías sospechosas, parálisis de cuerda vocal o fijación, crecimiento rápido, antecedente de radioterapia cervical en la infancia, AF de carcinoma medular/MEN2, o citología Bethesda III–VI.</div>
+  </section>
+
+  <!-- BOCIO -->
+  <section id="bocio">
+    <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Bocio</h2></div>
+    <div class="card">
+      <div class="card-title">Definición y evaluación</div>
+      <p style="font-size:.9rem;margin-bottom:.5rem;">Aumento de tamaño de la glándula tiroidea, difuso o nodular (multinodular), con o sin alteración funcional. La causa más frecuente en el mundo es el déficit de yodo; en nuestro medio, la tiroiditis autoinmune y el bocio multinodular.</p>
+      <ul class="checklist">
+        <li><strong>Función:</strong> TSH (± T4L si alterada). Anti-TPO si sospecha autoinmune.</li>
+        <li><strong>Ecografía:</strong> caracterizar volumen y nódulos (aplicar EU-TIRADS a los nódulos).</li>
+        <li><strong>Gammagrafía:</strong> si TSH baja (bocio multinodular tóxico).</li>
+        <li><strong>TC/RM sin contraste yodado:</strong> si sospecha de extensión intratorácica o compresión.</li>
+      </ul>
+    </div>
+    <div class="card mt-md">
+      <div class="card-title" style="color:var(--teal)">Manejo y derivación</div>
+      <ul class="dotlist mt-sm">
+        <li><strong>Bocio simple normofuncionante asintomático:</strong> vigilancia clínica y ecográfica. No se recomienda LT4 supresora de forma sistemática.</li>
+        <li><strong>Síntomas compresivos</strong> (disfagia, disnea, disfonía), crecimiento, bocio intratorácico o estético → derivar (valorar cirugía).</li>
+        <li><strong>Bocio multinodular tóxico:</strong> manejar como hipertiroidismo (antitiroideos + tratamiento definitivo).</li>
+        <li><strong>Sospecha de malignidad</strong> en algún nódulo → vía del nódulo (PAAF/derivación).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EMBARAZO -->
+  <section id="embarazo">
+    <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Tiroides y embarazo (ATA 2017)</h2></div>
+
+    <div class="alert alert-warning"><span class="alert-label">Rangos de TSH</span>Usar rangos de referencia <strong>por trimestre y población/laboratorio</strong>. Si no se dispone, como aproximación: 1er trimestre &lt;~2,5; 2º–3er &lt;~3,0–3,5 mU/L. El límite inferior también desciende (la hCG estimula el tiroides; una TSH baja en 1er trimestre puede ser fisiológica).</div>
+
+    <div class="card mt-md">
+      <div class="card-title">Hipotiroidismo en la gestación</div>
+      <ul class="dotlist mt-sm">
+        <li><strong>Hipotiroidismo franco:</strong> tratar siempre y de inmediato con LT4; objetivo TSH en rango del trimestre.</li>
+        <li><strong>Subclínico:</strong> tratar si anti-TPO positivos y TSH por encima del rango del trimestre, o si TSH &gt;10 con independencia de los anticuerpos. Valorar tratar si anti-TPO+ y TSH &gt;2,5.</li>
+        <li><strong>Ya en tratamiento que se queda embarazada:</strong> aumentar la dosis de LT4 ~<strong>25–30%</strong> al confirmar el embarazo (p. ej. 2 tomas extra/semana) y avisar/derivar; controlar TSH cada 4 semanas en la 1ª mitad.</li>
+        <li>Necesidades de yodo aumentadas: suplementación de yodo periconcepcional y en la gestación según protocolo local.</li>
+      </ul>
+    </div>
+
+    <div class="card mt-md">
+      <div class="card-title">Hipertiroidismo y nódulo en la gestación</div>
+      <ul class="dotlist mt-sm">
+        <li>Diferenciar <strong>tirotoxicosis gestacional transitoria</strong> (hiperémesis, hCG alta, autolimitada) de la <strong>enf. de Graves</strong> (TRAb+).</li>
+        <li>Antitiroideos: <strong>PTU en el 1er trimestre</strong> (menor teratogenia); cambio posterior valorado por Endocrinología. <strong>Gammagrafía y yodo radiactivo contraindicados.</strong></li>
+        <li>Nódulo en gestación: estudio ecográfico y PAAF igual que fuera del embarazo; la cirugía, si precisa, preferentemente en el 2º trimestre.</li>
+        <li><strong>Derivar a Endocrinología/Obstetricia</strong> toda disfunción tiroidea relevante en el embarazo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SITUACIONES ESPECIALES -->
+  <section id="especiales">
+    <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Situaciones especiales</h2></div>
+
+    <div class="card">
+      <div class="card-title" style="color:var(--teal)">Tiroiditis posparto</div>
+      <p style="font-size:.9rem;margin-bottom:.5rem;">Disfunción tiroidea autoinmune que aparece en el <strong>primer año posparto</strong> (también tras aborto), en mujeres con <strong>anti-TPO positivos</strong>. Hasta ~5–10% de las gestantes. Suele ser <strong>autolimitada</strong>, con captación baja en gammagrafía (evitarla en lactancia).</p>
+      <table class="mt-sm">
+        <thead><tr><th>Fase</th><th>Cuándo</th><th>Hallazgos</th><th>Manejo</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag tag-op">Hipertiroidea</span></td><td class="mono">1–6 meses</td><td>Tirotoxicosis transitoria, captación baja, TRAb negativos</td><td>Betabloqueante sintomático. <strong>No antitiroideos</strong></td></tr>
+          <tr><td><span class="tag tag-osteo">Hipotiroidea</span></td><td class="mono">3–12 meses</td><td>TSH alta; puede ser sintomática</td><td>LT4 si síntomas, TSH muy alta, lactancia o nuevo deseo gestacional</td></tr>
+          <tr><td><span class="tag tag-normal">Recuperación</span></td><td class="mono">hacia 12 meses</td><td>Normalización en la mayoría</td><td>Retirar LT4 (prueba a los 6–12 m); ~20% queda hipotiroidismo permanente</td></tr>
+        </tbody>
+      </table>
+      <div class="alert alert-info mt-md"><span class="alert-label">Claves en AP</span>Diferenciar la fase hiper de la <strong>enf. de Graves</strong> (en Graves: TRAb+, captación alta, orbitopatía, curso no autolimitado). Control de TSH a los <strong>4–8 semanas</strong> en las fases activas y <strong>anual</strong> tras la recuperación (riesgo de hipotiroidismo definitivo y de recurrencia en gestaciones futuras).</div>
+    </div>
+
+    <div class="card mt-md">
+      <div class="card-title" style="color:var(--teal)">Disfunción tiroidea por amiodarona</div>
+      <p style="font-size:.9rem;margin-bottom:.5rem;">La amiodarona tiene un alto contenido en yodo y es directamente tóxica para el tirocito. Solicitar <strong>perfil tiroideo basal</strong> antes de iniciarla y controles periódicos (p. ej. cada 6 meses) y ante síntomas. <strong>No retirar la amiodarona sin valorar con Cardiología.</strong></p>
+      <div class="risk-grid">
+        <div class="risk-card moderado">
+          <span class="risk-badge">Hipotiroidismo (HIA)</span>
+          <ul>
+            <li>El más frecuente en zonas yodo-suficientes</li>
+            <li>Más en mujeres con anti-TPO+</li>
+            <li><strong>Tratar con LT4</strong>; puede mantenerse la amiodarona</li>
+          </ul>
+        </div>
+        <div class="risk-card alto">
+          <span class="risk-badge">Tirotoxicosis tipo 1</span>
+          <ul>
+            <li>Sobre tiroides nodular/Graves previos</li>
+            <li>Exceso de síntesis por yodo</li>
+            <li>Doppler con vascularización; antitiroideos</li>
+          </ul>
+        </div>
+        <div class="risk-card muy-alto">
+          <span class="risk-badge">Tirotoxicosis tipo 2</span>
+          <ul>
+            <li>Tiroiditis destructiva (glándula sana)</li>
+            <li>Doppler sin vascularización</li>
+            <li>Corticoides; a menudo autolimitada</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert alert-warning mt-md"><span class="alert-label">Manejo</span>Las formas mixtas son frecuentes y diferenciar tipo 1 de tipo 2 es difícil → <strong>derivar a Endocrinología</strong>. El litio también puede inducir hipotiroidismo/bocio (controlar TSH periódicamente).</div>
+    </div>
+
+    <div class="card mt-md">
+      <div class="card-title" style="color:var(--teal)">Tiroiditis subaguda (De Quervain)</div>
+      <p style="font-size:.9rem;margin-bottom:.5rem;">Tiroiditis <strong>dolorosa</strong>, habitualmente <strong>posvírica</strong>, autolimitada. Cursa con dolor cervical irradiado a la mandíbula/oído, malestar y febrícula, y <strong>VSG/PCR elevadas</strong>. Sigue un patrón similar al posparto: fase tirotóxica transitoria → hipotiroidea → recuperación. La captación en gammagrafía es <strong>baja</strong> (diferencia clave con la enf. de Graves).</p>
+      <ul class="dotlist mt-sm">
+        <li><strong>Diagnóstico (AP):</strong> clínica + VSG/PCR altas + TSH baja en fase inicial; ecografía con áreas hipoecoicas dolorosas. TRAb negativos.</li>
+        <li><strong>Tratamiento:</strong> <strong>AINE</strong> en casos leves; <strong>corticoides</strong> (prednisona) si dolor intenso o falta de respuesta. <strong>Betabloqueante</strong> para los síntomas adrenérgicos. <strong>No antitiroideos</strong> (no hay hiperproducción).</li>
+        <li><strong>Seguimiento:</strong> controlar TSH durante la fase hipotiroidea (LT4 transitoria solo si es sintomática); la mayoría recupera la función. Pequeño porcentaje de hipotiroidismo permanente.</li>
+      </ul>
+      <div class="alert alert-info mt-md"><span class="alert-label">No confundir</span>Tiroiditis <strong>dolorosa</strong> → subaguda (De Quervain). Tiroiditis <strong>indolora</strong> en el primer año tras el parto → posparto. Ambas con captación baja y autolimitadas; la de Graves es dolorosa-no, con TRAb+ y captación alta.</div>
+    </div>
+  </section>
+
+  <!-- DERIVACIÓN -->
+  <section id="derivacion">
+    <div class="section-header"><span class="section-num">08</span><h2 class="section-title">Criterios de derivación</h2></div>
+    <div class="referral-grid">
+      <div class="referral-card urgent">
+        <h4>Urgente (hospital)</h4>
+        <ul>
+          <li>Crisis tirotóxica</li>
+          <li>Coma mixedematoso</li>
+          <li>Compresión aguda de vía aérea</li>
+          <li>Agranulocitosis por antitiroideos (fiebre/odinofagia)</li>
+        </ul>
+      </div>
+      <div class="referral-card prefer">
+        <h4>Preferente / Endocrinología</h4>
+        <ul>
+          <li>Todo hipertiroidismo franco</li>
+          <li>Sospecha de Graves con orbitopatía</li>
+          <li>Citología tiroidea Bethesda III–VI</li>
+          <li>Nódulo con datos de sospecha (adenopatías, parálisis cuerda vocal, crecimiento rápido)</li>
+          <li>Disfunción tiroidea en el embarazo</li>
+          <li>Hipotiroidismo central</li>
+        </ul>
+      </div>
+      <div class="referral-card option">
+        <h4>Manejo en AP</h4>
+        <ul>
+          <li>Hipotiroidismo primario (franco y subclínico) estable</li>
+          <li>Seguimiento de nódulos benignos / EU-TIRADS 2–3 pequeños</li>
+          <li>Bocio simple normofuncionante asintomático</li>
+          <li>Ajuste de LT4 y controles analíticos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+</div><!-- /page-guia -->
+
+<footer>Herramienta de apoyo a la decisión clínica · Atención Primaria 2026 · ETA · ATA · SEEN · SEMERGEN — <a href="#" onclick="showTab('ayuda');return false;">Volver a la ayuda diagnóstica</a><div class="hc-legal"><br><strong>Descargo de responsabilidad.</strong> Esta herramienta ha sido desarrollada por la Dra. Laura Bernal Martínez como apoyo a la toma de decisiones clínicas. Tiene carácter orientativo y está dirigida a profesionales sanitarios. No sustituye en ningún caso el juicio clínico, la exploración del paciente ni la consulta médica presencial. El contenido se basa en las fuentes citadas y puede no recoger cambios posteriores: verifique siempre la ficha técnica vigente (CIMA · AEMPS) y los protocolos de su servicio de salud. La responsabilidad de cualquier decisión diagnóstica o terapéutica corresponde al profesional que la utiliza. Los datos introducidos se procesan únicamente en su navegador y no se envían ni se almacenan.</div></footer>
+
+<script>
+(function(){
+  // ---------- helpers ----------
+  function g(id){return document.getElementById(id);}
+  function v(id){var e=g(id);return e?(parseFloat(e.value)||0):0;}
+  function has(id){var e=g(id);return e&&e.value!=='';}
+  function iv(id){var e=g(id);return e?(parseInt(e.value)||0):0;}
+  function sv(id){var e=g(id);return e?e.value.trim():'';}
+  function chk(id){var e=g(id);return e?e.checked:false;}
+  function rrow(ico,txt){var c={'r-urg':1,'r-pref':1,'r-ord':1,'r-ok':1}[ico]?' '+ico:'';return '<div class="rrow"><span class="rico'+c+'" aria-hidden="true"></span><span>'+txt+'</span></div>';}
+  function rdiv(){return '<div class="rdiv"></div>';}
+  function al(txt,tp){return '<div class="al al-'+tp+'">'+txt+'</div>';}
+  function tag(txt,cls){return '<span class="tg tg-'+cls+'">'+txt+'</span>';}
+  function lbl(txt,c){return '<div style="font-size:.73rem;font-weight:600;color:'+c+';text-transform:uppercase;letter-spacing:.06em;margin:.6rem 0 .35rem">'+txt+'</div>';}
+  function met(val,lab,cls){return '<div class="met"><span class="mv '+(cls||'ck')+'">'+val+'</span><span class="ml">'+lab+'</span></div>';}
+  // extrae texto limpio de un bloque de resultado (filas .rrow y alertas .al) — válido en navegador y en pruebas
+  function plain(id){
+    var el=g(id); if(!el) return '';
+    var parts=[];
+    el.querySelectorAll('.rrow, .al, .mini-alert').forEach(function(n){
+      var sp=n.querySelector('span:last-child');
+      var t=(sp?sp.textContent:n.textContent).replace(/\s+/g,' ').trim();
+      if(t) parts.push(t);
+    });
+    return parts.join(' · ');
+  }
+
+  // nota «cuándo tratar / cuándo no» para el hipotiroidismo subclínico
+  function notaSubclinicoHipo(){
+    return '<div class="mini-alert info" style="margin-top:.6rem;line-height:1.55">'
+      +'<strong>Hipotiroidismo subclínico: ¿cuándo tratar?</strong><br>'
+      +'<strong>A favor de levotiroxina:</strong> TSH &gt;10 mU/L; o TSH 4,5–10 con <em>cualquiera</em> de: edad &lt;65–70 a, síntomas claros de hipotiroidismo, anti-TPO positivos o bocio, dislipemia/RCV alto, o embarazo / deseo gestacional / infertilidad.<br>'
+      +'<strong>Observar (recontrolar TSH+T4L en 6–12 meses):</strong> asintomático con anti-TPO negativos, edad avanzada (&gt;70–80 a) con TSH &lt;10, o elevación leve y estable.<br>'
+      +'<strong>Antes de etiquetar:</strong> confirmar con una 2ª determinación a las 6–8 semanas y descartar causas transitorias (enfermedad no tiroidea, fármacos, tiroiditis).'
+      +'</div>';
+  }
+  // nota de disfunción por amiodarona / litio / yodo
+  function notaAmiodarona(){
+    return '<div class="mini-alert warn" style="margin-top:.6rem;line-height:1.55">'
+      +'<strong>Fármacos (amiodarona / litio / contraste yodado / IFN):</strong> la amiodarona puede causar <strong>hipotiroidismo</strong> (frecuente; se trata con LT4 y no obliga a retirar el fármaco) o <strong>tirotoxicosis</strong> (TIA): <strong>tipo 1</strong> (sobre tiroides nodular/Graves, por exceso de yodo) y <strong>tipo 2</strong> (tiroiditis destructiva). Diferenciarlas es difícil; <strong>no retirar la amiodarona sin Cardiología</strong> y derivar a Endocrinología.'
+      +'</div>';
+  }
+  // nota del hipotiroidismo subclínico en el anciano
+  function notaSubclinicoAnciano(){
+    return '<div class="mini-alert warn" style="margin-top:.6rem;line-height:1.55">'
+      +'<strong>Paciente mayor (≥70 años):</strong> en el subclínico del anciano prima la <strong>prudencia</strong>. La TSH asciende de forma fisiológica con la edad, así que con <strong>TSH &lt;10 mU/L y sin síntomas claros lo habitual es no tratar</strong> y vigilar. Si se decide tratar, usar un <strong>objetivo de TSH más alto (~4–6 mU/L)</strong> y evitar el sobretratamiento (riesgo de fibrilación auricular y fracturas).'
+      +'</div>';
+  }
+  // nota de tiroiditis posparto
+  function notaPosparto(){
+    return '<div class="mini-alert info" style="margin-top:.6rem;line-height:1.55">'
+      +'<strong>Posparto (&lt;12 meses) — considerar tiroiditis posparto:</strong> curso típicamente <strong>trifásico</strong> (fase hipertiroidea transitoria → hipotiroidea → recuperación), anti-TPO habitualmente positivos, captación baja en gammagrafía (evítala si lactancia). Fase hiper: <strong>betabloqueante</strong> sintomático (no antitiroideos). Fase hipo sintomática o persistente: <strong>LT4</strong>. ~20% evoluciona a hipotiroidismo permanente → control anual. Diferenciar la fase hiper de la enf. de Graves (TRAb).'
+      +'</div>';
+  }
+
+  var MODULO='funcion';
+  var EST={};   // estado del último resultado, para la hoja del paciente
+
+  window.setModulo=function(m){
+    MODULO=m;
+    g('mod-funcion').classList.toggle('on',m==='funcion');
+    g('mod-nodulo').classList.toggle('on',m==='nodulo');
+    g('modulo-funcion').style.display = m==='funcion'?'block':'none';
+    g('modulo-nodulo').style.display  = m==='nodulo'?'block':'none';
+    g('resultado').classList.remove('show');
+  };
+
+  window.toggleAcc=function(b){b.classList.toggle('open');b.nextElementSibling.classList.toggle('open');};
+
+  window.generar=function(){
+    if(MODULO==='funcion') generarFuncion();
+    else generarNodulo();
+    g('resultado').classList.add('show');
+    g('hoja-preview-empty').style.display='block';
+    g('hoja-preview-wrap').style.display='none';
+    setTimeout(function(){g('resultado').scrollIntoView({behavior:'smooth',block:'start'});},80);
+  };
+
+  window.resetForm=function(){
+    g('resultado').classList.remove('show');
+    document.querySelectorAll('#page-ayuda input').forEach(function(e){ if(e.type==='checkbox')e.checked=false; else e.value=''; });
+    document.querySelectorAll('#page-ayuda select').forEach(function(e){ e.selectedIndex=0; });
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  window.copiarHC=function(){
+    var t=g('hc-text'); t.select(); document.execCommand('copy');
+    var b=event.target; var o=b.textContent; b.textContent='✓ Copiado'; setTimeout(function(){b.textContent=o;},1500);
+  };
+
+  // ================================================================
+  // MOTOR · FUNCIÓN TIROIDEA
+  // ================================================================
+  function gestacion(){ var e=sv('embarazo'); return (e==='t1'||e==='t2'||e==='t3'); }
+  function tshTopEmb(){ var e=sv('embarazo'); if(e==='t1')return 2.5; if(e==='t2')return 3.0; if(e==='t3')return 3.5; return 4.5; }
+
+  function generarFuncion(){
+    var tsh = has('tsh')? v('tsh'): null;
+    var t4 = has('t4l')? v('t4l'): null;
+    var t3 = has('t3l')? v('t3l'): null;
+    var edad=iv('edad'), peso=v('peso'), tpo=sv('antitpo'), trab=sv('trab');
+    var emb=sv('embarazo'), gest=gestacion();
+    var cardio = sv('cardiopatia')==='si' || chk('a_fa');
+    var TSHTOP = gest? tshTopEmb() : 4.5;
+    var TSHLOW = 0.4;
+
+    var clase='', cls='ck', cat='';
+    var dx=[], pruebas=[], tto=[], seg=[], der=[];
+
+    if(tsh===null){
+      g('r-dx').innerHTML = al('<strong>Falta la TSH.</strong> Introduce al menos el valor de TSH para interpretar la función tiroidea.','warn');
+      g('r-metrics').innerHTML=''; g('blk-pruebas').style.display='none';
+      g('r-tto').innerHTML=''; g('r-seg').innerHTML=''; g('r-der').innerHTML='';
+      g('hc-text').value=''; EST={}; return;
+    }
+    g('blk-pruebas').style.display='block';
+
+    var t4bajo = (t4!==null && t4<0.9);
+    var t4alto = (t4!==null && t4>1.7);
+    var t3alto = (t3!==null && t3>4.2);
+
+    // --- clasificación ---
+    if(tsh>TSHTOP){
+      if(t4bajo){ clase='Hipotiroidismo primario franco'; cat='hipo_franco'; cls='cr'; }
+      else if(t4!==null){ clase = tsh>10?'Hipotiroidismo subclínico (TSH>10)':'Hipotiroidismo subclínico'; cat = tsh>10?'hipo_sub_alto':'hipo_sub'; cls='ca'; }
+      else { clase = tsh>10?'TSH elevada (>10) — completar con T4L':'TSH elevada — completar con T4L'; cat = tsh>10?'hipo_sub_alto':'hipo_sub'; cls='ca'; }
+    } else if(tsh<TSHLOW){
+      if(t4alto||t3alto){ clase='Hipertiroidismo franco / tirotoxicosis'; cat='hiper_franco'; cls='cr'; }
+      else if(t4!==null){ clase='Hipertiroidismo subclínico'; cat='hiper_sub'; cls='ca'; }
+      else { clase='TSH suprimida — completar con T4L y T3L'; cat='hiper_sub'; cls='ca'; }
+    } else {
+      if(t4bajo){ clase='Patrón sugestivo de hipotiroidismo central'; cat='central'; cls='cr'; }
+      else { clase='Función tiroidea normal (eutiroidismo)'; cat='normal'; cls='cg'; }
+    }
+    EST.cat=cat; EST.clase=clase;
+
+    // --- métricas ---
+    var m='';
+    m+=met(tsh.toFixed(2), 'TSH (mU/L)', tsh>TSHTOP?'ca':(tsh<TSHLOW?'cr':'cg'));
+    if(t4!==null) m+=met(t4.toFixed(2),'T4L (ng/dL)', (t4bajo||t4alto)?'cr':'cg');
+    if(t3!==null) m+=met(t3.toFixed(2),'T3L (pg/mL)', t3alto?'cr':'cg');
+    if(gest) m+=met(TSHTOP.toFixed(1),'Límite TSH trimestre','ct');
+    g('r-metrics').innerHTML=m;
+
+    // --- A · diagnóstico ---
+    g('hd-dx').innerHTML=''+clase;
+    dx.push(rrow('','<strong>Diagnóstico orientativo:</strong> '+clase+'.'));
+    if(gest) dx.push(rrow('','Interpretado con el <strong>límite de TSH del trimestre</strong> ('+TSHTOP.toFixed(1)+' mU/L). Confirma con los rangos de tu laboratorio.'));
+    if(tpo==='pos') dx.push(rrow('','Anti-TPO positivos → <strong>autoinmunidad (Hashimoto)</strong>; mayor riesgo de progresión.'));
+    if(trab==='pos') dx.push(rrow('','TRAb positivos → compatible con <strong>enfermedad de Graves</strong>.'));
+
+    if(cat==='hipo_sub'||cat==='hipo_sub_alto'){ dx.push(notaSubclinicoHipo()); if(edad>=70) dx.push(notaSubclinicoAnciano()); }
+    if(chk('a_amiodarona')){ dx.push(notaAmiodarona()); }
+    if(chk('a_posparto')){ dx.push(notaPosparto()); }
+
+    if(cat==='normal'){
+      dx.push(rrow('✓','Sin datos de disfunción tiroidea primaria con los valores aportados.'));
+    }
+    if(cat==='central'){
+      dx.push(rdiv()); dx.push(al('<strong>Atención:</strong> TSH no elevada con T4L baja sugiere <strong>hipotiroidismo central</strong> (hipofisario/hipotalámico). <strong>No iniciar levotiroxina</strong> sin descartar antes insuficiencia suprarrenal. Derivar.','danger'));
+    }
+    if(t4===null && cat!=='normal' && cat!=='central'){
+      dx.push(al('Solicita <strong>T4 libre</strong> (y T3L si TSH suprimida) para confirmar si es subclínico o franco. Confirma toda TSH alterada con 2ª determinación a las 6–8 semanas.','warn'));
+    }
+    g('r-dx').innerHTML=dx.join('');
+
+    // --- A · pruebas complementarias ---
+    if(cat==='hipo_franco'||cat==='hipo_sub'||cat==='hipo_sub_alto'){
+      pruebas.push(rrow('','<strong>Anti-TPO</strong> (si no se han hecho): confirman Hashimoto y predicen progresión.'));
+      pruebas.push(rrow('','Confirmar con <strong>nueva TSH + T4L a las 6–8 semanas</strong> si no hay clínica florida.'));
+      pruebas.push(rrow('','Perfil lipídico; valorar hemograma. Ecografía solo si bocio/nódulo palpable.'));
+    } else if(cat==='hiper_franco'||cat==='hiper_sub'){
+      pruebas.push(rrow('','<strong>TRAb</strong> para diagnóstico de Graves; anti-TPO de apoyo.'));
+      pruebas.push(rrow('','<strong>Gammagrafía tiroidea</strong> (TSH baja): difer. Graves (captación difusa) vs nódulo/bocio tóxico (focal) vs tiroiditis (captación baja).'));
+      pruebas.push(rrow('','Hemograma y perfil hepático <strong>basales</strong> (antes de antitiroideos). ECG si palpitaciones/FA.'));
+      pruebas.push(rrow('','Si hay <strong>dolor cervical</strong> y antecedente vírico con <strong>VSG/PCR elevadas</strong> y captación baja → considerar <strong>tiroiditis subaguda (De Quervain)</strong>: tratamiento sintomático (AINE/corticoides + betabloqueante), <strong>no antitiroideos</strong>; autolimitada.'));
+    } else if(cat==='central'){
+      pruebas.push(rrow('','Eje hipofisario (cortisol, otras hormonas) y <strong>RM hipofisaria</strong> — a valorar por especialista.'));
+    } else {
+      pruebas.push(rrow('','No precisa más pruebas si asintomático. Repetir según contexto clínico.'));
+    }
+    g('r-pruebas').innerHTML=pruebas.join('');
+
+    // --- B · tratamiento ---
+    g('hd-tto').innerHTML='Manejo terapéutico';
+    if(cat==='hipo_franco' || (cat==='hipo_sub_alto') || (cat==='hipo_sub' && tratarSubclinicoHipo(edad,tpo,gest,emb))){
+      var dosisPlena = peso>0 ? Math.round(peso*1.6/12.5)*12.5 : null;
+      var inicioPrudente = (edad>=65 || cardio);
+      tto.push(lbl('Levotiroxina (LT4)','var(--teal)'));
+      if(cat==='hipo_franco'){
+        if(inicioPrudente){
+          tto.push(rrow('','<strong>Inicio prudente</strong> (≥65 a o cardiopatía): <strong>25–50 µg/día</strong>, subir 12,5–25 µg cada 4–6 sem hasta dosis objetivo'+(dosisPlena?(' (~'+dosisPlena+' µg/día, 1,6 µg/kg)'):' (~1,6 µg/kg/día)')+'.'));
+        } else {
+          tto.push(rrow('','Dosis objetivo ~<strong>'+(dosisPlena?dosisPlena+' µg/día':'1,6 µg/kg/día')+'</strong> (1,6 µg/kg). En jóvenes sanos puede iniciarse cerca de dosis plena.'));
+        }
+      } else {
+        tto.push(rrow('','Subclínico con indicación de tratar: <strong>dosis baja</strong> (p. ej. 25–75 µg/día), titular según TSH.'));
+      }
+      tto.push(rrow('⏱','Tomar <strong>en ayunas</strong>, 30–60 min antes del desayuno; separar de calcio, hierro e IBP.'));
+      tto.push(rrow('','Objetivo TSH '+(gest?('<strong>'+TSHTOP.toFixed(1)+' mU/L</strong> (límite del trimestre)'):'<strong>0,4–4,0 mU/L</strong> (en &gt;70–80 a se acepta 4–6; evitar sobretratamiento)')+'.'));
+      if(gest){ tto.push(al('Gestación: tratar y ajustar de inmediato; si ya tomaba LT4, <strong>aumentar la dosis ~25–30%</strong> al confirmar el embarazo. Controlar TSH cada 4 semanas en la 1ª mitad.','warn')); }
+      EST.trata=true;
+    } else if(cat==='hipo_sub'){
+      tto.push(lbl('Hipotiroidismo subclínico — observación','var(--ink-mid)'));
+      tto.push(rrow('','Con los datos actuales se prioriza <strong>observación</strong>: recontrolar TSH+T4L (± anti-TPO) en <strong>6–12 meses</strong>.'));
+      tto.push(rrow('','Reconsiderar LT4 si aparecen síntomas, anti-TPO+, TSH&gt;10, dislipemia, o deseo gestacional.'));
+      EST.trata=false;
+    } else if(cat==='hiper_franco'){
+      tto.push(lbl('Hipertiroidismo franco','var(--teal)'));
+      tto.push(rrow('','<strong>Betabloqueante</strong> sintomático: propranolol 10–40 mg/8 h o bisoprolol (si no hay contraindicación).'));
+      tto.push(rrow('','<strong>Antitiroideos (tiamazol/carbimazol)</strong> habitualmente iniciados/coordinados con Endocrinología. PTU solo en 1er trimestre/crisis.'));
+      tto.push(rrow('','Tratamiento definitivo (I-131 o cirugía) según etiología y preferencia. <strong>Derivar.</strong>'));
+      tto.push(al('Antes de antitiroideos: <strong>hemograma y perfil hepático basales</strong>. Advertir: fiebre/odinofagia → suspender y analítica urgente (agranulocitosis).','warn'));
+      EST.trata=true;
+    } else if(cat==='hiper_sub'){
+      tto.push(lbl('Hipertiroidismo subclínico','var(--ink-mid)'));
+      if(tsh<0.1 && (edad>=65 || cardio)){
+        tto.push(rrow('⚠','TSH &lt;0,1 con factores de riesgo (edad ≥65, cardiopatía/FA, osteoporosis) → <strong>valorar tratar/derivar</strong>.'));
+      } else {
+        tto.push(rrow('','Habitualmente <strong>observar</strong>: descartar causa transitoria/fármacos/T4 exógena y <strong>recontrolar en 3–6 meses</strong>.'));
+      }
+      EST.trata=false;
+    } else if(cat==='central'){
+      tto.push(rrow('','<strong>No iniciar levotiroxina</strong> antes de la valoración endocrinológica y de descartar insuficiencia suprarrenal.'));
+      EST.trata=false;
+    } else {
+      tto.push(rrow('✓','No precisa tratamiento. Reforzar el control de factores de riesgo según el contexto.'));
+      EST.trata=false;
+    }
+    g('r-tto').innerHTML=tto.join('');
+
+    // --- C · seguimiento ---
+    if(cat==='hipo_franco'||cat==='hipo_sub_alto'||(cat==='hipo_sub'&&EST.trata)){
+      seg.push(rrow('','TSH a las <strong>6–8 semanas</strong> de cada ajuste de dosis; una vez estable, <strong>control anual</strong>.'));
+      if(gest) seg.push(rrow('','En gestación: TSH cada <strong>4 semanas</strong> en la primera mitad del embarazo.'));
+    } else if(cat==='hipo_sub'){
+      seg.push(rrow('','Recontrolar <strong>TSH + T4L en 6–12 meses</strong>; antes si aparecen síntomas.'));
+    } else if(cat==='hiper_franco'){
+      seg.push(rrow('','Controles estrechos coordinados con Endocrinología; perfil tiroideo y hemograma según pauta de antitiroideos.'));
+    } else if(cat==='hiper_sub'){
+      seg.push(rrow('','Repetir perfil tiroideo en <strong>3–6 meses</strong> para confirmar persistencia.'));
+    } else {
+      seg.push(rrow('','Sin seguimiento específico; reevaluar según clínica.'));
+    }
+    g('r-seg').innerHTML=seg.join('');
+
+    // --- C · derivación ---
+    if(cat==='hiper_franco'){ der.push(rrow('','<strong>Derivar a Endocrinología</strong> todo hipertiroidismo franco.')); if(chk('h_oftalmo')) der.push(rrow('','Orbitopatía → derivación preferente.')); }
+    if(cat==='central'){ der.push(rrow('','<strong>Derivar</strong> (hipotiroidismo central / patología hipofisaria).')); }
+    if(gest && cat!=='normal'){ der.push(rrow('','Disfunción tiroidea en gestación → coordinar con <strong>Endocrinología/Obstetricia</strong>.')); }
+    if(cat==='hiper_sub' && tsh<0.1 && (edad>=65||cardio)){ der.push(rrow('','Hipertiroidismo subclínico de riesgo → valorar derivación.')); }
+    if(der.length===0){ der.push(rrow('✓','Manejable en Atención Primaria con los controles indicados.')); }
+    g('r-der').innerHTML=der.join('');
+
+    construirHCFuncion(tsh,t4,t3);
+  }
+
+  function tratarSubclinicoHipo(edad,tpo,gest,emb){
+    if(gest) return true;
+    if(emb==='preconcep') return true;
+    if(edad && edad<70 && (tpo==='pos')) return true;
+    var sint = chk('s_cansancio')+chk('s_frio')+chk('s_peso_gan')+chk('s_piel_seca')+chk('s_bradipsiquia')+chk('s_menstrual');
+    if(edad && edad<70 && sint>=2) return true;
+    return false;
+  }
+
+  function construirHCFuncion(tsh,t4,t3){
+    var L=[];
+    L.push('PERFIL TIROIDEO — '+EST.clase);
+    var an='TSH '+tsh.toFixed(2)+' mU/L';
+    if(t4!==null) an+=' · T4L '+t4.toFixed(2)+' ng/dL';
+    if(t3!==null) an+=' · T3L '+t3.toFixed(2)+' pg/mL';
+    if(sv('antitpo')) an+=' · anti-TPO '+(sv('antitpo')==='pos'?'positivos':'negativos');
+    if(sv('trab')) an+=' · TRAb '+(sv('trab')==='pos'?'positivos':'negativos');
+    L.push(an+'.');
+    if(gestacion()) L.push('Gestante; interpretado con límite de TSH del trimestre ('+tshTopEmb().toFixed(1)+' mU/L).');
+    L.push('Plan: '+plain('r-tto'));
+    L.push('Seguimiento: '+plain('r-seg'));
+    var d=plain('r-der'); if(d) L.push('Derivación: '+d);
+    g('hc-text').value=L.join('\n')+'\n\nRecomendación basada en las guías ETA 2023 · ATA 2017 · SEEN · SEMERGEN (EU-TIRADS).';
+  }
+
+  // ================================================================
+  // MOTOR · NÓDULO TIROIDEO (EU-TIRADS, ETA 2023)
+  // ================================================================
+  function calcEUTIRADS(eco){
+    var hr = chk('n_taller')||chk('n_margen')||chk('n_microcalc')||eco==='hipo_marcado';
+    if(eco==='anecoico'||eco==='espongiforme') return 2;
+    if(hr) return 5;
+    if(eco==='hipo_leve') return 4;
+    if(eco==='iso') return 3;
+    return 3;
+  }
+  function fnaCutoff(cat){ return cat===5?10:(cat===4?15:(cat===3?20:null)); }
+  function riesgoCat(cat){ return cat===2?'~0%':(cat===3?'2–4%':(cat===4?'6–17%':'26–87%')); }
+
+  function generarNodulo(){
+    var size=v('n_size'), eco=sv('n_eco'), tsh = has('n_tsh')? v('n_tsh'): null;
+    var multi = sv('n_num')==='multi';
+    var banderas = chk('n_adenop')||chk('n_extension')||chk('n_crecimiento')||chk('n_rt')||chk('n_familiar');
+    var dx=[],pruebas=[],tto=[],seg=[],der=[];
+
+    if(!eco || !size){
+      g('r-dx').innerHTML = al('<strong>Faltan datos.</strong> Introduce el <strong>tamaño (mm)</strong> y la <strong>estructura ecográfica</strong> del nódulo dominante.','warn');
+      g('r-metrics').innerHTML=''; g('blk-pruebas').style.display='none';
+      g('r-tto').innerHTML=''; g('r-seg').innerHTML=''; g('r-der').innerHTML=''; g('hc-text').value=''; EST={}; return;
+    }
+    g('blk-pruebas').style.display='block';
+
+    var cat=calcEUTIRADS(eco);
+    var cut=fnaCutoff(cat);
+    var tshBaja = (tsh!==null && tsh<0.4);
+    var indicaPAAF = (cut!==null && size>cut) || chk('n_adenop') || chk('n_extension');
+    if(cat===2) indicaPAAF = chk('n_adenop')||chk('n_extension');
+    EST.cat='nodulo'; EST.eutirads=cat; EST.size=size;
+
+    var clsCat = cat>=5?'cr':(cat===4?'ca':(cat===3?'ck':'cg'));
+    var m='';
+    m+=met('EU-TIRADS '+cat, 'Categoría', clsCat);
+    m+=met(size+' mm','Tamaño', (cut!==null&&size>cut)?'ca':'ck');
+    m+=met(riesgoCat(cat),'Riesgo malignidad', clsCat);
+    if(tsh!==null) m+=met(tsh.toFixed(2),'TSH', tshBaja?'cr':'cg');
+    g('r-metrics').innerHTML=m;
+
+    var nombreCat = cat===2?'benigno':(cat===3?'bajo riesgo':(cat===4?'riesgo intermedio':'alto riesgo'));
+    g('hd-dx').innerHTML='Nódulo EU-TIRADS '+cat+' ('+nombreCat+')';
+    dx.push(rrow('','<strong>EU-TIRADS '+cat+'</strong> — '+nombreCat+'. Riesgo estimado de malignidad <strong>'+riesgoCat(cat)+'</strong>. Tamaño '+size+' mm'+(multi?' (bocio multinodular: describir todos los nódulos con signos sospechosos).':'.')));
+    if(chk('n_taller')) dx.push(rrow('⚠','Forma «más alta que ancha» — signo de alto riesgo.'));
+    if(chk('n_margen')) dx.push(rrow('⚠','Márgenes irregulares — signo de alto riesgo.'));
+    if(chk('n_microcalc')) dx.push(rrow('⚠','Microcalcificaciones — signo de alto riesgo.'));
+    if(eco==='hipo_marcado') dx.push(rrow('⚠','Marcadamente hipoecoico — signo de alto riesgo.'));
+    if(banderas){ dx.push(rdiv()); if(chk('n_adenop'))dx.push(rrow('r-urg','Adenopatías cervicales sospechosas.')); if(chk('n_extension'))dx.push(rrow('r-urg','Fijación/extensión extratiroidea o parálisis de cuerda vocal.')); if(chk('n_crecimiento'))dx.push(rrow('r-urg','Crecimiento rápido.')); if(chk('n_rt'))dx.push(rrow('r-urg','Radioterapia cervical previa.')); if(chk('n_familiar'))dx.push(rrow('r-urg','AF carcinoma medular/MEN2.')); }
+    g('r-dx').innerHTML=dx.join('');
+
+    pruebas.push(rrow('','<strong>TSH</strong> en todo nódulo'+(tsh===null?' (pendiente).':'.')));
+    if(tshBaja){
+      pruebas.push(rrow('','TSH baja → <strong>gammagrafía</strong>: si el nódulo es «caliente»/autónomo, riesgo de malignidad muy bajo y <strong>no precisa PAAF</strong> (manejar como hipertiroidismo).'));
+    }
+    if(indicaPAAF && !tshBaja){
+      pruebas.push(rrow('','<strong>PAAF guiada por ecografía indicada</strong> (EU-TIRADS '+cat+', '+(cut!==null?'tamaño > '+cut+' mm':'banderas clínicas')+'). Informar citología con sistema <strong>Bethesda</strong>.'));
+    } else if(!tshBaja){
+      pruebas.push(rrow('','PAAF <strong>no indicada</strong> por ahora (EU-TIRADS '+cat+(cut!==null?' requiere > '+cut+' mm; actual '+size+' mm':'')+'). Seguimiento ecográfico.'));
+    }
+    if(chk('n_familiar')) pruebas.push(rrow('','Determinar <strong>calcitonina</strong> (sospecha de carcinoma medular).'));
+    if(chk('n_compresion')) pruebas.push(rrow('','Síntomas compresivos / bocio voluminoso → valorar <strong>TC/RM sin contraste yodado</strong>.'));
+    g('r-pruebas').innerHTML=pruebas.join('');
+
+    g('hd-tto').innerHTML='Actitud terapéutica';
+    if(tshBaja){
+      tto.push(rrow('','Nódulo posiblemente <strong>tóxico/autónomo</strong>: tratar la hiperfunción (betabloqueante sintomático, antitiroideos y tratamiento definitivo según caso). Derivar a Endocrinología.'));
+    } else if(cat<=3){
+      tto.push(rrow('','Nódulo de bajo riesgo: <strong>actitud conservadora</strong>, sin tratamiento. No se recomienda LT4 supresora.'));
+      tto.push(rrow('','Si es benigno y sintomático: valorar técnicas mínimamente invasivas (radiofrecuencia en sólidos, etanolización en quísticos recidivantes) o cirugía.'));
+    } else {
+      tto.push(rrow('','Decisión según <strong>citología (Bethesda)</strong>: II → vigilancia; III → repetir/molecular; IV → cirugía/molecular; V–VI → <strong>cirugía</strong> (comité multidisciplinar).'));
+    }
+    if(chk('n_compresion')) tto.push(rrow('','Síntomas compresivos relevantes → valorar <strong>cirugía</strong>.'));
+    g('r-tto').innerHTML=tto.join('');
+
+    if(cat===2){ seg.push(rrow('', size>10?'EU-TIRADS 2 &gt;10 mm: reevaluar en <strong>3–5 años</strong>.':'EU-TIRADS 2 (5–10 mm): <strong>sin más controles</strong>.')); }
+    else if(cat===3){ seg.push(rrow('', size>20?'PAAF; si benigna, reevaluar en 3–5 años.':'EU-TIRADS 3 &lt;20 mm: reevaluación ecográfica en <strong>3–5 años</strong>.')); }
+    else if(cat===4){ seg.push(rrow('', size>15?'Según citología; si benigna, reevaluar en 3–5 años.':'EU-TIRADS 4 &lt;15 mm: reevaluación ecográfica en <strong>3–5 años</strong>.')); }
+    else { seg.push(rrow('','EU-TIRADS 5: PAAF y seguimiento estrecho; si &lt;10 mm y no puncionado, control ecográfico estricto.')); }
+    seg.push(rrow('','Repetir PAAF si crecimiento significativo (&gt;20% en 2 diámetros o &gt;50% de volumen) o discordancia eco-citología.'));
+    g('r-seg').innerHTML=seg.join('');
+
+    if(cat>=5 || banderas){ der.push(rrow('','<strong>Derivar a Endocrinología</strong> (alto riesgo y/o banderas de sospecha).')); }
+    if(chk('n_familiar')) der.push(rrow('','Sospecha de carcinoma medular/MEN → derivación + calcitonina.'));
+    if(tshBaja) der.push(rrow('','Nódulo tóxico → derivar para tratamiento del hipertiroidismo.'));
+    if(chk('n_compresion')) der.push(rrow('','Bocio/nódulo compresivo → valorar cirugía (derivar).'));
+    if(der.length===0) der.push(rrow('✓','Seguimiento en AP / circuito de ecografía; derivar solo si cambia la categoría o aparece sospecha.'));
+    g('r-der').innerHTML=der.join('');
+
+    construirHCNodulo(cat,size,tsh,indicaPAAF,cut,tshBaja);
+  }
+
+  function construirHCNodulo(cat,size,tsh,paaf,cut,tshBaja){
+    var L=[];
+    L.push('NÓDULO TIROIDEO — EU-TIRADS '+cat+' ('+size+' mm).');
+    L.push('Riesgo estimado de malignidad '+riesgoCat(cat)+'.'+(sv('n_num')==='multi'?' Bocio multinodular.':''));
+    if(tsh!==null) L.push('TSH '+tsh.toFixed(2)+' mU/L'+(tshBaja?' (suprimida → gammagrafía).':'.'));
+    var bf=[]; if(chk('n_taller'))bf.push('forma alta>ancha'); if(chk('n_margen'))bf.push('márgenes irregulares'); if(chk('n_microcalc'))bf.push('microcalcificaciones'); if(sv('n_eco')==='hipo_marcado')bf.push('muy hipoecoico');
+    if(bf.length) L.push('Signos de alto riesgo: '+bf.join(', ')+'.');
+    var bn=[]; if(chk('n_adenop'))bn.push('adenopatías'); if(chk('n_extension'))bn.push('extensión/parálisis cuerda vocal'); if(chk('n_crecimiento'))bn.push('crecimiento rápido'); if(chk('n_rt'))bn.push('RT cervical previa'); if(chk('n_familiar'))bn.push('AF carcinoma medular');
+    if(bn.length) L.push('Banderas clínicas: '+bn.join(', ')+'.');
+    if(tshBaja) L.push('Plan: gammagrafía por TSH baja; PAAF no indicada si nódulo caliente.');
+    else L.push('Plan: '+(paaf?('PAAF guiada por ecografía indicada'+(cut!==null?(' (EU-TIRADS '+cat+', >'+cut+' mm)'):'')+', citología Bethesda.'):'seguimiento ecográfico sin PAAF por ahora.'));
+    L.push('Seguimiento: '+plain('r-seg'));
+    var d=plain('r-der'); if(d) L.push('Derivación: '+d);
+    g('hc-text').value=L.join('\n')+'\n\nRecomendación basada en las guías ETA 2023 · ATA 2017 · SEEN · SEMERGEN (EU-TIRADS).';
+  }
+
+  // ================================================================
+  // HOJA DEL PACIENTE
+  // ================================================================
+  window.generarHojaPacienteTexto=function(){
+    if(!EST.cat) return '';
+    var L=[];
+    if(EST.cat==='nodulo'){
+      L.push('## Información sobre su nódulo de tiroides');
+      L.push('El tiroides es una glándula con forma de mariposa situada en la parte delantera del cuello. Un «nódulo» es un bultito dentro de esa glándula. Los nódulos son muy frecuentes y la gran mayoría (más de 9 de cada 10) son benignos, es decir, no son un cáncer.');
+      L.push('');
+      L.push('## Qué hemos encontrado');
+      L.push('- Le hemos hecho una ecografía, que es una prueba sencilla con ultrasonidos y sin radiación.');
+      L.push('- Según sus características, su nódulo se clasifica en la categoría EU-TIRADS '+EST.eutirads+' y mide unos '+EST.size+' milímetros.');
+      if(EST.eutirads>=4) L.push('- Por sus características conviene estudiarlo un poco más para confirmar que todo está bien.');
+      else L.push('- Tiene características tranquilizadoras; lo habitual es vigilarlo con ecografías cada cierto tiempo.');
+      L.push('');
+      L.push('## Qué vamos a hacer');
+      if(EST.eutirads>=5 || g('r-pruebas').textContent.indexOf('PAAF guiada')>=0){
+        L.push('- Le propondremos una punción con una aguja muy fina (PAAF), guiada por ecografía. Es una prueba rápida que toma una pequeña muestra de células para analizarlas. Apenas molesta.');
+      } else {
+        L.push('- De momento no hace falta pincharlo. Lo controlaremos con ecografías de seguimiento.');
+      }
+      L.push('- Si fuera necesario, le derivaremos al especialista de Endocrinología.');
+      L.push('');
+      L.push('## Cuándo debe consultar antes');
+      L.push('- Si nota que el bulto crece deprisa.');
+      L.push('- Si aparece dificultad para tragar o respirar, o cambios en la voz (ronquera).');
+      L.push('- Si nota bultos (ganglios) en el cuello.');
+    } else {
+      var c=EST.cat;
+      if(c==='hipo_franco'||c==='hipo_sub'||c==='hipo_sub_alto'){
+        L.push('## Su tiroides funciona algo lento (hipotiroidismo)');
+        L.push('El tiroides es una glándula del cuello que regula el ritmo del cuerpo. Cuando funciona poco, puede notar cansancio, frío, estreñimiento, piel seca o aumento de peso.');
+        L.push('');
+        L.push('## Tratamiento');
+        if(EST.trata){
+          L.push('- Tomará una pastilla de hormona tiroidea (levotiroxina) una vez al día.');
+          L.push('- Tómela en ayunas, al menos media hora antes del desayuno, y separada del calcio o el hierro.');
+          L.push('- No la deje por su cuenta: es un tratamiento que suele ser prolongado.');
+        } else {
+          L.push('- De momento no necesita pastillas. Vigilaremos su tiroides con un análisis de control.');
+        }
+        L.push('');
+        L.push('## Controles');
+        L.push('- Le repetiremos un análisis de sangre (TSH) para ajustar la dosis y, después, una vez al año.');
+      } else if(c==='hiper_franco'||c==='hiper_sub'){
+        L.push('## Su tiroides funciona acelerado (hipertiroidismo)');
+        L.push('Cuando el tiroides trabaja en exceso, puede notar nerviosismo, palpitaciones, temblor, pérdida de peso, sudoración o intolerancia al calor.');
+        L.push('');
+        L.push('## Qué vamos a hacer');
+        L.push('- Le pediremos algún análisis más para saber la causa y, probablemente, le veremos junto con el especialista de Endocrinología.');
+        if(c==='hiper_franco') L.push('- Puede que use una pastilla para controlar las palpitaciones y, si procede, un medicamento para frenar el tiroides.');
+        L.push('');
+        L.push('## Importante');
+        L.push('- Si está tomando medicación para el tiroides y aparece fiebre o dolor de garganta intenso, no tome la siguiente dosis y consulte ese mismo día.');
+      } else if(c==='central'){
+        L.push('## Necesitamos estudiar mejor su tiroides');
+        L.push('Sus análisis muestran un patrón que conviene estudiar con más detalle. Le derivaremos al especialista antes de iniciar ningún tratamiento.');
+      } else {
+        L.push('## Su tiroides funciona con normalidad');
+        L.push('Los análisis de su tiroides están dentro de lo normal. No necesita tratamiento ahora mismo.');
+        L.push('');
+        L.push('## Recomendación');
+        L.push('- Repetiremos el control si aparecen síntomas o según le indique su médico/a.');
+      }
+    }
+    L.push('');
+    L.push('Documento orientativo entregado en consulta. Ante cualquier duda, consulte con su médico/a o enfermero/a.');
+    return L.join('\n');
+  };
+
+  window.previsualizarHojaPaciente=function(){
+    var txt=window.generarHojaPacienteTexto(); if(!txt) return;
+    g('hoja-pac-text').value=txt;
+    g('hoja-preview-empty').style.display='none';
+    g('hoja-preview-wrap').style.display='block';
+  };
+
+  function hojaTextoAHtml(txt){
+    var lines=txt.split('\n'), html='', ul=[];
+    function flush(){ if(ul.length){ html+='<ul>'+ul.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul>'; ul=[]; } }
+    lines.forEach(function(ln){
+      ln=ln.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      var t=ln.trim();
+      if(t===''){ flush(); return; }
+      if(t.indexOf('## ')===0){ flush(); var h=t.slice(3); if(html===''){ html+='<h1>'+h+'</h1>'; } else { html+='<h2>'+h+'</h2>'; } }
+      else if(t.indexOf('- ')===0){ ul.push(t.slice(2)); }
+      else { flush(); html+='<p>'+ln+'</p>'; }
+    });
+    flush(); return html;
+  }
+
+  window.imprimirHoja=function(){
+    var txt=g('hoja-pac-text').value; if(!txt.trim()) return;
+    var hoja=g('hoja-paciente');
+    hoja.innerHTML=hojaTextoAHtml(txt)+'<div style="margin-top:20pt;padding-top:8pt;border-top:1px solid #ccc;font-size:8.5pt;color:#555;line-height:1.5"><strong>Recomendación realizada con herramienta de decisión clínica desarrollada por la Dra. Laura Bernal Martínez.</strong><br>Herramienta de apoyo a la decisión clínica. La recomendación es orientativa, no sustituye el juicio del profesional ni la valoración individual del paciente, y debe interpretarse en su contexto clínico.</div>';
+    document.body.appendChild(hoja); // hijo directo de body: así el CSS de impresión lo muestra
+    window.print();
+  };
+
+})();
+
+// ===== TAB SYSTEM =====
+function showTab(name){
+  ['ayuda','guia'].forEach(function(t){
+    document.getElementById('page-'+t).classList.remove('active');
+    document.getElementById('tab-'+t).classList.remove('active');
+  });
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+  document.getElementById('sub-nav').classList.toggle('visible', name==='guia');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function anchorClick(e,a){
+  e.preventDefault();
+  var id=a.getAttribute('href').replace('#','');
+  var el=document.getElementById(id);
+  if(el){ var offset=el.getBoundingClientRect().top+window.scrollY-110; window.scrollTo({top:offset,behavior:'smooth'}); }
+}
+</script>
+<script src="ficha.js"></script>
+</body>
+</html>
