@@ -7,6 +7,7 @@
     <title>Herramientas clínicas - Dra. Laura Bernal</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="../css/inmersiva.css">
     <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -32,26 +33,21 @@
     </header>
 
     <main>
-        <section class="page-hero">
-            <div class="container">
-                <h1>Herramientas clínicas y desarrollo</h1>
-                <p class="page-subtitle">Desarrollo tecnológico desde el problema asistencial real</p>
-            </div>
-        </section>
+        <section class="im-pn im-dark im-hero-h">
+  <span class="im-ghost" aria-hidden="true">evidencia</span>
+  <div class="im-w">
+    <p class="im-eyebrow im-rv">Herramientas clínicas y desarrollo</p>
+    <h1 class="im-big im-rv im-d1" style="margin-top:16px">Desde el problema<br>asistencial <em>real</em></h1>
+    <p class="im-lead-s im-rv im-d2" style="max-width:52ch">Herramientas de salud digital construidas por alguien que toma decisiones clínicas cada día y sabe qué es lo que realmente hace falta.</p>
+  </div>
+</section>
 
-        <section class="tools-intro">
-            <div class="container">
-                <div class="intro-content">
-                    <p class="lead">Desarrollo herramientas de salud digital desde el problema asistencial real — construidas por alguien que toma decisiones clínicas cada día y sabe qué es lo que realmente hace falta. Algunas son calculadoras y algoritmos basados en evidencia; otras integran datos oficiales en tiempo real; y otras incorporan inteligencia artificial.</p>
-                    
-                    <p>Además de construir, enseño. Formo a médicos en IA, programación y bioinformática — desde niveles introductorios hasta formación avanzada. He sido docente en el Programa UPRO de Competencias Digitales para Médicos, enmarcado en Next Generation EU y la Organización Médica Colegial.</p>
-                    
-                    <div class="highlight-box">
-                        <p><strong>No me interesan las demos vacías</strong> — me interesa construir herramientas que funcionen y formar a profesionales que las usen de verdad.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="im-pn im-light">
+  <div class="im-w">
+    <p class="im-quote im-rv" style="color:var(--ink);max-width:24ch">No me interesan las demos vacías: me interesa construir herramientas que <em style="color:var(--gold-ink)">funcionen</em> y formar a profesionales que las usen de verdad.</p>
+    <p class="im-rv im-d1" style="color:var(--mid);font-size:18.5px;margin-top:28px;max-width:64ch">Algunas son calculadoras y algoritmos basados en evidencia; otras integran datos oficiales en tiempo real; y otras incorporan inteligencia artificial. Además de construir, enseño: formo a médicos en IA, programación y bioinformática, y he sido docente en el Programa UPRO de Competencias Digitales para Médicos.</p>
+  </div>
+</section>
 
         <section class="tools-list">
             <div class="container">
@@ -59,7 +55,7 @@
                     <div class="tools-search">
                         <svg class="tools-search-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
                         <label for="toolSearch" class="visually-hidden">Buscar herramienta</label>
-                        <input type="search" id="toolSearch" placeholder="Buscar: tiroides, DM2, FRAX…" autocomplete="off" spellcheck="false">
+                        <input type="search" id="toolSearch" placeholder="Buscar: tiroidea, DM2, FRAX…" autocomplete="off" spellcheck="false">
                         <button type="button" class="tools-search-clear" aria-label="Borrar búsqueda" hidden>
                             <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
                         </button>
@@ -91,7 +87,7 @@
                             </div>
                             <p>Herramienta para el manejo de anticoagulación en atención primaria. Incluye cálculo de escalas de riesgo, dosificación y seguimiento de pacientes anticoagulados según protocolos actualizados.</p>
                             <div class="tool-tech">
-                                <span>CHA₂DS₂-VASc</span>
+                                <span>CHA₂DS₂-VA</span>
                                 <span>HAS-BLED</span>
                             </div>
                             <a href="anticoagulacion.html" class="tool-link" target="_blank">Abrir herramienta →</a>
@@ -346,5 +342,6 @@
     </footer>
 
     <script src="../js/main.js"></script>
+    <script src="../js/inmersiva.js"></script>
 </body>
 </html>
